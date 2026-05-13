@@ -1,4 +1,4 @@
-# Next.js Project Starter
+# Providus CRM
 
 A production-ready Next.js 15 project with App Router, TypeScript, Tailwind CSS v4, and a strict design system.
 
@@ -8,7 +8,7 @@ A production-ready Next.js 15 project with App Router, TypeScript, Tailwind CSS 
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4
 - **Linting**: ESLint 9 (flat config)
-- **Fonts**: Afacad (headings) · Roboto (body) via `next/font`
+- **Fonts**: Afacad (headings) and Roboto (body) via `next/font`
 
 ## Design System
 
@@ -38,38 +38,38 @@ A production-ready Next.js 15 project with App Router, TypeScript, Tailwind CSS 
 
 ## Folder Structure
 
-```
+```text
 src/
-├── app/                    # App Router pages & layouts
-│   ├── layout.tsx          # Root layout (fonts, nav, footer)
-│   ├── page.tsx            # Home page
-│   ├── loading.tsx         # Global loading UI
-│   └── not-found.tsx       # 404 page
-├── components/
-│   ├── ui/                 # Atomic components
-│   │   ├── Typography.tsx  # <Heading> and <Text>
-│   │   ├── Button.tsx      # <Button> with variants
-│   │   ├── Badge.tsx       # <Badge>
-│   │   ├── Card.tsx        # <Card>
-│   │   └── index.ts
-│   ├── layout/             # Structural components
-│   │   ├── Container.tsx
-│   │   ├── Section.tsx
-│   │   ├── Navbar.tsx
-│   │   ├── Footer.tsx
-│   │   └── index.ts
-│   └── sections/           # Page-level blocks
-│       ├── HeroSection.tsx
-│       ├── FeaturesSection.tsx
-│       ├── CtaSection.tsx
-│       └── index.ts
-├── lib/
-│   ├── tokens.ts           # Design tokens as TS constants
-│   └── utils.ts            # cn() and shared helpers
-├── styles/
-│   └── globals.css         # Tailwind v4 @theme tokens + utilities
-└── types/
-    └── index.ts            # Shared TypeScript types
+  app/                    # App Router pages and layouts
+    layout.tsx            # Root layout: fonts, nav, footer
+    page.tsx              # Home page
+    loading.tsx           # Global loading UI
+    not-found.tsx         # 404 page
+  components/
+    ui/                   # Atomic components
+      Typography.tsx      # Heading and Text
+      Button.tsx          # Button with variants
+      Badge.tsx           # Badge
+      Card.tsx            # Card
+      index.ts
+    layout/               # Structural components
+      Container.tsx
+      Section.tsx
+      Navbar.tsx
+      Footer.tsx
+      index.ts
+    sections/             # Page-level blocks
+      HeroSection.tsx
+      FeaturesSection.tsx
+      CtaSection.tsx
+      index.ts
+  lib/
+    tokens.ts             # Design tokens as TS constants
+    utils.ts              # cn() and shared helpers
+  styles/
+    globals.css           # Tailwind v4 @theme tokens and utilities
+  types/
+    index.ts              # Shared TypeScript types
 ```
 
 ## Getting Started
@@ -88,16 +88,16 @@ npm run dev        # Start dev server
 npm run build      # Production build
 npm run start      # Start production server
 npm run lint       # Run ESLint
-npm run type-check # TypeScript check (no emit)
+npm run type-check # TypeScript check, no emit
 ```
 
 ## Adding a New Section
 
-1. Create `src/components/sections/YourSection.tsx`
-2. Use `<Section>` as the outer wrapper with a `background` prop
-3. Use `<Container>` for content width
-4. Use `<Heading>` and `<Text>` for all copy
-5. Export from `src/components/sections/index.ts`
-6. Import and use in `src/app/page.tsx`
+1. Create `src/components/sections/YourSection.tsx`.
+2. Use `<Section>` as the outer wrapper with a `background` prop.
+3. Use `<Container>` for content width.
+4. Use `<Heading>` and `<Text>` for all copy.
+5. Export from `src/components/sections/index.ts`.
+6. Import and use in `src/app/page.tsx`.
 
 See `AGENTS.md` for full rules.

@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* ─── Google Fonts ─────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto:wght@400;600&display=swap");
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+/* Only colors, fonts, spacing, and radius live here.            */
+/* Text-size tokens are NOT in @theme — putting --typography-* here    */
+/* causes Tailwind v4 to auto-generate conflicting utilities.    */
+@theme {
+  /* Colors */
+  --color-brand-blue: #1d70c5;
+  --color-brand-blue-light: #e2f2ff;
+  --color-brand-green: #38a81b;
+  --color-brand-green-light: #a0ff88;
+  --color-brand-pink-light: #fad3ff;
+  --color-brand-yellow-light: #ffe072;
+  --color-brand-green-pale: #eaffe5;
+  --color-box-green-end: #55d334;
+  --color-box-blue-end: #306897;
+
+  /* Font Families */
+  --font-heading: "Afacad", sans-serif;
+  --font-body: "Roboto", sans-serif;
+
+  /* Spacing Scale */
+  --spacing-section-sm: 64px;
+  --spacing-section-md: 96px;
+  --spacing-section-lg: 128px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-partner: 0px 24.85px 51.88px -21.86px #4eb83545;
+}
+
+/* ─── Base Styles ────────────────────────────────────────────── */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: "Roboto", sans-serif;
+    color: #111;
+    background-color: #fff;
+  }
+
+  h1 {
+    font-family: "Afacad", sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 60.9px;
+    letter-spacing: -1.24px;
+  }
+
+  h2 {
+    font-family: "Afacad", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 45px;
+    letter-spacing: 0px;
+  }
+
+  h3 {
+    font-family: "Afacad", sans-serif;
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: -0.39px;
+  }
+
+  h4 {
+    font-family: "Afacad", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0px;
+  }
+}
+
+/* ─── Typography Utilities ───────────────────────────────────── */
+/* Using @utility (Tailwind v4) so these are registered in the   */
+/* correct layer order and never overridden by @theme generation. */
+@utility typography-h1 {
+  font-family: "Afacad", sans-serif;
+  font-size: 60px !important;
+  font-weight: 700 !important;
+  line-height: 60.9px !important;
+  letter-spacing: -1.24px !important;
+}
+
+@utility typography-h2 {
+  font-family: "Afacad", sans-serif;
+  font-size: 50px !important;
+  font-weight: 700 !important;
+  line-height: 45px !important;
+  letter-spacing: 0px !important;
+}
+
+@utility typography-h3 {
+  font-family: "Afacad", sans-serif;
+  font-size: 45px !important;
+  font-weight: 600 !important;
+  line-height: 25px !important;
+  letter-spacing: -0.39px !important;
+}
+
+@utility typography-h4 {
+  font-family: "Afacad", sans-serif;
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  line-height: 35px !important;
+  letter-spacing: 0px !important;
+}
+
+@utility typography-p1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 30px !important;
+  letter-spacing: 0px !important;
+}
+
+@utility typography-p2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 30px !important;
+  letter-spacing: 0px !important;
+}
+
+@utility typography-p3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 25px !important;
+  letter-spacing: -0.39px !important;
+}
+
+@utility typography-p4 {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+  letter-spacing: 0px !important;
+}
+
+@utility animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}

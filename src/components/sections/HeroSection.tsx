@@ -8,12 +8,14 @@ interface HeroSectionProps {
   title?: React.ReactNode;
   description?: string;
   image?: string;
+  imageClassName?: string;
 }
 
 export function HeroSection({ 
   title, 
   description, 
-  image = "/images/hero-img.png" 
+  image = "/images/hero-img.png",
+  imageClassName = "object-cover object-center"
 }: HeroSectionProps) {
   const defaultTitle = (
     <>
@@ -101,7 +103,7 @@ export function HeroSection({
                   src={image}
                   alt="Business meeting"
                   fill
-                  className="object-cover object-center"
+                  className={imageClassName}
                   priority
                 />
               </div>

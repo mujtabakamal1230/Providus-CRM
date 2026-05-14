@@ -1,3 +1,4 @@
+import React from "react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -9,6 +10,7 @@ interface HeadingProps {
   level?: HeadingLevel;
   children: ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const headingClasses: Record<HeadingLevel, string> = {
@@ -23,12 +25,13 @@ export function Heading({
   level,
   children,
   className,
+  style,
 }: HeadingProps) {
   const resolvedLevel = as ?? level ?? "h2";
   const Tag = resolvedLevel;
 
   return (
-    <Tag className={cn(headingClasses[resolvedLevel], className)}>
+    <Tag className={cn(headingClasses[resolvedLevel], className)} style={style}>
       {children}
     </Tag>
   );

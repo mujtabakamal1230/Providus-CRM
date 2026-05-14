@@ -36,6 +36,7 @@ export default function ServicesPage() {
         title={servicesHeroTitle}
         description="End-to-end Salesforce services and certified talent for building CRM solutions around your organisation's processes, challenges, and goals."
         image="/images/our-services-hero.png"
+        imageClassName="object-contain"
       />
       <PartnersSection />
       <CategoriesSection />

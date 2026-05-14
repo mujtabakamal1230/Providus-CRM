@@ -5,7 +5,7 @@ import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
-const expertiseItems = [
+export const expertiseItems = [
   {
     id: 1,
     title: "Service Cloud",
@@ -36,7 +36,15 @@ const expertiseItems = [
   },
 ];
 
-export function ExpertiseSection() {
+interface ExpertiseSectionProps {
+  title?: string;
+  items?: typeof expertiseItems;
+}
+
+export function ExpertiseSection({ title, items }: ExpertiseSectionProps) {
+  const displayItems = items || expertiseItems;
+  const defaultTitle = "Our End-to-End Salesforce Platform Expertise";
+
   return (
     <section className="py-24 bg-white overflow-hidden">
       <Container>
@@ -51,14 +59,14 @@ export function ExpertiseSection() {
               className="w-16 h-auto mb-6"
             />
             <Heading as="h2" className="max-w-3xl !text-[36px] md:!text-[50px] leading-tight">
-              Our End-to-End Salesforce Platform Expertise
+              {title || defaultTitle}
             </Heading>
           </div>
         </Reveal>
 
         {/* Carousel Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {expertiseItems.map((item, index) => (
+          {displayItems.map((item, index) => (
             <Reveal key={item.id} direction="up" delay={0.1 * (index + 1)}>
               <div
                 className="p-8 flex flex-col items-center text-center h-full transition-transform hover:-translate-y-1"

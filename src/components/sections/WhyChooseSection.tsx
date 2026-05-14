@@ -43,8 +43,8 @@ export function WhyChooseSection({ title, customReasons }: WhyChooseSectionProps
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[#4EAAFF]/90 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[#4EAAFF]/40" />
+        <div className="absolute inset-0 bg-[#4EAAFF]/90 mix-blend-darken" />
+        <div className="absolute inset-0 bg-[#4EAAFF]/80" />
       </div>
 
       <Container className="relative z-10">
@@ -58,7 +58,7 @@ export function WhyChooseSection({ title, customReasons }: WhyChooseSectionProps
               height={20}
               className="w-16 h-auto mb-6"
             />
-            <Heading as="h2" className="text-white max-w-4xl !text-[36px] md:!text-[50px] leading-tight">
+            <Heading as="h2" className="text-white max-w-4xl leading-tight">
               {title || defaultTitle}
             </Heading>
           </div>

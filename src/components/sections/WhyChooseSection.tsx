@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
+import { Reveal } from "@/components/ui/Reveal";
 
-const reasons = [
+export const reasons = [
   {
     title: "We're Different",
     color: "#687DDA",
@@ -23,7 +24,15 @@ const reasons = [
   }
 ];
 
-export function WhyChooseSection() {
+interface WhyChooseSectionProps {
+  title?: string;
+  customReasons?: typeof reasons;
+}
+
+export function WhyChooseSection({ title, customReasons }: WhyChooseSectionProps) {
+  const displayReasons = customReasons || reasons;
+  const defaultTitle = "Why Choose ProvidusCRM As Your Salesforce Solutions Partner";
+
   return (
     <section className="relative py-24 min-h-[900px] flex items-center overflow-hidden">
       {/* Background and Overlay */}
@@ -40,59 +49,67 @@ export function WhyChooseSection() {
 
       <Container className="relative z-10">
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <Image
-            src="/images/green-line.svg"
-            alt=""
-            width={60}
-            height={20}
-            className="w-16 h-auto mb-6"
-          />
-          <Heading as="h2" className="text-white max-w-4xl !text-[36px] md:!text-[50px] leading-tight">
-            Why Choose ProvidusCRM As Your Salesforce Solutions Partner
-          </Heading>
-        </div>
+        <Reveal direction="up" delay={0.1}>
+          <div className="flex flex-col items-center text-center mb-16">
+            <Image
+              src="/images/green-line.svg"
+              alt=""
+              width={60}
+              height={20}
+              className="w-16 h-auto mb-6"
+            />
+            <Heading as="h2" className="text-white max-w-4xl !text-[36px] md:!text-[50px] leading-tight">
+              {title || defaultTitle}
+            </Heading>
+          </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Left Side - 3 Boxes */}
           <div className="flex flex-col gap-4 h-full">
-            {reasons.map((reason, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 md:p-8 rounded-md flex flex-col md:flex-row gap-6 shadow-sm flex-1"
-              >
-                <div className="shrink-0">
-                  <Image
-                    src={reason.icon}
-                    alt=""
-                    width={70}
-                    height={70}
-                    className="w-[70px] h-[70px] object-contain"
-                  />
-                </div>
-                <div className="flex flex-col justify-center">
-                  <Heading as="h4" style={{ color: reason.color }} className="mb-2">
-                    {reason.title}
-                  </Heading>
-                  <Text variant="p4" className="text-gray-600 leading-relaxed">
-                    {reason.text}
-                  </Text>
-                </div>
+            <Reveal direction="right" delay={0.3}>
+              <div className="flex flex-col gap-4">
+                {displayReasons.map((reason, index) => (
+                  <div
+                    key={index}
+                    className="bg-white p-6 md:p-8 rounded-md flex flex-col md:flex-row gap-6 shadow-sm flex-1"
+                  >
+                    <div className="shrink-0">
+                      <Image
+                        src={reason.icon}
+                        alt=""
+                        width={70}
+                        height={70}
+                        className="w-[70px] h-[70px] object-contain"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <Heading as="h4" style={{ color: reason.color }} className="mb-2">
+                        {reason.title}
+                      </Heading>
+                      <Text variant="p4" className="text-gray-600 leading-relaxed">
+                        {reason.text}
+                      </Text>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </Reveal>
           </div>
 
           {/* Right Side - Large Image with White Border */}
-          <div className="bg-white p-3 rounded-md shadow-2xl h-full min-h-[600px] lg:min-h-0">
-            <div className="relative w-full h-full rounded-md overflow-hidden">
-              <Image
-                src="/images/why-choose.png"
-                alt="Salesforce Specialist"
-                fill
-                className="object-cover object-center"
-              />
+          <Reveal direction="left" delay={0.4} width="100%" height="100%">
+            <div className="bg-white p-3 rounded-md shadow-2xl h-full min-h-[600px] lg:min-h-0">
+              <div className="relative w-full h-full rounded-md overflow-hidden">
+                <Image
+                  src="/images/why-choose.png"
+                  alt="Salesforce Specialist"
+                  fill
+                  className="object-cover object-center"
+                />
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

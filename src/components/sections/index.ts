@@ -7,5 +7,6 @@ export { BentoSection } from "./BentoSection";
 export { WhatWeDoSection } from "./WhatWeDoSection";
 export { ExpertiseSection } from "./ExpertiseSection";
 export { IndustriesSection } from "./IndustriesSection";
-export { WhyChooseSection } from "./WhyChooseSection";
+export { WhyChooseSection, reasons } from "./WhyChooseSection";
 export { TeamSection } from "./TeamSection";
+export { CategoriesSection } from "./CategoriesSection";

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
+import { Reveal } from "@/components/ui/Reveal";
 
 const expertiseItems = [
   {
@@ -40,50 +41,53 @@ export function ExpertiseSection() {
     <section className="py-24 bg-white overflow-hidden">
       <Container>
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <Image
-            src="/images/green-line.svg"
-            alt=""
-            width={60}
-            height={20}
-            className="w-16 h-auto mb-6"
-          />
-          <Heading as="h2" className="max-w-3xl !text-[36px] md:!text-[50px] leading-tight">
-            Our End-to-End Salesforce Platform Expertise
-          </Heading>
-        </div>
+        <Reveal direction="up" delay={0.1}>
+          <div className="flex flex-col items-center text-center mb-16">
+            <Image
+              src="/images/green-line.svg"
+              alt=""
+              width={60}
+              height={20}
+              className="w-16 h-auto mb-6"
+            />
+            <Heading as="h2" className="max-w-3xl !text-[36px] md:!text-[50px] leading-tight">
+              Our End-to-End Salesforce Platform Expertise
+            </Heading>
+          </div>
+        </Reveal>
 
         {/* Carousel Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {expertiseItems.map((item) => (
-            <div
-              key={item.id}
-              className="p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1"
-              style={{
-                background: "linear-gradient(180deg, #FAFDFF 0%, #EAF7FF 100%)",
-                borderRadius: "18px",
-                boxShadow: item.shadow,
-              }}
-            >
-              <div className="w-[60px] h-[60px] relative mb-8">
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  fill
-                  className="object-contain"
-                />
+          {expertiseItems.map((item, index) => (
+            <Reveal key={item.id} direction="up" delay={0.1 * (index + 1)}>
+              <div
+                className="p-8 flex flex-col items-center text-center h-full transition-transform hover:-translate-y-1"
+                style={{
+                  background: "linear-gradient(180deg, #FAFDFF 0%, #EAF7FF 100%)",
+                  borderRadius: "18px",
+                  boxShadow: item.shadow,
+                }}
+              >
+                <div className="w-[60px] h-[60px] relative mb-8">
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <Text variant="p1" className="text-black mb-4">
+                  {item.title}
+                </Text>
+
+                <div className="w-full h-[1px] bg-gray-200 mb-6" />
+
+                <Text variant="p4" className="text-gray-600">
+                  {item.text}
+                </Text>
               </div>
-
-              <Text variant="p1" className="text-black mb-4">
-                {item.title}
-              </Text>
-
-              <div className="w-full h-[1px] bg-gray-200 mb-6" />
-
-              <Text variant="p4" className="text-gray-600">
-                {item.text}
-              </Text>
-            </div>
+            </Reveal>
           ))}
         </div>
 

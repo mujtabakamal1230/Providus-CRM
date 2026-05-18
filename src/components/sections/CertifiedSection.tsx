@@ -14,7 +14,7 @@ export function CertifiedSection({ title, description }: CertifiedSectionProps) 
 
   return (
     <section
-      className="relative py-24 md:py-40 pb-8 md:pb-10 mb-24 md:mb-40 overflow-hidden bg-white rounded-b-[60px] md:rounded-b-[120px]"
+      className="relative py-24 md:py-40 pb-8 md:pb-10 overflow-hidden bg-white rounded-b-[60px] md:rounded-b-[120px]"
       style={{
         background: "linear-gradient(180deg, rgba(223, 241, 255, 0) 59.05%, #DFF1FF 101.46%)",
       }}

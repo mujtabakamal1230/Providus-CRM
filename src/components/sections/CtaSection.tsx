@@ -4,7 +4,7 @@ import { Heading } from "@/components/ui/Typography";
 
 export function CtaSection() {
   return (
-    <section className="relative h-[386px] flex items-center overflow-hidden">
+    <section className="relative h-[386px] flex items-center overflow-hidden mt-24 md:mt-40">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -14,8 +14,8 @@ export function CtaSection() {
           className="object-cover object-center"
         />
         {/* Overlay Gradient */}
-        <div 
-          className="absolute inset-0 z-10" 
+        <div
+          className="absolute inset-0 z-10"
           style={{
             background: "linear-gradient(270deg, rgba(255, 255, 255, 0) 14.76%, #FFFFFF 80.37%)"
           }}
@@ -34,7 +34,7 @@ export function CtaSection() {
           <Heading as="h1" className="text-black mb-8 leading-tight !text-[40px] md:!text-[50px]">
             Ready to <br /> Reinvent Your CRM?
           </Heading>
-          
+
           <button className="flex items-center gap-2 bg-[#38A81B] text-white px-6 py-3 rounded-full hover:bg-[#2e8b16] transition-colors group">
             <div className="bg-white rounded-full p-1 group-hover:scale-110 transition-transform">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

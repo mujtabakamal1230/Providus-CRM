@@ -16,3 +16,8 @@ export { CategoriesSection } from "./CategoriesSection";
 export { BelieveSection } from "./BelieveSection";
 export { TeamThoughtsSection } from "./TeamThoughtsSection";
 export { ExploreSection } from "./ExploreSection";
+export { CaseStudiesSection } from "./CaseStudiesSection";
+export { BlogSection } from "./BlogSection";
+export { ContactSection } from "./ContactSection";
+
+

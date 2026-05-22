@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 // ─── Types ────────────────────────────────────────────────────
-type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "outline" | "green";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,7 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 // ─── Styles ───────────────────────────────────────────────────
 const base =
-  "inline-flex items-center justify-center font-body font-semibold rounded-full transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center font-body font-normal rounded-full transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
@@ -25,6 +25,8 @@ const variants: Record<ButtonVariant, string> = {
     "bg-transparent text-[#1D70C5] hover:bg-[#E2F2FF] focus-visible:outline-[#1D70C5]",
   outline:
     "bg-transparent border-2 border-[#1D70C5] text-[#1D70C5] hover:bg-[#E2F2FF] focus-visible:outline-[#1D70C5]",
+  green:
+    "bg-brand-green text-white! hover:bg-[#2d8716] focus-visible:outline-[#38A81B]",
 };
 
 const sizes: Record<ButtonSize, string> = {

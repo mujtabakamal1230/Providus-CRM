@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 // ─── Types ────────────────────────────────────────────────────
-type BadgeVariant = "blue" | "green" | "pink" | "yellow";
+type BadgeVariant = "blue" | "green" | "pink" | "yellow" | "outline-white";
 
 interface BadgeProps {
   variant?: BadgeVariant;
@@ -16,6 +16,7 @@ const variants: Record<BadgeVariant, string> = {
   green: "bg-[#A0FF88] text-[#1D3D0C]",
   pink: "bg-[#FAD3FF] text-[#6B0080]",
   yellow: "bg-[#FFE072] text-[#4A3500]",
+  "outline-white": "bg-transparent text-white border-2 border-white",
 };
 
 // ─── Component ────────────────────────────────────────────────

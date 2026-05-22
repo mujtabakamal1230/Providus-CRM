@@ -50,9 +50,11 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:block shrink-0">
-            <CtaButton variant="filled" size="sm">
-              Let&apos;s Connect
-            </CtaButton>
+            <Link href="/contact">
+              <CtaButton variant="filled" size="sm">
+                Let&apos;s Connect
+              </CtaButton>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -100,9 +102,11 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-3 border-t border-gray-100">
-              <CtaButton variant="filled" size="sm">
-                Let&apos;s Connect
-              </CtaButton>
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                <CtaButton variant="filled" size="sm" className="w-full">
+                  Let&apos;s Connect
+                </CtaButton>
+              </Link>
             </div>
           </div>
         )}

@@ -1,6 +1,5 @@
 import {
   HeroSection,
-  FeaturesSection,
   CtaSection,
   PartnersSection,
   CertifiedSection,

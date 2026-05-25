@@ -1,19 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
-interface BlogPost {
+export interface BlogCardItem {
   title: string;
   date: string;
   image: string;
+  slug: string;
+  excerpt: string;
   categories: string[];
 }
 
 interface BlogSectionProps {
-  posts: BlogPost[];
+  posts: BlogCardItem[];
   searchQuery: string;
   onSearchChange: (query: string) => void;
 }
@@ -90,7 +93,10 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                 {/* Left Large Featured Card */}
                 {firstItem && (
-                  <div className="lg:col-span-8 flex flex-col group cursor-pointer">
+                  <Link
+                    href={`/blog/${firstItem.slug}`}
+                    className="lg:col-span-8 flex flex-col group cursor-pointer"
+                  >
                     <Reveal direction="up" delay={0.1} width="100%">
                       <div className="relative w-full aspect-[16/10] rounded-[16px] overflow-hidden mb-6 shadow-sm">
                         <Image
@@ -110,16 +116,20 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                       <span className="inline-block mt-2 font-body font-normal text-[16px] md:text-[20px] text-[#8C8C8C] leading-[30px]">
                         {firstItem.date}
                       </span>
+                      <Text variant="p3" className="mt-3 max-w-2xl text-[#5F5F5F]">
+                        {firstItem.excerpt}
+                      </Text>
                     </Reveal>
-                  </div>
+                  </Link>
                 )}
 
                 {/* Right Stacked List Cards */}
                 {stackedItems.length > 0 && (
                   <div className="lg:col-span-4 flex flex-col gap-8">
                     {stackedItems.map((item, idx) => (
-                      <div
+                      <Link
                         key={idx}
+                        href={`/blog/${item.slug}`}
                         className="flex flex-col group cursor-pointer"
                       >
                         <Reveal direction="up" delay={0.2 + idx * 0.1} width="100%">
@@ -141,7 +151,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                             {item.date}
                           </span>
                         </Reveal>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -152,7 +162,11 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
             {mediumItems.length > 0 && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 border-t border-gray-100 pt-12">
                 {mediumItems.map((item, idx) => (
-                  <div key={idx} className="flex flex-col group cursor-pointer">
+                  <Link
+                    key={idx}
+                    href={`/blog/${item.slug}`}
+                    className="flex flex-col group cursor-pointer"
+                  >
                     <Reveal direction="up" delay={0.1 * idx} width="100%">
                       <div className="relative w-full aspect-[16/9] rounded-[16px] overflow-hidden mb-6 shadow-sm">
                         <Image
@@ -171,8 +185,11 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                       <span className="inline-block mt-2 font-body font-normal text-[16px] md:text-[20px] text-[#8C8C8C] leading-[30px]">
                         {item.date}
                       </span>
+                      <Text variant="p3" className="mt-3 text-[#5F5F5F]">
+                        {item.excerpt}
+                      </Text>
                     </Reveal>
-                  </div>
+                  </Link>
                 ))}
               </div>
             )}
@@ -181,7 +198,11 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
             {smallItems.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 border-t border-gray-100 pt-12">
                 {smallItems.map((item, idx) => (
-                  <div key={idx} className="flex flex-col group cursor-pointer">
+                  <Link
+                    key={idx}
+                    href={`/blog/${item.slug}`}
+                    className="flex flex-col group cursor-pointer"
+                  >
                     <Reveal direction="up" delay={0.08 * idx} width="100%">
                       <div className="relative w-full aspect-[16/10] rounded-[16px] overflow-hidden mb-6 shadow-sm">
                         <Image
@@ -201,7 +222,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                         {item.date}
                       </span>
                     </Reveal>
-                  </div>
+                  </Link>
                 ))}
               </div>
             )}

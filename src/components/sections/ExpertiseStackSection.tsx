@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
-import { Reveal } from "@/components/ui/Reveal";
 import { motion, useScroll, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 import { useRef } from "react";
 
 const expertiseData = [
@@ -106,7 +106,7 @@ interface CardProps {
   color: string;
   icon: string;
   image: string;
-  progress: any;
+  progress: MotionValue<number>;
   range: [number, number];
   totalCards: number;
 }

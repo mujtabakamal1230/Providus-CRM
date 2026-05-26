@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Afacad, Roboto } from "next/font/google";
-import { Navbar, Footer } from "@/components/layout";
 import "@/styles/globals.css";
 
 // ─── Fonts ────────────────────────────────────────────────────
@@ -43,11 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${afacad.variable} ${roboto.variable}`}>
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

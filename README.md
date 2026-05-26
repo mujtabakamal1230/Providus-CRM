@@ -7,6 +7,7 @@ A production-ready Next.js 15 project with App Router, TypeScript, Tailwind CSS 
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4
+- **CMS**: Sanity for blogs and case studies
 - **Linting**: ESLint 9 (flat config)
 - **Fonts**: Afacad (headings) and Roboto (body) via `next/font`
 
@@ -80,6 +81,10 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+For CMS setup, see `SANITY.md`. The embedded Studio runs at
+[http://localhost:3000/studio](http://localhost:3000/studio) after Sanity
+environment variables are configured.
 
 ## Scripts
 

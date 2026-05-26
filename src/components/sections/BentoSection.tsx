@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
-import { Heading, Text } from "@/components/ui/Typography";
+import { Text } from "@/components/ui/Typography";
 
 const QuoteIcon = () => (
   <svg width="60" height="44" viewBox="0 0 60 44" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@ export function BentoSection() {
 
             <div className="mt-4">
               <Text variant="p2" className="text-black font-medium leading-snug max-w-2xl">
-                "We went through two partners before ProvidusCRM. Their consultants did not just reconfigure Service Cloud. They redesigned our entire case escalation logic, and our first-contact resolution rate jumped from 54% to 81%."
+                &quot;We went through two partners before ProvidusCRM. Their consultants did not just reconfigure Service Cloud. They redesigned our entire case escalation logic, and our first-contact resolution rate jumped from 54% to 81%.&quot;
               </Text>
               <div className="mt-8 text-right">
                 <Text variant="p2" className="text-black/80 font-medium">
@@ -71,7 +71,7 @@ export function BentoSection() {
               </div>
 
               <Text variant="p2" className="text-white mt-4">
-                "ProvidusCRM migrated our entire legacy CRM to Sales Cloud in eight weeks without a single day of downtime. Their team mapped every custom object and workflow before touching a line of configuration."
+                &quot;ProvidusCRM migrated our entire legacy CRM to Sales Cloud in eight weeks without a single day of downtime. Their team mapped every custom object and workflow before touching a line of configuration.&quot;
               </Text>
 
               <div className="mt-8 text-right">
@@ -96,7 +96,7 @@ export function BentoSection() {
               <div>
                 <Tag>Case Studies</Tag>
                 <Text variant="p2" className="text-black font-bold! leading-snug mt-2">
-                  Rebuilding a UK Logistics Company's Field Operations on Salesforce Service Cloud and Field Service
+                  Rebuilding a UK Logistics Company&apos;s Field Operations on Salesforce Service Cloud and Field Service
                 </Text>
               </div>
 

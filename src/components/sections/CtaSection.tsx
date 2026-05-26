@@ -43,7 +43,7 @@ export function CtaSection() {
                   <path d="M9 18L15 12L9 6" stroke="#38A81B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <span className="font-semibold">Let's Connect</span>
+              <span className="font-semibold">Let&apos;s Connect</span>
             </button>
           </Link>
         </div>

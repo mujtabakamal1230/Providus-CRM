@@ -5,9 +5,11 @@ import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { SanityImage } from "./SanityImage";
 import type { SanityImage as SanityImageType } from "@/sanity/lib/types";
+import { getArticleHeadingId } from "@/lib/portableText";
 
 interface PortableContentProps {
   value?: PortableTextBlock[];
+  contained?: boolean;
 }
 
 interface LinkMarkValue {
@@ -26,13 +28,23 @@ const components: PortableTextComponents = {
         {children}
       </Text>
     ),
-    h2: ({ children }) => (
-      <Heading as="h2" className="!text-[38px] !leading-[42px] text-black">
+    h2: ({ children, value }) => (
+      <Heading
+        as="h2"
+        level="h4"
+        id={getArticleHeadingId(value._key)}
+        className="scroll-mt-28 text-brand-blue"
+      >
         {children}
       </Heading>
     ),
-    h3: ({ children }) => (
-      <Heading as="h3" className="!text-[30px] !leading-[35px] text-black">
+    h3: ({ children, value }) => (
+      <Heading
+        as="h3"
+        level="h4"
+        id={getArticleHeadingId(value._key)}
+        className="scroll-mt-28 text-brand-blue"
+      >
         {children}
       </Heading>
     ),
@@ -117,16 +129,25 @@ const components: PortableTextComponents = {
   },
 };
 
-export function PortableContent({ value }: PortableContentProps) {
+export function PortableContent({
+  value,
+  contained = true,
+}: PortableContentProps) {
   if (!value || value.length === 0) {
     return null;
   }
 
-  return (
+  const content = (
+    <div className="flex flex-col gap-7">
+      <PortableText value={value} components={components} />
+    </div>
+  );
+
+  return contained ? (
     <Container size="md">
-      <div className="flex flex-col gap-7 py-12 md:py-16">
-        <PortableText value={value} components={components} />
-      </div>
+      <div className="py-12 md:py-16">{content}</div>
     </Container>
+  ) : (
+    content
   );
 }

@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/Badge";
 import { Heading, Text } from "@/components/ui/Typography";
+import { BlogAuthorCard } from "@/components/sanity/BlogAuthorCard";
+import {
+  BlogArticleLeftSidebar,
+  BlogArticleRightSidebar,
+} from "@/components/sanity/BlogArticleSidebars";
 import { SanityImage } from "@/components/sanity/SanityImage";
 import { PortableContent } from "@/components/sanity/PortableContent";
 import { CtaSection } from "@/components/sections";
 import { formatDate } from "@/lib/format";
+import { getArticleHeadings } from "@/lib/portableText";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   BLOG_POST_QUERY,
@@ -81,37 +86,39 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const headings = getArticleHeadings(post.body);
+  const siteUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ).replace(/\/$/, "");
+  const shareUrl = `${siteUrl}/blog/${post.slug.current}`;
+
   return (
     <>
-      <Section background="white" className="pb-0 pt-10 md:pt-16">
+      <Section background="white" className="pb-0 pt-12 md:pt-20">
         <Container size="lg">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-            <Link href="/blog" className="text-p3 text-brand-blue">
-              Back to blog
-            </Link>
-            <div className="flex flex-wrap justify-center gap-2">
-              {post.categories?.map((category) => (
-                <Badge key={category.slug.current} variant="green">
-                  {category.title}
-                </Badge>
-              ))}
-            </div>
-            <Heading as="h1" className="text-black">
-              {post.title}
-            </Heading>
-            {post.excerpt && (
-              <Text variant="p2" className="max-w-3xl text-[#5F5F5F]">
-                {post.excerpt}
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <div className="max-w-3xl">
+              <Image
+                src="/images/green-line.svg"
+                alt=""
+                width={64}
+                height={24}
+                aria-hidden="true"
+                className="mb-5 h-auto w-16"
+              />
+              <Heading as="h2" className="text-black">
+                {post.title}
+              </Heading>
+              <Text variant="p3" className="mt-4 text-[#5F5F5F]">
+                {formatDate(post.publishedAt)}
               </Text>
-            )}
-            <Text variant="p3" className="text-[#8C8C8C]">
-              {formatDate(post.publishedAt)}
-              {post.author?.name ? ` by ${post.author.name}` : ""}
-            </Text>
+            </div>
+
+            {post.author && <BlogAuthorCard author={post.author} />}
           </div>
 
           {post.heroImage?.asset && (
-            <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[24px] bg-brand-blue-light">
+            <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[20px] bg-brand-blue-light">
               <SanityImage
                 image={post.heroImage}
                 altFallback={post.title}
@@ -124,7 +131,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </Container>
       </Section>
 
-      <PortableContent value={post.body} />
+      <Section background="white" className="pb-0 pt-12 md:pt-16">
+        <Container size="xl">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)_minmax(0,220px)] lg:items-start">
+            <BlogArticleLeftSidebar
+              headings={headings}
+              shareTitle={post.title}
+              shareUrl={shareUrl}
+            />
+            <article>
+              <PortableContent value={post.body} contained={false} />
+            </article>
+            <BlogArticleRightSidebar categories={post.categories} />
+          </div>
+        </Container>
+      </Section>
+
       <CtaSection />
     </>
   );

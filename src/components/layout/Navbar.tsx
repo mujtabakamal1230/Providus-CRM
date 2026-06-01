@@ -26,7 +26,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.svg"
               alt="Providus CRM"
               width={160}
               height={40}

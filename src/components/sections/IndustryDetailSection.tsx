@@ -3,9 +3,10 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
-import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 
 const industries = [
   {
@@ -41,45 +42,93 @@ const industries = [
 ];
 
 export function IndustryDetailSection() {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section ref={container} className="relative py-24 bg-white pb-32">
       <Container>
-        <div className="flex flex-col gap-10">
-          {industries.map((item, index) => (
-            <IndustryCard 
-              key={index} 
-              item={item} 
-              index={index} 
-            />
-          ))}
+        <div className="flex flex-col relative">
+          {industries.map((item, index) => {
+            const start = index * (1 / industries.length);
+            const end = (index + 1) * (1 / industries.length);
+
+            return (
+              <IndustryCard 
+                key={index} 
+                item={item} 
+                index={index} 
+                progress={scrollYProgress}
+                range={[start, end]}
+                totalCards={industries.length}
+              />
+            );
+          })}
         </div>
       </Container>
     </section>
   );
 }
 
-function IndustryCard({ item, index }: { item: typeof industries[0]; index: number }) {
+interface IndustryCardProps {
+  item: typeof industries[0];
+  index: number;
+  progress: MotionValue<number>;
+  range: [number, number];
+  totalCards: number;
+}
+
+function IndustryCard({ item, index, progress, range, totalCards }: IndustryCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isImageLeft = index % 2 === 0;
 
+  const isLast = index === totalCards - 1;
+  const nextStart = Math.min(range[1], 1);
+  const nextEnd = Math.min(range[1] + 0.1, 1);
+
+  const scale = useTransform(
+    progress, 
+    [nextStart, 1], 
+    [1, isLast ? 1 : 1 - (totalCards - index) * 0.02]
+  );
+  
+  const opacity = useTransform(
+    progress, 
+    [nextStart, nextEnd], 
+    [1, isLast ? 1 : 0.9]
+  );
+  
+  const y = useTransform(
+    progress, 
+    [nextStart, 1], 
+    [0, isLast ? 0 : index * -5]
+  );
+
   return (
-    <Reveal 
-      direction={isImageLeft ? "left" : "right"} 
-      delay={0.1}
+    <div 
+      className="h-[80vh] md:h-[90vh] flex items-center justify-center sticky top-20 md:top-28"
+      style={{ zIndex: index }}
     >
-      <div
+      <motion.div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={cn(
-          "flex flex-col md:flex-row items-center gap-8 md:gap-16 md:p-6 md:pl-6 md:pr-14 overflow-hidden transition-all duration-500",
+          "relative w-full max-w-[1200px] flex flex-col md:flex-row items-center gap-8 md:gap-16 md:p-6 md:pl-6 md:pr-14 overflow-hidden transition-all duration-500",
           !isImageLeft && "md:flex-row-reverse md:pr-6 md:pl-14",
-          isHovered && "shadow-2xl scale-[1.01]"
+          isHovered && "shadow-2xl"
         )}
         style={{
+          scale,
+          opacity,
+          y,
           background: "linear-gradient(217.87deg, #FFFFFF -13.97%, #1D70C5 78.47%)",
           boxShadow: "0px 4.55px 24.57px 0px #0000001C",
           borderRadius: "50px",
         }}
+        whileHover={{ scale: 1.01 }}
       >
         {/* Image Container */}
         <div className="w-full md:w-[50%] shrink-0">
@@ -105,7 +154,7 @@ function IndustryCard({ item, index }: { item: typeof industries[0]; index: numb
             {item.description}
           </Text>
         </div>
-      </div>
-    </Reveal>
+      </motion.div>
+    </div>
   );
 }

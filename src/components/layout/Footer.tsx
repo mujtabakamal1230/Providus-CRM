@@ -35,9 +35,9 @@ export function Footer() {
 
           <div className="w-full lg:max-w-md">
             <div className="relative flex items-center bg-white rounded-full p-1 pl-6">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
+              <input
+                type="email"
+                placeholder="Enter your email"
                 className="bg-transparent border-none outline-none text-gray-800 placeholder-gray-400 w-full text-[14px]"
               />
               <button className="bg-[#38A81B] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-[#2e8b16] transition-colors">
@@ -51,9 +51,9 @@ export function Footer() {
         <div className="flex flex-col lg:flex-row justify-between items-center gap-10 py-10 border-t border-white/10 border-b border-white/10">
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4">
             {footerLinks.map((link) => (
-              <Link 
-                key={link.label} 
-                href={link.href} 
+              <Link
+                key={link.label}
+                href={link.href}
                 className="typography-p2 text-white hover:text-white/80 transition-colors"
               >
                 {link.label}
@@ -63,21 +63,26 @@ export function Footer() {
 
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
-              <Link 
-                key={social.icon} 
+              <Link
+                key={social.icon}
                 href={social.href}
                 className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"
               >
                 <span className="sr-only">{social.icon}</span>
-                {/* Social Icon Placeholder - would use SVGs here */}
-                <div className="w-5 h-5 bg-white/40 rounded-sm" />
+                <Image
+                  src={`/images/${social.icon}.svg`}
+                  alt={`${social.icon} icon`}
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 object-contain"
+                />
               </Link>
             ))}
           </div>
 
           <div className="flex items-center gap-2">
             <Image
-              src="/images/logo-footer.png"
+              src="/images/logo-footer.svg"
               alt="Providus CRM"
               width={160}
               height={40}

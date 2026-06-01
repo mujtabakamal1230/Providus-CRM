@@ -30,10 +30,10 @@ export function BentoSection() {
             </div>
 
             <div className="mt-4">
-              <Text variant="p2" className="text-black font-medium leading-snug max-w-2xl">
+              <Text variant="p2" className="text-black font-medium leading-snug max-w-3xl">
                 &quot;We went through two partners before ProvidusCRM. Their consultants did not just reconfigure Service Cloud. They redesigned our entire case escalation logic, and our first-contact resolution rate jumped from 54% to 81%.&quot;
               </Text>
-              <div className="mt-8 text-right">
+              <div className="mt-12 text-right">
                 <Text variant="p2" className="text-black/80 font-medium">
                   — Daniel Owusu, <span className="font-normal">Director of Customer Operations</span>
                 </Text>
@@ -84,7 +84,10 @@ export function BentoSection() {
 
           {/* Box 4 - Pink Case Study */}
           <div className="md:col-span-5 bg-[#FAD2FFFC] rounded-[20px] overflow-hidden flex flex-col h-full">
-            <div className="h-[145px] relative w-full">
+            <div className="h-[160px] md:h-[200px] relative w-full rounded-b-[20px] overflow-hidden shrink-0">
+              <div className="absolute top-6 left-8 z-10">
+                <Tag>Case Studies</Tag>
+              </div>
               <Image
                 src="/images/case-study.png"
                 alt="Case Study"
@@ -94,8 +97,7 @@ export function BentoSection() {
             </div>
             <div className="p-8 flex flex-col gap-6 h-full justify-between">
               <div>
-                <Tag>Case Studies</Tag>
-                <Text variant="p2" className="text-black font-bold! leading-snug mt-2">
+                <Text variant="p2" className="text-black font-bold! leading-snug">
                   Rebuilding a UK Logistics Company&apos;s Field Operations on Salesforce Service Cloud and Field Service
                 </Text>
               </div>

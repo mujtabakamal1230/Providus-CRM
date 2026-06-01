@@ -169,7 +169,7 @@ export function WhatWeDoSection() {
                     : "bg-white text-black rounded-[12px] hover:bg-white/90"
                 )}
               >
-                <Text variant="p1" className="font-semibold !leading-tight">
+                <Text variant="p1" className="font-semibold !leading-tight font-heading">
                   {tab.label}
                 </Text>
                 {activeTab === tab.id && (

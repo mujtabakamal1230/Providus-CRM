@@ -27,28 +27,28 @@ export function PartnersSection() {
           </Heading>
 
           <div className="relative flex-1 overflow-hidden">
-            <div className="flex items-center gap-12 md:gap-20 animate-marquee w-fit">
+            <div className="flex items-center gap-12 md:gap-24 animate-marquee w-fit">
               {/* First set of logos */}
               {logos.map((logo, idx) => (
-                <div key={`logo-1-${idx}`} className="shrink-0 h-[40px] md:h-[62px] flex items-center justify-center">
+                <div key={`logo-1-${idx}`} className="shrink-0 h-[60px] md:h-[100px] w-[140px] md:w-[220px] flex items-center justify-center">
                   <Image
                     src={logo}
                     alt="Partner logo"
-                    width={180}
-                    height={62}
-                    className="max-h-[30px] md:max-h-[45px] w-auto object-contain brightness-0 opacity-70 hover:brightness-100 hover:opacity-100 transition-all duration-300"
+                    width={220}
+                    height={100}
+                    className="max-h-[50px] md:max-h-[85px] max-w-full w-auto object-contain brightness-0 opacity-70 hover:brightness-100 hover:opacity-100 transition-all duration-300"
                   />
                 </div>
               ))}
               {/* Duplicate set for seamless loop */}
               {logos.map((logo, idx) => (
-                <div key={`logo-2-${idx}`} className="shrink-0 h-[40px] md:h-[62px] flex items-center justify-center">
+                <div key={`logo-2-${idx}`} className="shrink-0 h-[60px] md:h-[100px] w-[140px] md:w-[220px] flex items-center justify-center">
                   <Image
                     src={logo}
                     alt="Partner logo"
-                    width={180}
-                    height={62}
-                    className="max-h-[30px] md:max-h-[45px] w-auto object-contain brightness-0 opacity-70 hover:brightness-100 hover:opacity-100 transition-all duration-300"
+                    width={220}
+                    height={100}
+                    className="max-h-[50px] md:max-h-[85px] max-w-full w-auto object-contain brightness-0 opacity-70 hover:brightness-100 hover:opacity-100 transition-all duration-300"
                   />
                 </div>
               ))}

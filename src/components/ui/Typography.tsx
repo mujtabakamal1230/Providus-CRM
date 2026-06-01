@@ -5,13 +5,10 @@ import { cn } from "@/lib/utils";
 // ─── Heading ──────────────────────────────────────────────────
 type HeadingLevel = "h1" | "h2" | "h3" | "h4";
 
-interface HeadingProps {
+interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: HeadingLevel;
   level?: HeadingLevel;
-  id?: string;
-  children: ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+  children?: ReactNode;
 }
 
 const headingClasses: Record<HeadingLevel, string> = {
@@ -24,17 +21,16 @@ const headingClasses: Record<HeadingLevel, string> = {
 export function Heading({
   as,
   level,
-  id,
   children,
   className,
-  style,
+  ...props
 }: HeadingProps) {
   const semanticLevel = as ?? level ?? "h2";
   const visualLevel = level ?? semanticLevel;
   const Tag = semanticLevel;
 
   return (
-    <Tag id={id} className={cn(headingClasses[visualLevel], className)} style={style}>
+    <Tag className={cn(headingClasses[visualLevel], className)} {...props}>
       {children}
     </Tag>
   );
@@ -44,11 +40,10 @@ export function Heading({
 type TextVariant = "p1" | "p2" | "p3" | "p4";
 type TextTag = "p" | "span" | "div" | "li" | "label";
 
-interface TextProps {
+interface TextProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TextVariant;
   as?: TextTag;
-  children: ReactNode;
-  className?: string;
+  children?: ReactNode;
 }
 
 const textClasses: Record<TextVariant, string> = {
@@ -63,9 +58,10 @@ export function Text({
   as: Tag = "p",
   children,
   className,
+  ...props
 }: TextProps) {
   return (
-    <Tag className={cn(textClasses[variant], className)}>
+    <Tag className={cn(textClasses[variant], className)} {...props}>
       {children}
     </Tag>
   );

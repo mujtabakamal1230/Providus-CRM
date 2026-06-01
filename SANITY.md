@@ -12,6 +12,7 @@ This project uses Sanity for blog posts and case studies.
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2026-03-01
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 SANITY_REVALIDATE_SECRET=use-a-long-random-string
 ```
 

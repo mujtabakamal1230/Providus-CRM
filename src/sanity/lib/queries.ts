@@ -47,6 +47,8 @@ export const BLOG_POSTS_QUERY = defineQuery(`
     author->{
       name,
       role,
+      linkedinUrl,
+      xUrl,
       slug,
       image {
         ${imageProjection}
@@ -78,6 +80,8 @@ export const BLOG_POST_QUERY = defineQuery(`
     author->{
       name,
       role,
+      linkedinUrl,
+      xUrl,
       slug,
       image {
         ${imageProjection}

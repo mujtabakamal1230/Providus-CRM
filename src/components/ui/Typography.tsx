@@ -8,6 +8,7 @@ type HeadingLevel = "h1" | "h2" | "h3" | "h4";
 interface HeadingProps {
   as?: HeadingLevel;
   level?: HeadingLevel;
+  id?: string;
   children: ReactNode;
   className?: string;
   style?: React.CSSProperties;
@@ -23,15 +24,17 @@ const headingClasses: Record<HeadingLevel, string> = {
 export function Heading({
   as,
   level,
+  id,
   children,
   className,
   style,
 }: HeadingProps) {
-  const resolvedLevel = as ?? level ?? "h2";
-  const Tag = resolvedLevel;
+  const semanticLevel = as ?? level ?? "h2";
+  const visualLevel = level ?? semanticLevel;
+  const Tag = semanticLevel;
 
   return (
-    <Tag className={cn(headingClasses[resolvedLevel], className)} style={style}>
+    <Tag id={id} className={cn(headingClasses[visualLevel], className)} style={style}>
       {children}
     </Tag>
   );

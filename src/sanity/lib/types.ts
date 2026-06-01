@@ -29,6 +29,8 @@ export interface Category {
 export interface Author {
   name: string;
   role?: string;
+  linkedinUrl?: string;
+  xUrl?: string;
   slug?: SanitySlug;
   image?: SanityImage;
 }

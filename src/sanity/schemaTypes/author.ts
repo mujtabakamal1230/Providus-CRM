@@ -24,6 +24,24 @@ export const author = defineType({
       type: "string",
     }),
     defineField({
+      name: "linkedinUrl",
+      title: "LinkedIn URL",
+      type: "url",
+      validation: (rule) =>
+        rule.uri({
+          scheme: ["http", "https"],
+        }),
+    }),
+    defineField({
+      name: "xUrl",
+      title: "X URL",
+      type: "url",
+      validation: (rule) =>
+        rule.uri({
+          scheme: ["http", "https"],
+        }),
+    }),
+    defineField({
       name: "image",
       title: "Image",
       type: "image",

@@ -8,15 +8,13 @@ import {
 export default function IndustriesPage() {
   const heroTitle = (
     <>
-      Salesforce for{" "}
+      Industries We Serve{" "}
       <img
         src="/images/green-line.svg"
         alt=""
         aria-hidden="true"
         className="inline-block h-[0.7em] w-auto align-baseline ml-1"
       />
-      <br />
-      Every Industry
     </>
   );
 

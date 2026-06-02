@@ -34,18 +34,12 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
         {/* Section Header with Title & Search */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-100 pb-8 mb-12">
           <div>
-            <svg
-              width="40"
-              height="20"
-              viewBox="0 0 65 34"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mb-2"
+            <img
+              src="/images/green-line.svg"
+              alt=""
               aria-hidden="true"
-            >
-              <path d="M10 29C20 29 23 5 37 5" stroke="#38A81B" strokeWidth="8" strokeLinecap="round" />
-              <path d="M28 29C38 29 41 5 55 5" stroke="#A0FF88" strokeWidth="8" strokeLinecap="round" />
-            </svg>
+              className="inline-block h-8 w-auto align-baseline ml-1"
+            />
             <Heading as="h2" className="text-black !text-[36px] md:!text-[45px] font-bold font-heading">
               Latest Blogs
             </Heading>

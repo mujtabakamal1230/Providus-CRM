@@ -44,7 +44,7 @@ export const post = defineType({
           validation: (rule) => rule.required(),
         }),
       ],
-      validation: (rule) => rule.required(),
+      validation: (rule) => rule.required().assetRequired(),
     }),
     defineField({
       name: "author",

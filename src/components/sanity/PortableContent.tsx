@@ -6,6 +6,7 @@ import { Heading, Text } from "@/components/ui/Typography";
 import { SanityImage } from "./SanityImage";
 import type { SanityImage as SanityImageType } from "@/sanity/lib/types";
 import { getArticleHeadingId } from "@/lib/portableText";
+import { getSanityImageAspectRatio } from "@/lib/sanityImage";
 
 interface PortableContentProps {
   value?: PortableTextBlock[];
@@ -111,11 +112,15 @@ const components: PortableTextComponents = {
 
       return (
         <figure className="my-4">
-          <div className="relative aspect-video overflow-hidden rounded-lg bg-brand-blue-light h-100.5 w-full">
+          <div
+            className="relative w-full overflow-hidden rounded-lg bg-brand-blue-light"
+            style={{ aspectRatio: getSanityImageAspectRatio(image) }}
+          >
             <SanityImage
               image={image}
               altFallback={image.caption || "Article image"}
-              className="object-cover"
+              className="object-contain"
+              unoptimized
             />
           </div>
           {image.caption && (

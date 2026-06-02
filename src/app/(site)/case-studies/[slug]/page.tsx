@@ -9,6 +9,7 @@ import { CtaSection } from "@/components/sections";
 import { Badge } from "@/components/ui/Badge";
 import { Heading, Text } from "@/components/ui/Typography";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { getSanityImageAspectRatio } from "@/lib/sanityImage";
 import {
   CASE_STUDIES_QUERY,
   CASE_STUDY_QUERY,
@@ -95,13 +96,19 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <main className="bg-white">
         <Container size="xl" className="pt-4 md:pt-6">
           {caseStudy.coverImage?.asset && (
-            <div className="relative aspect-[2.22/1] overflow-hidden rounded-[20px] bg-brand-blue-light">
+            <div
+              className="relative overflow-hidden rounded-[20px] bg-brand-blue-light"
+              style={{
+                aspectRatio: getSanityImageAspectRatio(caseStudy.coverImage),
+              }}
+            >
               <SanityImage
                 image={caseStudy.coverImage}
                 altFallback={caseStudy.title}
-                className="object-cover object-center"
+                className="object-contain"
                 priority
                 sizes="(min-width: 1440px) 1376px, calc(100vw - 48px)"
+                unoptimized
               />
             </div>
           )}

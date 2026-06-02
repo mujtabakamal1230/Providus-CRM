@@ -14,6 +14,7 @@ import { PortableContent } from "@/components/sanity/PortableContent";
 import { CtaSection } from "@/components/sections";
 import { formatDate } from "@/lib/format";
 import { getArticleHeadings } from "@/lib/portableText";
+import { getSanityImageAspectRatio } from "@/lib/sanityImage";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   BLOG_POST_QUERY,
@@ -118,13 +119,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {post.heroImage?.asset && (
-            <div className="relative mt-10 aspect-video overflow-hidden rounded-lg bg-brand-blue-light height-[538px] w-full">
+            <div
+              className="relative mt-10 w-full overflow-hidden rounded-lg bg-brand-blue-light"
+              style={{ aspectRatio: getSanityImageAspectRatio(post.heroImage) }}
+            >
               <SanityImage
                 image={post.heroImage}
                 altFallback={post.title}
-                className="object-cover"
+                className="object-contain"
                 priority
                 sizes="(min-width: 1024px) 1024px, 100vw"
+                unoptimized
               />
             </div>
           )}

@@ -6,7 +6,9 @@ interface SanityImageProps {
   altFallback: string;
   className?: string;
   priority?: boolean;
+  quality?: number;
   sizes?: string;
+  unoptimized?: boolean;
 }
 
 export function SanityImage({
@@ -14,7 +16,9 @@ export function SanityImage({
   altFallback,
   className,
   priority = false,
+  quality,
   sizes = "(min-width: 1024px) 50vw, 100vw",
+  unoptimized = false,
 }: SanityImageProps) {
   if (!image?.asset?.url) {
     return null;
@@ -29,7 +33,9 @@ export function SanityImage({
       fill
       className={className}
       priority={priority}
+      quality={quality}
       sizes={sizes}
+      unoptimized={unoptimized}
       placeholder={blurDataURL ? "blur" : "empty"}
       blurDataURL={blurDataURL}
     />

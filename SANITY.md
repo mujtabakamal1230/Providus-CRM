@@ -53,6 +53,20 @@ Case study routes:
 - `/case-studies`
 - `/case-studies/[slug]`
 
+## Editorial Images
+
+Sanity stores the original uploaded asset without applying a minimum-size
+restriction. Smaller images remain valid when they are the best available
+source.
+
+The public site preserves each editorial image's original aspect ratio and
+serves editorial images directly from the original Sanity CDN asset URL. This
+keeps the original dimensions and file format when a visitor saves an editorial
+image from a blog post or case study.
+
+Smaller thumbnails and author images can still use Next.js responsive image
+optimization for page performance.
+
 ## Production Setup
 
 Add the same environment variables to your hosting provider.

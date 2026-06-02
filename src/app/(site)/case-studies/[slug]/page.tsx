@@ -107,7 +107,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           )}
         </Container>
 
-        <Container size="lg" className="py-12 text-center md:py-16">
+        <Container size="xl" className="py-12 text-center md:py-16">
           {caseStudy.industry && (
             <Badge
               variant="blue"
@@ -132,7 +132,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           )}
         </Container>
 
-        <Container size="lg" className="pb-16 md:pb-24">
+        <Container size="xl" className="pb-16 md:pb-24">
           <article className="flex flex-col gap-12 md:gap-16">
             <EditorialContent value={caseStudy.challenge} />
             <EditorialContent value={caseStudy.solution} />

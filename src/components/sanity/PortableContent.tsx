@@ -111,7 +111,7 @@ const components: PortableTextComponents = {
 
       return (
         <figure className="my-4">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-brand-blue-light">
+          <div className="relative aspect-video overflow-hidden rounded-lg bg-brand-blue-light h-100.5 w-full">
             <SanityImage
               image={image}
               altFallback={image.caption || "Article image"}

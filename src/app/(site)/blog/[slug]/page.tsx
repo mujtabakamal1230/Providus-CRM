@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {post.heroImage?.asset && (
-            <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[20px] bg-brand-blue-light">
+            <div className="relative mt-10 aspect-video overflow-hidden rounded-lg bg-brand-blue-light height-[538px] w-full">
               <SanityImage
                 image={post.heroImage}
                 altFallback={post.title}

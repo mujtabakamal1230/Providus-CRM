@@ -42,7 +42,7 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                 delay={index * 0.1}
                 width="100%"
               >
-                <article className="group relative flex min-h-[460px] w-full flex-col justify-end overflow-hidden rounded-[20px] p-8 shadow-lg md:min-h-[480px] md:p-12">
+                <article className="group relative flex min-h-115 w-full flex-col justify-end overflow-hidden rounded-lg p-8 shadow-lg md:min-h-134.5 md:p-12">
                   <div className="absolute inset-0 z-0">
                     <Image
                       src={caseStudy.image}
@@ -50,7 +50,7 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                       fill
                       className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/0 to-black transition-opacity duration-300 group-hover:opacity-95" />
+                    <div className="absolute inset-0 z-10 bg-linear-to-b from-black/0 to-black transition-opacity duration-300 group-hover:opacity-95" />
                   </div>
 
                   <div className="relative z-20 grid w-full grid-cols-1 items-end gap-8 lg:grid-cols-12">

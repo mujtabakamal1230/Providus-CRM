@@ -42,7 +42,7 @@ const industries = [
 ];
 
 export function IndustryDetailSection() {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
@@ -52,21 +52,15 @@ export function IndustryDetailSection() {
     <section ref={container} className="relative py-24 bg-white pb-32">
       <Container>
         <div className="flex flex-col relative">
-          {industries.map((item, index) => {
-            const start = index * (1 / industries.length);
-            const end = (index + 1) * (1 / industries.length);
-
-            return (
-              <IndustryCard 
-                key={index} 
-                item={item} 
-                index={index} 
-                progress={scrollYProgress}
-                range={[start, end]}
-                totalCards={industries.length}
-              />
-            );
-          })}
+          {industries.map((item, index) => (
+            <IndustryCard
+              key={index}
+              item={item}
+              index={index}
+              progress={scrollYProgress}
+              totalCards={industries.length}
+            />
+          ))}
         </div>
       </Container>
     </section>
@@ -77,80 +71,97 @@ interface IndustryCardProps {
   item: typeof industries[0];
   index: number;
   progress: MotionValue<number>;
-  range: [number, number];
   totalCards: number;
 }
 
-function IndustryCard({ item, index, progress, range, totalCards }: IndustryCardProps) {
+function IndustryCard({ item, index, progress, totalCards }: IndustryCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isImageLeft = index % 2 === 0;
 
-  const isLast = index === totalCards - 1;
-  const nextStart = Math.min(range[1], 1);
-  const nextEnd = Math.min(range[1] + 0.1, 1);
+  const targetScale = 1 - (totalCards - 1 - index) * 0.025;
 
-  const scale = useTransform(
-    progress, 
-    [nextStart, 1], 
-    [1, isLast ? 1 : 1 - (totalCards - index) * 0.02]
-  );
-  
-  const opacity = useTransform(
-    progress, 
-    [nextStart, nextEnd], 
-    [1, isLast ? 1 : 0.9]
-  );
-  
-  const y = useTransform(
-    progress, 
-    [nextStart, 1], 
-    [0, isLast ? 0 : index * -5]
-  );
+  // Unconditionally calculate ranges to adhere strictly to React Rules of Hooks
+  const isFirstCard = index === 0;
+  const entryStart = (index - 1) / totalCards;
+  const entryEnd = index / totalCards;
+
+  let scaleInputRange: number[];
+  let scaleOutputRange: number[];
+
+  if (isFirstCard) {
+    scaleInputRange = [0, 1];
+    scaleOutputRange = [1, targetScale];
+  } else if (entryStart === 0) {
+    // Avoid duplicate keys [0, 0, ...] when entryStart is 0 for the second card (index = 1)
+    scaleInputRange = [0, entryEnd, 1];
+    scaleOutputRange = [0.85, 1, targetScale];
+  } else {
+    scaleInputRange = [0, entryStart, entryEnd, 1];
+    scaleOutputRange = [0.85, 0.85, 1, targetScale];
+  }
+
+  const scale = useTransform(progress, scaleInputRange, scaleOutputRange);
+
+  // Set up local scroll tracking on the card container for smooth image parallax
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: cardScrollProgress } = useScroll({
+    target: cardContainerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const imageScale = useTransform(cardScrollProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
 
   return (
-    <div 
-      className="h-[80vh] md:h-[90vh] flex items-center justify-center sticky top-20 md:top-28"
-      style={{ zIndex: index }}
+    <div
+      ref={cardContainerRef}
+      className="h-[70vh] md:h-[80vh] flex items-start justify-center sticky pt-4"
+      style={{
+        zIndex: index,
+        top: `calc(5.5rem + ${index * 24}px)`
+      }}
     >
       <motion.div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={cn(
-          "relative w-full max-w-[1200px] flex flex-col md:flex-row items-center gap-8 md:gap-16 md:p-6 md:pl-6 md:pr-14 overflow-hidden transition-all duration-500",
-          !isImageLeft && "md:flex-row-reverse md:pr-6 md:pl-14",
-          isHovered && "shadow-2xl"
+          "relative w-full max-w-[1200px] flex flex-col md:flex-row items-center gap-8 md:gap-16 p-6 md:p-8 md:pl-8 md:pr-16 overflow-hidden transition-shadow duration-500",
+          !isImageLeft && "md:flex-row-reverse md:pr-8 md:pl-16",
+          isHovered && "shadow-2xl border-white/30"
         )}
         style={{
           scale,
-          opacity,
-          y,
           background: "linear-gradient(217.87deg, #FFFFFF -13.97%, #1D70C5 78.47%)",
-          boxShadow: "0px 4.55px 24.57px 0px #0000001C",
-          borderRadius: "50px",
+          boxShadow: "0px 10px 40px -10px rgba(0,0,0,0.15), inset 0px 1px 1px rgba(255,255,255,0.2)",
+          borderRadius: "40px",
         }}
-        whileHover={{ scale: 1.01 }}
       >
+
+
         {/* Image Container */}
-        <div className="w-full md:w-[50%] shrink-0">
-          <div className="relative aspect-[4/3] rounded-[50px] overflow-hidden shadow-lg border border-white/20">
-            <Image
-              src={item.image}
-              alt={item.title}
-              fill
-              className={cn(
-                "object-cover transition-transform duration-700",
-                isHovered && "scale-110"
-              )}
-            />
+        <div className="w-full md:w-[48%] shrink-0 overflow-hidden rounded-[30px]">
+          <div className="relative aspect-[4/3] w-full h-full overflow-hidden border border-white/10">
+            <motion.div
+              style={{ scale: imageScale, width: "100%", height: "100%" }}
+              className="relative w-full h-full"
+            >
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                priority={index < 2}
+              />
+            </motion.div>
           </div>
         </div>
 
         {/* Text Content */}
-        <div className="flex-1 text-white py-4">
-          <Heading as="h2" className="text-white mb-6">
+        <div className="flex-1 text-white py-4 flex flex-col gap-4">
+          <Heading as="h3" className="text-white !text-[32px] md:!text-[40px] font-heading font-bold leading-tight">
             {item.title}
           </Heading>
-          <Text variant="p2" className="text-white/90 leading-relaxed">
+          <Text variant="p2" className="text-white/90 !text-[16px] md:!text-[18px] leading-relaxed">
             {item.description}
           </Text>
         </div>
@@ -158,3 +169,4 @@ function IndustryCard({ item, index, progress, range, totalCards }: IndustryCard
     </div>
   );
 }
+

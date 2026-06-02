@@ -49,7 +49,7 @@ export function CertifiedSection({ title, description }: CertifiedSectionProps) 
           </Reveal>
         </div>
 
-        <div className="absolute inset-x-4 bottom-[8%] z-10 mx-auto flex max-w-2xl flex-col items-center text-center">
+        <div className="absolute inset-x-4 bottom-[16%] z-10 mx-auto flex max-w-2xl flex-col items-center text-center">
           <Reveal direction="up" delay={0.3}>
             <div className="mb-4 flex justify-center">
               <Image

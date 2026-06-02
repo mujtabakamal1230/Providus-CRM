@@ -5,6 +5,7 @@ import { Section } from "@/components/layout/Section";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
+import { ArrowRight } from "lucide-react";
 
 export interface CaseStudyCardItem {
   title: string;
@@ -83,9 +84,7 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                         className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3 text-p3 text-white shadow-md transition-all hover:scale-105 active:scale-95"
                       >
                         <span>View Project</span>
-                        <span className="inline-block transition-transform group-hover:translate-x-1">
-                          -&gt;
-                        </span>
+                        <ArrowRight size={16} />
                       </Link>
 
                       <div className="flex max-w-md flex-wrap justify-start gap-2 lg:justify-end">

@@ -8,7 +8,7 @@ import {
 export default function PlatformExpertisePage() {
   const heroTitle = (
     <>
-      Platform Expertise{" "}
+      Certified Platform Expertise Across Every Salesforce Cloud{" "}
       <img
         src="/images/green-line.svg"
         alt=""

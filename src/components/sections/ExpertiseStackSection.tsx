@@ -67,7 +67,7 @@ const expertiseData = [
 ];
 
 export function ExpertiseStackSection() {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
@@ -77,21 +77,15 @@ export function ExpertiseStackSection() {
     <section ref={container} className="relative bg-white pb-32">
       <Container>
         <div className="flex flex-col relative">
-          {expertiseData.map((item, index) => {
-            const start = index * (1 / expertiseData.length);
-            const end = (index + 1) * (1 / expertiseData.length);
-            
-            return (
-              <Card 
-                key={index} 
-                index={index} 
-                {...item} 
-                progress={scrollYProgress} 
-                range={[start, end]} 
-                totalCards={expertiseData.length}
-              />
-            );
-          })}
+          {expertiseData.map((item, index) => (
+            <Card 
+              key={index} 
+              index={index} 
+              {...item} 
+              progress={scrollYProgress} 
+              totalCards={expertiseData.length}
+            />
+          ))}
         </div>
       </Container>
     </section>
@@ -107,63 +101,74 @@ interface CardProps {
   icon: string;
   image: string;
   progress: MotionValue<number>;
-  range: [number, number];
   totalCards: number;
 }
 
-function Card({ index, title, subtitle, text, color, icon, image, progress, range, totalCards }: CardProps) {
-  const container = useRef(null);
-  
-  // Scale down slightly as we scroll past this card's section
-  // For the last card, these will be [1, 1], which we handle by checking range[1]
-  const isLast = index === totalCards - 1;
-  const nextStart = Math.min(range[1], 1);
-  const nextEnd = Math.min(range[1] + 0.1, 1);
+function Card({ index, title, subtitle, text, color, icon, image, progress, totalCards }: CardProps) {
+  const targetScale = 1 - (totalCards - 1 - index) * 0.025;
 
-  const scale = useTransform(
-    progress, 
-    [nextStart, 1], 
-    [1, isLast ? 1 : 1 - (totalCards - index) * 0.02]
-  );
-  
-  const opacity = useTransform(
-    progress, 
-    [nextStart, nextEnd], 
-    [1, isLast ? 1 : 0.9]
-  );
-  
-  // Create a slight upward movement as it gets stacked
-  const y = useTransform(
-    progress, 
-    [nextStart, 1], 
-    [0, isLast ? 0 : index * -5]
-  );
+  // Unconditionally calculate ranges to adhere strictly to React Rules of Hooks
+  const isFirstCard = index === 0;
+  const entryStart = (index - 1) / totalCards;
+  const entryEnd = index / totalCards;
+
+  let scaleInputRange: number[];
+  let scaleOutputRange: number[];
+
+  if (isFirstCard) {
+    scaleInputRange = [0, 1];
+    scaleOutputRange = [1, targetScale];
+  } else if (entryStart === 0) {
+    // Avoid duplicate keys [0, 0, ...] when entryStart is 0 for the second card (index = 1)
+    scaleInputRange = [0, entryEnd, 1];
+    scaleOutputRange = [0.85, 1, targetScale];
+  } else {
+    scaleInputRange = [0, entryStart, entryEnd, 1];
+    scaleOutputRange = [0.85, 0.85, 1, targetScale];
+  }
+
+  const scale = useTransform(progress, scaleInputRange, scaleOutputRange);
+
+  // Set up local scroll tracking on the card container for smooth image parallax
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: cardScrollProgress } = useScroll({
+    target: cardContainerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const imageScale = useTransform(cardScrollProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
 
   return (
     <div 
-      ref={container} 
-      className="h-[80vh] md:h-[90vh] flex items-center justify-center sticky top-20 md:top-28"
-      style={{ zIndex: index }}
+      ref={cardContainerRef}
+      className="h-[70vh] md:h-[80vh] flex items-start justify-center sticky pt-4"
+      style={{ 
+        zIndex: index,
+        top: `calc(5.5rem + ${index * 24}px)`
+      }}
     >
       <motion.div
         style={{
           scale,
-          opacity,
-          y,
           background: "linear-gradient(180deg, #FAFDFF 0%, #EAF7FF 100%)",
           borderRadius: "18px",
           boxShadow: `0px 4.49px 0px 0px ${color}`,
         }}
         className="relative w-full max-w-[1200px] h-[500px] md:h-[600px] overflow-hidden flex flex-col md:flex-row p-6 md:p-10 gap-8 md:gap-12 border border-white/20"
       >
-        {/* Left Side - Image (40%) */}
+        {/* Left Side - Image (40%) with Parallax zoom */}
         <div className="md:w-[40%] relative rounded-xl overflow-hidden shrink-0">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-contain"
-          />
+          <motion.div 
+            style={{ scale: imageScale, width: "100%", height: "100%" }}
+            className="relative w-full h-full"
+          >
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-contain"
+            />
+          </motion.div>
         </div>
 
         {/* Right Side - Content (60%) */}
@@ -226,3 +231,4 @@ function Card({ index, title, subtitle, text, color, icon, image, progress, rang
     </div>
   );
 }
+

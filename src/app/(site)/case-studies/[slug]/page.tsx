@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/Badge";
-import { Heading, Text } from "@/components/ui/Typography";
 import { SanityImage } from "@/components/sanity/SanityImage";
 import { PortableContent } from "@/components/sanity/PortableContent";
 import { CtaSection } from "@/components/sections";
-import { formatDate } from "@/lib/format";
+import { Badge } from "@/components/ui/Badge";
+import { Heading, Text } from "@/components/ui/Typography";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
+  CASE_STUDIES_QUERY,
   CASE_STUDY_QUERY,
   CASE_STUDY_SLUGS_QUERY,
 } from "@/sanity/lib/queries";
-import type { CaseStudy } from "@/sanity/lib/types";
+import type { CaseStudy, CaseStudyListItem } from "@/sanity/lib/types";
 
 interface CaseStudyPageProps {
   params: Promise<{
@@ -72,120 +72,149 @@ export async function generateMetadata({
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const caseStudy = await sanityFetch<CaseStudy>({
-    query: CASE_STUDY_QUERY,
-    params: { slug },
-    tags: ["case-studies"],
-  });
+  const [caseStudy, allCaseStudies] = await Promise.all([
+    sanityFetch<CaseStudy>({
+      query: CASE_STUDY_QUERY,
+      params: { slug },
+      tags: ["case-studies"],
+    }),
+    sanityFetch<CaseStudyListItem[]>({
+      query: CASE_STUDIES_QUERY,
+      tags: ["case-studies"],
+    }),
+  ]);
 
   if (!caseStudy) {
     notFound();
   }
 
+  const recentCaseStudies = (allCaseStudies ?? []).slice(0, 3);
+
   return (
     <>
-      <Section background="blue" className="pb-12 pt-10 md:pt-16">
-        <Container size="lg">
-          <div className="grid items-end gap-10 lg:grid-cols-12">
-            <div className="flex flex-col gap-6 lg:col-span-7">
-              <Link href="/case-studies" className="text-p3 text-white/80">
-                Back to case studies
-              </Link>
-              <div className="flex flex-wrap gap-2">
-                {caseStudy.industry && (
-                  <Badge variant="green">{caseStudy.industry}</Badge>
-                )}
-                {caseStudy.clientName && (
-                  <Badge variant="blue">{caseStudy.clientName}</Badge>
-                )}
-              </div>
-              <Heading as="h1" className="text-white">
-                {caseStudy.title}
-              </Heading>
-              {caseStudy.excerpt && (
-                <Text variant="p2" className="max-w-3xl text-white/85">
-                  {caseStudy.excerpt}
-                </Text>
-              )}
-              <Text variant="p3" className="text-white/70">
-                {formatDate(caseStudy.publishedAt)}
-              </Text>
-            </div>
-
-            <div className="lg:col-span-5">
-              {caseStudy.resultSummary && (
-                <div className="rounded-[20px] bg-white p-6">
-                  <Text variant="p4" className="uppercase text-brand-blue">
-                    Result
-                  </Text>
-                  <Heading as="h4" className="mt-2 text-black">
-                    {caseStudy.resultSummary}
-                  </Heading>
-                </div>
-              )}
-            </div>
-          </div>
-
+      <main className="bg-white">
+        <Container size="xl" className="pt-4 md:pt-6">
           {caseStudy.coverImage?.asset && (
-            <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[24px] bg-brand-blue-light">
+            <div className="relative aspect-[2.22/1] overflow-hidden rounded-[20px] bg-brand-blue-light">
               <SanityImage
                 image={caseStudy.coverImage}
                 altFallback={caseStudy.title}
-                className="object-cover"
+                className="object-cover object-center"
                 priority
-                sizes="(min-width: 1024px) 1024px, 100vw"
+                sizes="(min-width: 1440px) 1376px, calc(100vw - 48px)"
               />
             </div>
           )}
         </Container>
-      </Section>
 
-      {caseStudy.technologies && caseStudy.technologies.length > 0 && (
-        <Section background="white" className="py-10">
-          <Container size="md">
-            <div className="flex flex-wrap gap-2">
-              {caseStudy.technologies.map((technology) => (
-                <Badge key={technology} variant="blue">
-                  {technology}
-                </Badge>
-              ))}
-            </div>
-          </Container>
-        </Section>
-      )}
+        <Container size="lg" className="py-12 text-center md:py-16">
+          {caseStudy.industry && (
+            <Badge
+              variant="blue"
+              className="border border-brand-blue px-4 py-1 text-[11px] font-normal"
+            >
+              {caseStudy.industry}
+            </Badge>
+          )}
+          <Heading
+            as="h1"
+            className="mx-auto mt-5 max-w-4xl text-black !text-[36px] !leading-[1.08] md:!text-[52px]"
+          >
+            {caseStudy.title}
+          </Heading>
+          {caseStudy.technologies && caseStudy.technologies.length > 0 && (
+            <Text
+              variant="p3"
+              className="mx-auto mt-5 max-w-4xl text-[#5F5F5F]"
+            >
+              {caseStudy.technologies.map((technology) => technology.trim()).join(" | ")}
+            </Text>
+          )}
+        </Container>
 
-      {caseStudy.challenge && (
-        <ContentBlock title="Challenge" value={caseStudy.challenge} />
-      )}
-      {caseStudy.solution && (
-        <ContentBlock title="Solution" value={caseStudy.solution} />
-      )}
-      {caseStudy.results && (
-        <ContentBlock title="Results" value={caseStudy.results} />
-      )}
-      {caseStudy.body && <PortableContent value={caseStudy.body} />}
+        <Container size="lg" className="pb-16 md:pb-24">
+          <article className="flex flex-col gap-12 md:gap-16">
+            <EditorialContent value={caseStudy.challenge} />
+            <EditorialContent value={caseStudy.solution} />
+            <EditorialContent value={caseStudy.results} />
+            <EditorialContent value={caseStudy.body} />
+          </article>
+        </Container>
+
+        <RelatedProjects caseStudies={recentCaseStudies} />
+      </main>
       <CtaSection />
     </>
   );
 }
 
-function ContentBlock({
-  title,
-  value,
-}: {
-  title: string;
-  value: NonNullable<CaseStudy["challenge"]>;
-}) {
+function EditorialContent({ value }: { value?: CaseStudy["challenge"] }) {
+  if (!value || value.length === 0) {
+    return null;
+  }
+
+  return <PortableContent value={value} contained={false} />;
+}
+
+function RelatedProjects({ caseStudies }: { caseStudies: CaseStudyListItem[] }) {
   return (
-    <Section background="white" className="py-0">
-      <Container size="md">
-        <div className="border-t border-gray-100 pt-10">
-          <Heading as="h2" className="mb-6 text-black">
-            {title}
+    <section className="bg-[#EEFFE9] py-16 md:py-20">
+      <Container size="xl">
+        <div className="text-center">
+          <Image
+            src="/images/green-line.svg"
+            alt=""
+            width={60}
+            height={20}
+            className="mx-auto h-auto w-16"
+          />
+          <Heading as="h2" className="mt-5 text-black">
+            More projects that made a mark.
           </Heading>
         </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {caseStudies.map((caseStudy, index) => (
+            <Link
+              key={`${caseStudy._id}-${index}`}
+              href={`/case-studies/${caseStudy.slug.current}`}
+              className="group relative flex aspect-[0.95/1] flex-col justify-end overflow-hidden rounded-[18px] bg-black p-5 shadow-sm"
+            >
+              <div className="absolute inset-0">
+                {caseStudy.coverImage?.asset ? (
+                  <SanityImage
+                    image={caseStudy.coverImage}
+                    altFallback={caseStudy.title}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                  />
+                ) : (
+                  <Image
+                    src="/images/case-studies/case-study.png"
+                    alt=""
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/15 to-black/90" />
+              </div>
+
+              <div className="relative">
+                <Heading
+                  as="h3"
+                  level="h4"
+                  className="max-w-[18rem] text-white !text-[21px] !leading-[1.05]"
+                >
+                  {caseStudy.title}
+                </Heading>
+                <span className="mt-4 inline-flex items-center rounded-full bg-brand-green px-4 py-2 text-[12px] font-semibold text-white">
+                  View Project <span className="ml-2">-&gt;</span>
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </Container>
-      <PortableContent value={value} />
-    </Section>
+    </section>
   );
 }

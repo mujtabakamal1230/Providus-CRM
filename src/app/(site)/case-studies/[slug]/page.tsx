@@ -133,7 +133,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </Container>
 
         <Container size="xl" className="pb-16 md:pb-24">
-          <article className="flex flex-col gap-12 md:gap-16">
+          <article className="flex flex-col gap-8 md:gap-10">
             <EditorialContent value={caseStudy.challenge} />
             <EditorialContent value={caseStudy.solution} />
             <EditorialContent value={caseStudy.results} />

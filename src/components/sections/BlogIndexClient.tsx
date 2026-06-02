@@ -64,8 +64,8 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
       <HeroSection
         title={heroTitle}
         hideImage
-        categories={categoryOptions}
-        activeCategory={activeCategory}
+        // categories={categoryOptions}
+        // activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
       />
       <BlogSection

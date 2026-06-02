@@ -111,7 +111,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           {caseStudy.industry && (
             <Badge
               variant="blue"
-              className="border border-brand-blue px-4 py-1 text-[11px] font-normal"
+              className="border-2! border-brand-blue px-4 py-1 text-sm font-semibold bg-transparent"
             >
               {caseStudy.industry}
             </Badge>
@@ -158,7 +158,7 @@ function EditorialContent({ value }: { value?: CaseStudy["challenge"] }) {
 
 function RelatedProjects({ caseStudies }: { caseStudies: CaseStudyListItem[] }) {
   return (
-    <section className="bg-[#EEFFE9] py-16 md:py-20">
+    <section className="bg-[#EEFFE9] py-16 md:py-20 border-y border-[#38A81B]">
       <Container size="xl">
         <div className="text-center">
           <Image

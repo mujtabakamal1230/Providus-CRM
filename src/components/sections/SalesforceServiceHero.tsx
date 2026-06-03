@@ -57,13 +57,15 @@ export function SalesforceServiceHero({
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,500px)] lg:items-center">
             <div className="max-w-2xl">
               <div className="mb-8 flex items-center gap-4">
-                <Image
-                  src="/images/salesforce-partner.png"
-                  alt="Salesforce Partner"
-                  width={78}
-                  height={84}
-                  className="h-[72px] w-[66px] rounded-[10px] object-contain"
-                />
+                <div className="shrink-0 bg-white rounded-sm overflow-hidden">
+                  <Image
+                    src="/images/salesforce-partner.png"
+                    alt="Salesforce Partner"
+                    width={66}
+                    height={71}
+                    className="h-auto w-[66px] object-contain bg-white"
+                  />
+                </div>
                 <Text variant="p3" className="max-w-[170px] text-white">
                   <span className="block font-semibold">{badgeTitle}</span>
                   <span className="block">{badgeSubtitle}</span>

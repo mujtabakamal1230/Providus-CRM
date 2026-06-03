@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { SanityImage } from "@/components/sanity/SanityImage";
@@ -96,6 +94,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const mappedCaseStudies = recentCaseStudies.map((cs) => ({
     title: cs.title,
     slug: cs.slug.current,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     image: cs.coverImage ? urlForImage(cs.coverImage as any).url() : "/images/case-studies/case-study.png",
     category: cs.industry,
   }));

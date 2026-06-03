@@ -96,7 +96,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const mappedCaseStudies = recentCaseStudies.map((cs) => ({
     title: cs.title,
     slug: cs.slug.current,
-    image: cs.coverImage ? urlForImage(cs.coverImage).url() : "/images/case-studies/case-study.png",
+    image: cs.coverImage ? urlForImage(cs.coverImage as any).url() : "/images/case-studies/case-study.png",
     category: cs.industry,
   }));
 

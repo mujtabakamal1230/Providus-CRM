@@ -176,14 +176,14 @@ export function HeroSection({
     <section className="mt-4">
       <Container>
         <div
-          className={`rounded-3xl overflow-hidden bg-cover bg-center ${hideImage ? "h-[350px] lg:h-[450px] min-h-[350px]" : "h-[calc(100vh-120px)] min-h-[620px]"
+          className={`rounded-3xl flex flex-col overflow-hidden bg-cover bg-center ${hideImage ? "min-h-[350px] lg:min-h-[450px]" : "min-h-[620px] lg:min-h-[calc(100vh-120px)]"
             }`}
           style={{
             backgroundImage: "url('/images/hero-bg.png')",
           }}
         >
           {hideImage ? (
-            <div className="flex flex-col items-center justify-center h-full w-full px-6 py-8 text-center gap-6">
+            <div className="flex flex-col items-center justify-center flex-1 w-full px-6 py-12 text-center gap-6">
               <div className="flex items-center justify-center">
                 <Heading as="h1" className="text-white text-center flex items-center justify-center flex-wrap gap-x-4">
                   <BlurScaleHeading>
@@ -212,9 +212,9 @@ export function HeroSection({
               )}
             </div>
           ) : (
-            <div className="grid lg:grid-cols-2 h-full">
+            <div className="grid lg:grid-cols-2 flex-1">
               {/* Left — content */}
-              <div className="flex flex-col justify-center gap-8 px-10 py-16 md:px-16">
+              <div className="flex flex-col justify-center gap-8 px-8 py-16 md:px-12 lg:px-16 lg:py-20">
                 <Reveal direction="up" delay={0.1}>
                   {/* Salesforce Partner Badge */}
                   <div className="flex items-center gap-4 w-fit">

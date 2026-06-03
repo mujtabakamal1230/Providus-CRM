@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { SanityImage } from "@/components/sanity/SanityImage";
 import { PortableContent } from "@/components/sanity/PortableContent";
-import { CtaSection } from "@/components/sections";
+import { CtaSection, ServiceCaseStudiesSection } from "@/components/sections";
+import { urlForImage } from "@/sanity/lib/image";
 import { Badge } from "@/components/ui/Badge";
 import { Heading, Text } from "@/components/ui/Typography";
 import { sanityFetch } from "@/sanity/lib/fetch";
@@ -85,11 +86,19 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     }),
   ]);
 
+
   if (!caseStudy) {
     notFound();
   }
 
-  const recentCaseStudies = (allCaseStudies ?? []).slice(0, 3);
+  const recentCaseStudies = (allCaseStudies ?? []).filter((cs) => cs.slug.current !== slug).slice(0, 2);
+
+  const mappedCaseStudies = recentCaseStudies.map((cs) => ({
+    title: cs.title,
+    slug: cs.slug.current,
+    image: cs.coverImage ? urlForImage(cs.coverImage).url() : "/images/case-studies/case-study.png",
+    category: cs.industry,
+  }));
 
   return (
     <>
@@ -148,7 +157,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </article>
         </Container>
 
-        <RelatedProjects caseStudies={recentCaseStudies} />
+        <ServiceCaseStudiesSection caseStudies={mappedCaseStudies} />
       </main>
       <CtaSection />
     </>
@@ -161,67 +170,4 @@ function EditorialContent({ value }: { value?: CaseStudy["challenge"] }) {
   }
 
   return <PortableContent value={value} contained={false} />;
-}
-
-function RelatedProjects({ caseStudies }: { caseStudies: CaseStudyListItem[] }) {
-  return (
-    <section className="bg-[#EEFFE9] py-16 md:py-20 border-y border-[#38A81B]">
-      <Container size="xl">
-        <div className="text-center">
-          <Image
-            src="/images/green-line.svg"
-            alt=""
-            width={60}
-            height={20}
-            className="mx-auto h-auto w-16"
-          />
-          <Heading as="h2" className="mt-5 text-black">
-            More projects that made a mark.
-          </Heading>
-        </div>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {caseStudies.map((caseStudy, index) => (
-            <Link
-              key={`${caseStudy._id}-${index}`}
-              href={`/case-studies/${caseStudy.slug.current}`}
-              className="group relative flex aspect-[0.95/1] flex-col justify-end overflow-hidden rounded-[18px] bg-black p-5 shadow-sm"
-            >
-              <div className="absolute inset-0">
-                {caseStudy.coverImage?.asset ? (
-                  <SanityImage
-                    image={caseStudy.coverImage}
-                    altFallback={caseStudy.title}
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                  />
-                ) : (
-                  <Image
-                    src="/images/case-studies/case-study.png"
-                    alt=""
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/15 to-black/90" />
-              </div>
-
-              <div className="relative">
-                <Heading
-                  as="h3"
-                  level="h4"
-                  className="max-w-[18rem] text-white !text-[21px] !leading-[1.05]"
-                >
-                  {caseStudy.title}
-                </Heading>
-                <span className="mt-4 inline-flex items-center rounded-full bg-brand-green px-4 py-2 text-[12px] font-semibold text-white">
-                  View Project <span className="ml-2">-&gt;</span>
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
 }

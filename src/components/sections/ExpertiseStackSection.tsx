@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { motion, useScroll, useTransform } from "framer-motion";
-import type { MotionValue } from "framer-motion";
 import { useRef } from "react";
 
 const expertiseData = [
@@ -67,14 +66,8 @@ const expertiseData = [
 ];
 
 export function ExpertiseStackSection() {
-  const container = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
-
   return (
-    <section ref={container} className="relative bg-white pb-32">
+    <section className="relative bg-white pb-32">
       <Container>
         <div className="flex flex-col relative">
           {expertiseData.map((item, index) => (
@@ -82,8 +75,6 @@ export function ExpertiseStackSection() {
               key={index} 
               index={index} 
               {...item} 
-              progress={scrollYProgress} 
-              totalCards={expertiseData.length}
             />
           ))}
         </div>
@@ -100,35 +91,9 @@ interface CardProps {
   color: string;
   icon: string;
   image: string;
-  progress: MotionValue<number>;
-  totalCards: number;
 }
 
-function Card({ index, title, subtitle, text, color, icon, image, progress, totalCards }: CardProps) {
-  const targetScale = 1 - (totalCards - 1 - index) * 0.025;
-
-  // Unconditionally calculate ranges to adhere strictly to React Rules of Hooks
-  const isFirstCard = index === 0;
-  const entryStart = (index - 1) / totalCards;
-  const entryEnd = index / totalCards;
-
-  let scaleInputRange: number[];
-  let scaleOutputRange: number[];
-
-  if (isFirstCard) {
-    scaleInputRange = [0, 1];
-    scaleOutputRange = [1, targetScale];
-  } else if (entryStart === 0) {
-    // Avoid duplicate keys [0, 0, ...] when entryStart is 0 for the second card (index = 1)
-    scaleInputRange = [0, entryEnd, 1];
-    scaleOutputRange = [0.85, 1, targetScale];
-  } else {
-    scaleInputRange = [0, entryStart, entryEnd, 1];
-    scaleOutputRange = [0.85, 0.85, 1, targetScale];
-  }
-
-  const scale = useTransform(progress, scaleInputRange, scaleOutputRange);
-
+function Card({ index, title, subtitle, text, color, icon, image }: CardProps) {
   // Set up local scroll tracking on the card container for smooth image parallax
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: cardScrollProgress } = useScroll({
@@ -141,23 +106,22 @@ function Card({ index, title, subtitle, text, color, icon, image, progress, tota
   return (
     <div 
       ref={cardContainerRef}
-      className="h-[70vh] md:h-[80vh] flex items-start justify-center sticky pt-4"
+      className="h-[80vh] md:h-[90vh] flex items-start justify-center sticky pt-8"
       style={{ 
         zIndex: index,
-        top: `calc(5.5rem + ${index * 24}px)`
+        top: `7rem`
       }}
     >
-      <motion.div
+      <div
         style={{
-          scale,
           background: "linear-gradient(180deg, #FAFDFF 0%, #EAF7FF 100%)",
           borderRadius: "18px",
           boxShadow: `0px 4.49px 0px 0px ${color}`,
         }}
-        className="relative w-full max-w-[1200px] h-[500px] md:h-[600px] overflow-hidden flex flex-col md:flex-row p-6 md:p-10 gap-8 md:gap-12 border border-white/20"
+        className="relative w-full max-w-[1200px] overflow-hidden flex flex-col md:flex-row p-6 md:p-10 gap-6 md:gap-12 border border-white/20 min-h-[500px]"
       >
         {/* Left Side - Image (40%) with Parallax zoom */}
-        <div className="md:w-[40%] relative rounded-xl overflow-hidden shrink-0">
+        <div className="h-[250px] md:h-auto md:w-[40%] relative rounded-xl overflow-hidden shrink-0">
           <motion.div 
             style={{ scale: imageScale, width: "100%", height: "100%" }}
             className="relative w-full h-full"
@@ -172,11 +136,11 @@ function Card({ index, title, subtitle, text, color, icon, image, progress, tota
         </div>
 
         {/* Right Side - Content (60%) */}
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-center py-2 md:py-6">
           {/* Header Row */}
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-4">
-              <div className="w-[60px] h-[60px] relative shrink-0">
+              <div className="w-[50px] h-[50px] md:w-[60px] md:h-[60px] relative shrink-0">
                 <Image
                   src={icon}
                   alt=""
@@ -189,18 +153,19 @@ function Card({ index, title, subtitle, text, color, icon, image, progress, tota
               </Heading>
             </div>
             <div
-              className="w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all hover:bg-white shrink-0"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 flex items-center justify-center transition-all hover:bg-white shrink-0"
               style={{ borderColor: color, color: color }}
             >
               <svg
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="md:w-[24px] md:h-[24px]"
               >
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
@@ -210,13 +175,13 @@ function Card({ index, title, subtitle, text, color, icon, image, progress, tota
 
           {/* Border line */}
           <div
-            className="w-full h-[1px] mb-8"
+            className="w-full h-[1px] mb-6 md:mb-8"
             style={{ backgroundColor: color, opacity: 0.2 }}
           />
 
           {/* Subheading */}
           <h3
-            className="font-roboto font-semibold text-[18px] leading-[30.29px] mb-6"
+            className="font-roboto font-semibold text-[16px] md:text-[18px] leading-[1.5] mb-4 md:mb-6"
             style={{ color: color }}
           >
             {subtitle}
@@ -227,7 +192,7 @@ function Card({ index, title, subtitle, text, color, icon, image, progress, tota
             {text}
           </Text>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

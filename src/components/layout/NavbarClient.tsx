@@ -178,16 +178,12 @@ function DesktopDropdown({ item }: { item: DropdownNavItem }) {
 }
 
 function getNavItems(salesforceServices: NavItem[]): DropdownNavItem[] {
-  const firstService =
-    salesforceServices[0]?.href || "/salesforce/salesforce-consulting-services";
-
   return [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
     {
-      label: "Salesforce Services",
-      href: firstService,
+      label: "Services",
+      href: "/services",
       children: salesforceServices,
     },
     { label: "Industry", href: "/industries" },

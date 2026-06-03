@@ -1,0 +1,228 @@
+"use client";
+
+import { useState } from "react";
+import type { FormEvent } from "react";
+import Image from "next/image";
+import { CheckCircle } from "lucide-react";
+import { Container } from "@/components/layout/Container";
+import { Heading, Text } from "@/components/ui/Typography";
+
+interface SalesforceServiceHeroProps {
+  badgeTitle?: string;
+  badgeSubtitle?: string;
+  title: string;
+  description?: string;
+  bullets?: string[];
+  formTitle?: string;
+  formButtonLabel?: string;
+  backgroundImage?: string;
+}
+
+const emptyForm = {
+  name: "",
+  email: "",
+  contactNumber: "",
+  message: "",
+};
+
+export function SalesforceServiceHero({
+  badgeTitle = "Certified",
+  badgeSubtitle = "Salesforce Partner in the UK",
+  title,
+  description,
+  bullets = [],
+  formTitle = "Fill a form today",
+  formButtonLabel = "Let's Connect",
+  backgroundImage = "/images/hero-bg.png",
+}: SalesforceServiceHeroProps) {
+  const [formState, setFormState] = useState(emptyForm);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormState(emptyForm);
+    }, 3000);
+  };
+
+  return (
+    <section className="bg-white pb-10 pt-4 md:pb-14 md:pt-6">
+      <Container>
+        <div
+          className="overflow-hidden rounded-[20px] bg-brand-blue bg-cover bg-center px-6 py-10 text-white shadow-xl md:px-10 md:py-14 lg:px-14 lg:py-16"
+          style={{ backgroundImage: `url('${backgroundImage}')` }}
+        >
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,500px)] lg:items-center">
+            <div className="max-w-2xl">
+              <div className="mb-8 flex items-center gap-4">
+                <Image
+                  src="/images/salesforce-partner.png"
+                  alt="Salesforce Partner"
+                  width={78}
+                  height={84}
+                  className="h-[72px] w-[66px] rounded-[10px] object-contain"
+                />
+                <Text variant="p3" className="max-w-[170px] text-white">
+                  <span className="block font-semibold">{badgeTitle}</span>
+                  <span className="block">{badgeSubtitle}</span>
+                </Text>
+              </div>
+
+              <Heading
+                as="h1"
+                className="max-w-xl text-white !text-[42px] !leading-[0.98] md:!text-[60px]"
+              >
+                {title}
+                <Image
+                  src="/images/green-line.svg"
+                  alt=""
+                  width={72}
+                  height={24}
+                  aria-hidden="true"
+                  className="ml-3 inline-block h-[0.45em] w-auto align-baseline"
+                />
+              </Heading>
+
+              {description && (
+                <Text variant="p3" className="mt-7 max-w-xl text-white/90">
+                  {description}
+                </Text>
+              )}
+
+              {bullets.length > 0 && (
+                <ul className="mt-7 space-y-3">
+                  {bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-start gap-3">
+                      <CheckCircle
+                        aria-hidden="true"
+                        className="mt-1 h-4 w-4 shrink-0 text-brand-green-light"
+                      />
+                      <Text variant="p3" as="span" className="text-white/90">
+                        {bullet}
+                      </Text>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <div className="rounded-[18px] border border-white/45 bg-white/10 p-5 backdrop-blur-sm md:p-7">
+              {submitted ? (
+                <div className="flex min-h-[360px] flex-col items-center justify-center rounded-[12px] border border-brand-green-light/40 bg-brand-green-light/15 p-8 text-center">
+                  <CheckCircle
+                    aria-hidden="true"
+                    className="h-12 w-12 text-brand-green-light"
+                  />
+                  <Heading as="h4" className="mt-4 text-white">
+                    Thank You!
+                  </Heading>
+                  <Text variant="p3" className="mt-3 text-white/80">
+                    Your message has been sent successfully. We will connect
+                    with you shortly.
+                  </Text>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <Heading
+                    as="h2"
+                    level="h4"
+                    className="text-center text-white"
+                  >
+                    {formTitle}
+                  </Heading>
+
+                  <HeroInput
+                    label="Name"
+                    value={formState.name}
+                    placeholder="Enter your full name"
+                    onChange={(value) =>
+                      setFormState({ ...formState, name: value })
+                    }
+                  />
+                  <HeroInput
+                    label="Email"
+                    type="email"
+                    value={formState.email}
+                    placeholder="Enter your email address"
+                    onChange={(value) =>
+                      setFormState({ ...formState, email: value })
+                    }
+                  />
+                  <HeroInput
+                    label="Contact Number"
+                    type="tel"
+                    value={formState.contactNumber}
+                    placeholder="Enter your contact number"
+                    onChange={(value) =>
+                      setFormState({ ...formState, contactNumber: value })
+                    }
+                  />
+
+                  <div className="flex flex-col gap-2">
+                    <Text variant="p4" as="label" className="text-white">
+                      Message
+                    </Text>
+                    <textarea
+                      required
+                      rows={5}
+                      placeholder="Tell us about your project"
+                      value={formState.message}
+                      onChange={(event) =>
+                        setFormState({
+                          ...formState,
+                          message: event.target.value,
+                        })
+                      }
+                      className="min-h-[130px] resize-none rounded-[6px] border border-transparent bg-white px-4 py-3 font-body text-[14px] text-gray-800 outline-none transition-all placeholder:text-gray-400 focus:border-brand-green"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full rounded-[6px] bg-brand-green px-6 py-3 font-body text-[14px] font-semibold text-white shadow-md transition-colors hover:bg-[#2d8c14]"
+                  >
+                    {formButtonLabel}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+interface HeroInputProps {
+  label: string;
+  value: string;
+  placeholder: string;
+  onChange: (value: string) => void;
+  type?: "text" | "email" | "tel";
+}
+
+function HeroInput({
+  label,
+  value,
+  placeholder,
+  onChange,
+  type = "text",
+}: HeroInputProps) {
+  return (
+    <div className="flex flex-col gap-2">
+      <Text variant="p4" as="label" className="text-white">
+        {label}
+      </Text>
+      <input
+        required
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        onChange={(event) => onChange(event.target.value)}
+        className="h-12 rounded-[6px] border border-transparent bg-white px-4 font-body text-[14px] text-gray-800 outline-none transition-all placeholder:text-gray-400 focus:border-brand-green"
+      />
+    </div>
+  );
+}

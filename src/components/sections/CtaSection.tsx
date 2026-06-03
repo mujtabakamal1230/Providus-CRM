@@ -3,13 +3,27 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Heading } from "@/components/ui/Typography";
 
-export function CtaSection() {
+interface CtaSectionProps {
+  title?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  backgroundImage?: string;
+}
+
+export function CtaSection({
+  title,
+  buttonLabel = "Let's Connect",
+  buttonHref = "/contact",
+  backgroundImage = "/images/cta-bg.png",
+}: CtaSectionProps) {
+  const displayTitle = title || "Ready to\nReinvent Your CRM?";
+
   return (
     <section className="relative h-[386px] flex items-center overflow-hidden mt-24 md:mt-40">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/cta-bg.png"
+          src={backgroundImage}
           alt=""
           fill
           className="object-cover object-center"
@@ -33,17 +47,22 @@ export function CtaSection() {
             className="w-16 h-auto mb-6"
           />
           <Heading as="h1" className="text-black mb-8 leading-tight !text-[40px] md:!text-[50px]">
-            Ready to <br /> Reinvent Your CRM?
+            {displayTitle.split("\n").map((line, index) => (
+              <span key={`${line}-${index}`}>
+                {index > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </Heading>
 
-          <Link href="/contact" className="inline-block">
+          <Link href={buttonHref} className="inline-block">
             <button className="flex items-center gap-2 bg-[#38A81B] text-white px-6 py-3 rounded-full hover:bg-[#2e8b16] transition-colors group cursor-pointer">
               <div className="bg-white rounded-full p-1 group-hover:scale-110 transition-transform">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 18L15 12L9 6" stroke="#38A81B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <span className="font-semibold">Let&apos;s Connect</span>
+              <span className="font-semibold">{buttonLabel}</span>
             </button>
           </Link>
         </div>

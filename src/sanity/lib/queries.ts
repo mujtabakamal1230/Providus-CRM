@@ -170,3 +170,100 @@ export const CASE_STUDY_QUERY = defineQuery(`
     }
   }
 `);
+
+export const SERVICE_PAGE_SLUGS_QUERY = defineQuery(`
+  *[_type == "servicePage" && status == "published" && defined(slug.current)] {
+    "slug": slug.current
+  }
+`);
+
+export const SERVICE_NAV_QUERY = defineQuery(`
+  *[_type == "servicePage" && status == "published" && defined(slug.current)] | order(title asc) {
+    title,
+    "slug": slug.current
+  }
+`);
+
+export const SERVICE_PAGE_QUERY = defineQuery(`
+  *[_type == "servicePage" && status == "published" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    status,
+    seo {
+      ${seoProjection}
+    },
+    hero {
+      badgeTitle,
+      badgeSubtitle,
+      heading,
+      description,
+      bullets,
+      formTitle,
+      formButtonLabel,
+      backgroundImage {
+        ${imageProjection}
+      }
+    },
+    certified,
+    caseStudies[]->{
+      _id,
+      title,
+      slug,
+      excerpt,
+      publishedAt,
+      clientName,
+      industry,
+      technologies,
+      resultSummary,
+      coverImage {
+        ${imageProjection}
+      }
+    },
+    tabsSection,
+    benefitsSection,
+    expertiseSection {
+      title,
+      items[] {
+        title,
+        text,
+        accentColor,
+        icon {
+          ${imageProjection}
+        }
+      }
+    },
+    industriesSection {
+      title,
+      items[] {
+        title,
+        description,
+        image {
+          ${imageProjection}
+        }
+      }
+    },
+    whyChooseSection {
+      title,
+      reasons[] {
+        title,
+        text,
+        color,
+        icon {
+          ${imageProjection}
+        }
+      },
+      image {
+        ${imageProjection}
+      }
+    },
+    cta {
+      title,
+      buttonLabel,
+      buttonHref,
+      backgroundImage {
+        ${imageProjection}
+      }
+    }
+  }
+`);

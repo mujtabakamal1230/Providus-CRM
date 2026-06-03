@@ -1,0 +1,198 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { CtaButton } from "@/components/ui/CtaButton";
+import type { NavItem } from "@/types";
+import { Container } from "./Container";
+
+interface DropdownNavItem extends NavItem {
+  children?: NavItem[];
+}
+
+interface NavbarClientProps {
+  salesforceServices: NavItem[];
+}
+
+export function NavbarClient({ salesforceServices }: NavbarClientProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const navItems = getNavItems(salesforceServices);
+
+  return (
+    <header className="sticky top-0 z-50 w-full bg-white">
+      <Container>
+        <div className="flex h-18 items-center justify-between gap-8 py-4">
+          <Link href="/" className="shrink-0">
+            <Image
+              src="/images/logo.svg"
+              alt="Providus CRM"
+              width={160}
+              height={40}
+              priority
+              className="h-8 w-auto"
+            />
+          </Link>
+
+          <nav className="hidden items-center gap-6 lg:flex">
+            {navItems.map((item) =>
+              item.children ? (
+                <DesktopDropdown item={item} key={item.href} />
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-p3 whitespace-nowrap text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </nav>
+
+          <div className="hidden shrink-0 lg:block">
+            <Link href="/contact">
+              <CtaButton variant="filled" size="sm">
+                Let&apos;s Connect
+              </CtaButton>
+            </Link>
+          </div>
+
+          <button
+            className="p-2 text-[#2E2E2E] lg:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {isOpen && (
+          <div className="flex flex-col gap-3 border-t border-gray-100 py-4 lg:hidden">
+            {navItems.map((item) =>
+              item.children ? (
+                <div key={item.href} className="flex flex-col gap-2">
+                  <Link
+                    href={item.href}
+                    className="text-p3 px-2 py-1 text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                  <div className="ml-4 flex flex-col gap-2 border-l border-gray-100 pl-4">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="text-p4 px-2 py-1 text-[#5F5F5F] transition-colors hover:text-[#1D70C5]"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-p3 px-2 py-1 text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+            <div className="border-t border-gray-100 pt-3">
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                <CtaButton variant="filled" size="sm" className="w-full">
+                  Let&apos;s Connect
+                </CtaButton>
+              </Link>
+            </div>
+          </div>
+        )}
+      </Container>
+    </header>
+  );
+}
+
+function DesktopDropdown({ item }: { item: DropdownNavItem }) {
+  return (
+    <div className="group relative">
+      <Link
+        href={item.href}
+        className="text-p3 flex items-center gap-1 whitespace-nowrap text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
+      >
+        {item.label}
+        <svg
+          className="h-3.5 w-3.5 transition-transform group-hover:rotate-180"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fillRule="evenodd"
+            d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </Link>
+
+      <div className="invisible absolute left-1/2 top-full z-50 min-w-[260px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+        <div className="rounded-[8px] border border-gray-100 bg-white p-2 shadow-xl">
+          {item.children?.map((child) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              className="text-p3 block rounded-[6px] px-4 py-3 text-[#2E2E2E] transition-colors hover:bg-brand-blue-light hover:text-[#1D70C5]"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function getNavItems(salesforceServices: NavItem[]): DropdownNavItem[] {
+  const firstService =
+    salesforceServices[0]?.href || "/salesforce/salesforce-consulting-services";
+
+  return [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    {
+      label: "Salesforce Services",
+      href: firstService,
+      children: salesforceServices,
+    },
+    { label: "Industry", href: "/industries" },
+    { label: "Platform Expertise", href: "/platform-expertise" },
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "Blog", href: "/blog" },
+  ];
+}

@@ -3,7 +3,18 @@ import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
-const industries = [
+export interface IndustrySectionItem {
+  title: string;
+  image: string;
+  description: string;
+}
+
+interface IndustriesSectionProps {
+  title?: string;
+  items?: IndustrySectionItem[];
+}
+
+const industries: IndustrySectionItem[] = [
   {
     title: "Non-Profit Cloud",
     image: "/images/non-profit.png",
@@ -36,7 +47,9 @@ const industries = [
   }
 ];
 
-export function IndustriesSection() {
+export function IndustriesSection({ title, items }: IndustriesSectionProps) {
+  const displayItems = items && items.length > 0 ? items : industries;
+
   return (
     <section className="py-24 bg-white">
       <Container>
@@ -51,14 +64,14 @@ export function IndustriesSection() {
               className="w-16 h-auto mb-6"
             />
             <Heading as="h2" className="max-w-4xl !text-[40px] md:!text-[50px] leading-tight">
-              How We Implement Salesforce Across Industries
+              {title || "How We Implement Salesforce Across Industries"}
             </Heading>
           </div>
         </Reveal>
 
         {/* Industry Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12">
-          {industries.map((item, index) => (
+          {displayItems.map((item, index) => (
             <Reveal 
               key={index} 
               direction={index % 2 === 0 ? "right" : "left"} 

@@ -6,7 +6,22 @@ import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { cn } from "@/lib/utils";
 
-const tabs = [
+export interface WhatWeDoTab {
+  id?: string;
+  label: string;
+  content: {
+    heading: string;
+    text: string;
+    bullets?: string[];
+  };
+}
+
+interface WhatWeDoSectionProps {
+  title?: string;
+  tabs?: WhatWeDoTab[];
+}
+
+const tabs: WhatWeDoTab[] = [
   {
     id: "consulting",
     label: "Salesforce Consulting",
@@ -121,10 +136,18 @@ const tabs = [
   },
 ];
 
-export function WhatWeDoSection() {
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
+export function WhatWeDoSection({ title, tabs: customTabs }: WhatWeDoSectionProps) {
+  const displayTabs = (customTabs && customTabs.length > 0 ? customTabs : tabs).map(
+    (tab, index) => ({
+      ...tab,
+      id: tab.id || `tab-${index}`,
+    })
+  );
+  const [activeTab, setActiveTab] = useState(displayTabs[0]?.id || "tab-0");
 
-  const activeContent = tabs.find((t) => t.id === activeTab)?.content || tabs[0].content;
+  const activeContent =
+    displayTabs.find((t) => t.id === activeTab)?.content ||
+    displayTabs[0]?.content;
 
   return (
     <section className="relative py-24 min-h-[800px] flex items-center overflow-hidden">
@@ -151,14 +174,14 @@ export function WhatWeDoSection() {
             className="w-16 h-auto"
           />
           <Heading as="h2" className="text-white !text-[40px] md:!text-[50px]">
-            What We Do
+            {title || "What We Do"}
           </Heading>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Tabs List */}
           <div className="lg:col-span-5 flex flex-col gap-2">
-            {tabs.map((tab) => (
+            {displayTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}

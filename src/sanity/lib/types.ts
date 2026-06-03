@@ -77,3 +77,121 @@ export interface CaseStudy extends CaseStudyListItem {
   body?: PortableTextBlock[];
   seo?: SeoFields;
 }
+
+export type ServicePageStatus = "published" | "draft";
+
+export type ServiceBenefitIconKey =
+  | "roi"
+  | "adoption"
+  | "maturity"
+  | "visibility"
+  | "view360"
+  | "partnership";
+
+export type ServiceBenefitColorTheme =
+  | "blue"
+  | "green"
+  | "yellow"
+  | "peach"
+  | "pink"
+  | "purple";
+
+export interface ServiceHeroContent {
+  badgeTitle?: string;
+  badgeSubtitle?: string;
+  heading: string;
+  description?: string;
+  bullets?: string[];
+  formTitle?: string;
+  formButtonLabel?: string;
+  backgroundImage?: SanityImage;
+}
+
+export interface ServiceCertifiedContent {
+  title?: string;
+  description?: string;
+}
+
+export interface ServiceTabItem {
+  label: string;
+  heading: string;
+  text?: string;
+  bullets?: string[];
+}
+
+export interface ServiceTabsContent {
+  title?: string;
+  tabs?: ServiceTabItem[];
+}
+
+export interface ServiceBenefitItem {
+  title: string;
+  description?: string;
+  iconKey?: ServiceBenefitIconKey;
+  colorTheme?: ServiceBenefitColorTheme;
+}
+
+export interface ServiceBenefitsContent {
+  title?: string;
+  items?: ServiceBenefitItem[];
+}
+
+export interface ServiceExpertiseItem {
+  title: string;
+  text?: string;
+  icon?: SanityImage;
+  accentColor?: string;
+}
+
+export interface ServiceExpertiseContent {
+  title?: string;
+  items?: ServiceExpertiseItem[];
+}
+
+export interface ServiceIndustryItem {
+  title: string;
+  description?: string;
+  image?: SanityImage;
+}
+
+export interface ServiceIndustriesContent {
+  title?: string;
+  items?: ServiceIndustryItem[];
+}
+
+export interface ServiceWhyChooseReason {
+  title: string;
+  text?: string;
+  icon?: SanityImage;
+  color?: string;
+}
+
+export interface ServiceWhyChooseContent {
+  title?: string;
+  reasons?: ServiceWhyChooseReason[];
+  image?: SanityImage;
+}
+
+export interface ServiceCtaContent {
+  title?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  backgroundImage?: SanityImage;
+}
+
+export interface ServicePage {
+  _id: string;
+  title: string;
+  slug: SanitySlug;
+  status?: ServicePageStatus;
+  seo?: SeoFields;
+  hero?: ServiceHeroContent;
+  certified?: ServiceCertifiedContent;
+  caseStudies?: CaseStudyListItem[];
+  tabsSection?: ServiceTabsContent;
+  benefitsSection?: ServiceBenefitsContent;
+  expertiseSection?: ServiceExpertiseContent;
+  industriesSection?: ServiceIndustriesContent;
+  whyChooseSection?: ServiceWhyChooseContent;
+  cta?: ServiceCtaContent;
+}

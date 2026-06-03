@@ -13,7 +13,15 @@ import {
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
-export const expertiseItems = [
+export interface ExpertiseItem {
+  id: number | string;
+  title: string;
+  icon: string;
+  text: string;
+  shadow: string;
+}
+
+export const expertiseItems: ExpertiseItem[] = [
   {
     id: 1,
     title: "Service Cloud",
@@ -60,7 +68,7 @@ export const expertiseItems = [
 
 interface ExpertiseSectionProps {
   title?: string;
-  items?: typeof expertiseItems;
+  items?: ExpertiseItem[];
 }
 
 export function ExpertiseSection({ title, items }: ExpertiseSectionProps) {

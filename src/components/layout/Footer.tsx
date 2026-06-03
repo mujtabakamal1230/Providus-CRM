@@ -93,18 +93,18 @@ export function Footer() {
 
         {/* Lower Footer */}
         <div className="mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <Text className="!text-[10px] !leading-[25px] font-roboto text-white/60">
+          <Text className="text-xs! leading-6.25! font-roboto text-white/60">
             © Copyright 2025, All Rights Reserved
           </Text>
 
           <div className="flex gap-6">
-            <Link href="/faq" className="text-[10px] leading-[25px] font-roboto text-white/60 hover:text-white">
+            <Link href="/faq" className="text-xs! leading-6! font-roboto text-white/60 hover:text-white">
               FAQ
             </Link>
-            <Link href="/terms" className="text-[10px] leading-[25px] font-roboto text-white/60 hover:text-white">
+            <Link href="/terms" className="text-xs! leading-6! font-roboto text-white/60 hover:text-white">
               Term of Service
             </Link>
-            <Link href="/privacy" className="text-[10px] leading-[25px] font-roboto text-white/60 hover:text-white">
+            <Link href="/privacy" className="text-xs! leading-6! font-roboto text-white/60 hover:text-white">
               Privacy Policy
             </Link>
           </div>

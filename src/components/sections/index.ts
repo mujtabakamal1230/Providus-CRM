@@ -19,5 +19,7 @@ export { ExploreSection } from "./ExploreSection";
 export { CaseStudiesSection } from "./CaseStudiesSection";
 export { BlogSection } from "./BlogSection";
 export { ContactSection } from "./ContactSection";
-
+export { SalesforceServiceHero } from "./SalesforceServiceHero";
+export { ServiceCaseStudiesSection } from "./ServiceCaseStudiesSection";
+export { ServiceBenefitsSection } from "./ServiceBenefitsSection";
 

@@ -3,7 +3,14 @@ import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
-export const reasons = [
+export interface WhyChooseReason {
+  title: string;
+  color: string;
+  icon: string;
+  text: string;
+}
+
+export const reasons: WhyChooseReason[] = [
   {
     title: "We're Different",
     color: "#687DDA",
@@ -26,10 +33,17 @@ export const reasons = [
 
 interface WhyChooseSectionProps {
   title?: string;
-  customReasons?: typeof reasons;
+  customReasons?: WhyChooseReason[];
+  image?: string;
+  imageAlt?: string;
 }
 
-export function WhyChooseSection({ title, customReasons }: WhyChooseSectionProps) {
+export function WhyChooseSection({
+  title,
+  customReasons,
+  image,
+  imageAlt = "Salesforce Specialist",
+}: WhyChooseSectionProps) {
   const displayReasons = customReasons || reasons;
   const defaultTitle = "Why Choose ProvidusCRM As Your Salesforce Solutions Partner";
 
@@ -102,8 +116,8 @@ export function WhyChooseSection({ title, customReasons }: WhyChooseSectionProps
             <div className="bg-white p-3 rounded-md shadow-2xl h-full min-h-[600px] lg:min-h-0">
               <div className="relative w-full h-full rounded-md overflow-hidden">
                 <Image
-                  src="/images/why-choose.png"
-                  alt="Salesforce Specialist"
+                  src={image || "/images/why-choose.png"}
+                  alt={imageAlt}
                   fill
                   className="object-cover object-center"
                 />

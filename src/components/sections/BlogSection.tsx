@@ -40,7 +40,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
               aria-hidden="true"
               className="inline-block h-8 w-auto align-baseline ml-1"
             />
-            <Heading as="h2" className="text-black !text-[36px] md:!text-[45px] font-bold font-heading">
+            <Heading as="h2" className="text-black !text-[32px] md:!text-[45px] font-bold font-heading">
               Latest Blogs
             </Heading>
           </div>
@@ -103,7 +103,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                       </div>
                       <Heading
                         as="h3"
-                        className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[24px] md:!text-[27px] !leading-[33px] tracking-[-0.24px]"
+                        className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[22px] md:!text-[27px] !leading-[30px] md:!leading-[33px] tracking-[-0.24px]"
                       >
                         {firstItem.title}
                       </Heading>
@@ -137,7 +137,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                           </div>
                           <Heading
                             as="h4"
-                            className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[20px] lg:!text-[24px] xl:!text-[27px] !leading-[33px] tracking-[-0.24px]"
+                            className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[19px] lg:!text-[24px] xl:!text-[27px] !leading-[28px] lg:!leading-[33px] tracking-[-0.24px]"
                           >
                             {item.title}
                           </Heading>
@@ -172,7 +172,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                       </div>
                       <Heading
                         as="h3"
-                        className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[24px] md:!text-[27px] !leading-[33px] tracking-[-0.24px]"
+                        className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[22px] md:!text-[27px] !leading-[30px] md:!leading-[33px] tracking-[-0.24px]"
                       >
                         {item.title}
                       </Heading>
@@ -208,7 +208,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                       </div>
                       <Heading
                         as="h3"
-                        className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[22px] lg:!text-[25px] xl:!text-[27px] !leading-[33px] tracking-[-0.24px] line-clamp-2"
+                        className="text-black hover:text-brand-blue transition-colors font-heading font-bold !text-[20px] lg:!text-[25px] xl:!text-[27px] !leading-[28px] lg:!leading-[33px] tracking-[-0.24px] line-clamp-2"
                       >
                         {item.title}
                       </Heading>

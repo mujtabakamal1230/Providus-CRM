@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
+import Image from "next/image";
 
 export function ContactSection() {
   const [formState, setFormState] = useState({
@@ -11,8 +12,6 @@ export function ContactSection() {
     email: "",
     phone: "",
     company: "",
-    industry: "",
-    productOfInterest: "",
     message: ""
   });
 
@@ -29,8 +28,6 @@ export function ContactSection() {
         email: "",
         phone: "",
         company: "",
-        industry: "",
-        productOfInterest: "",
         message: ""
       });
     }, 3000);
@@ -50,24 +47,20 @@ export function ContactSection() {
             <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8">
               <Reveal direction="up" delay={0.1}>
                 {/* Wavy Logo Icon */}
-                <svg
-                  width="50"
-                  height="26"
-                  viewBox="0 0 65 34"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mb-2"
+                <Image
+                  src="/images/green-line.svg"
+                  alt=""
                   aria-hidden="true"
-                >
-                  <path d="M10 29C20 29 23 5 37 5" stroke="#38A81B" strokeWidth="8" strokeLinecap="round" />
-                  <path d="M28 29C38 29 41 5 55 5" stroke="#A0FF88" strokeWidth="8" strokeLinecap="round" />
-                </svg>
+                  width={60}
+                  height={20}
+                  className="inline-block h-8 w-auto align-baseline ml-1"
+                />
 
-                <Heading as="h1" className="text-white !text-[40px] md:!text-[50px] font-bold font-heading mb-4">
+                <Heading as="h1" className="text-white !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[60.9px] font-bold font-heading mb-4">
                   Let&apos;s Connect
                 </Heading>
 
-                <Text className="text-white/85 !text-[16px] md:!text-[18px] font-body leading-relaxed max-w-md">
+                <Text className="text-white/85 !text-[15px] md:!text-[18px] font-body leading-relaxed max-w-md">
                   Get in touch with by filling out the form or via the contact details below.
                 </Text>
               </Reveal>
@@ -93,7 +86,7 @@ export function ContactSection() {
                         <circle cx="12" cy="10" r="3" />
                       </svg>
                     </div>
-                    <span className="font-body font-normal text-[16px] md:text-[18px] text-white/90 leading-relaxed max-w-sm">
+                    <span className="font-body font-normal text-[15px] md:text-[18px] text-white/90 leading-relaxed max-w-sm">
                       1st Floor, Portfolio Place 498 Broadway Oldham, United Kingdom OL9 9PY
                     </span>
                   </div>
@@ -120,7 +113,7 @@ export function ContactSection() {
                     </div>
                     <a
                       href="mailto:hello@providus.io"
-                      className="font-body font-normal text-[16px] md:text-[18px] text-white hover:text-brand-green-light transition-colors leading-relaxed"
+                      className="font-body font-normal text-[15px] md:text-[18px] text-white hover:text-brand-green-light transition-colors leading-relaxed"
                     >
                       hello@providus.io
                     </a>
@@ -147,7 +140,7 @@ export function ContactSection() {
                     </div>
                     <a
                       href="tel:+971581090882"
-                      className="font-body font-normal text-[16px] md:text-[18px] text-white hover:text-brand-green-light transition-colors leading-relaxed"
+                      className="font-body font-normal text-[15px] md:text-[18px] text-white hover:text-brand-green-light transition-colors leading-relaxed"
                     >
                       +971 58 109 0882
                     </a>
@@ -186,7 +179,7 @@ export function ContactSection() {
                       {/* Name & Email */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex flex-col gap-2">
-                          <label className="font-body font-normal text-[18px] leading-[25px] text-white">
+                          <label className="font-body font-normal text-[16px] md:text-[18px] leading-[25px] text-white">
                             Name
                           </label>
                           <input
@@ -200,7 +193,7 @@ export function ContactSection() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <label className="font-body font-normal text-[18px] leading-[25px] text-white">
+                          <label className="font-body font-normal text-[16px] md:text-[18px] leading-[25px] text-white">
                             Email
                           </label>
                           <input
@@ -217,7 +210,7 @@ export function ContactSection() {
                       {/* Phone & Company */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex flex-col gap-2">
-                          <label className="font-body font-normal text-[18px] leading-[25px] text-white">
+                          <label className="font-body font-normal text-[16px] md:text-[18px] leading-[25px] text-white">
                             Phone
                           </label>
                           <input
@@ -231,7 +224,7 @@ export function ContactSection() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <label className="font-body font-normal text-[18px] leading-[25px] text-white">
+                          <label className="font-body font-normal text-[16px] md:text-[18px] leading-[25px] text-white">
                             Company
                           </label>
                           <input
@@ -245,57 +238,10 @@ export function ContactSection() {
                         </div>
                       </div>
 
-                      {/* Industry & Product of Interest */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="flex flex-col gap-2">
-                          <label className="font-body font-normal text-[18px] leading-[25px] text-white">
-                            Industry
-                          </label>
-                          <select
-                            required
-                            value={formState.industry}
-                            onChange={(e) => setFormState({ ...formState, industry: e.target.value })}
-                            className="h-[48px] px-4 bg-white border border-transparent rounded-[6px] text-[14px] font-body text-gray-800 focus:outline-none focus:border-brand-green transition-all appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232E2E2E%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_10px] bg-[right_16px_center] bg-no-repeat"
-                          >
-                            <option value="" disabled className="text-gray-400">
-                              Select your industry
-                            </option>
-                            <option value="Nonprofit">Nonprofit</option>
-                            <option value="Financial Services">Financial Services</option>
-                            <option value="Retail & Commerce">Retail & Commerce</option>
-                            <option value="Education">Education</option>
-                            <option value="Manufacturing">Manufacturing</option>
-                            <option value="Healthcare">Healthcare</option>
-                          </select>
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                          <label className="font-body font-normal text-[18px] leading-[25px] text-white">
-                            Product of Interest
-                          </label>
-                          <select
-                            required
-                            value={formState.productOfInterest}
-                            onChange={(e) => setFormState({ ...formState, productOfInterest: e.target.value })}
-                            className="h-[48px] px-4 bg-white border border-transparent rounded-[6px] text-[14px] font-body text-gray-800 focus:outline-none focus:border-brand-green transition-all appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232E2E2E%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px_10px] bg-[right_16px_center] bg-no-repeat"
-                          >
-                            <option value="" disabled className="text-gray-400">
-                              Select your product of interest
-                            </option>
-                            <option value="Salesforce Sales Cloud">Salesforce Sales Cloud</option>
-                            <option value="Salesforce Service Cloud">Salesforce Service Cloud</option>
-                            <option value="Salesforce Marketing Cloud">Salesforce Marketing Cloud</option>
-                            <option value="Salesforce Commerce Cloud">Salesforce Commerce Cloud</option>
-                            <option value="Salesforce Health Cloud">Salesforce Health Cloud</option>
-                            <option value="Custom CRM Development">Custom CRM Development</option>
-                            <option value="Other">Other</option>
-                          </select>
-                        </div>
-                      </div>
 
                       {/* Textarea */}
                       <div className="flex flex-col gap-2">
-                        <label className="font-body font-normal text-[18px] leading-[25px] text-white">
+                        <label className="font-body font-normal text-[16px] md:text-[18px] leading-[25px] text-white">
                           How can we help?
                         </label>
                         <textarea

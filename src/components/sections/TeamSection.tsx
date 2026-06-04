@@ -26,13 +26,13 @@ export function TeamSection() {
             height={20}
             className="w-16 h-auto mb-6"
           />
-          <Heading as="h2" className="max-w-4xl !text-[36px] md:!text-[50px] leading-tight">
+          <Heading as="h2" className="max-w-4xl !text-[32px] !leading-[36px] md:!text-[50px] md:!leading-[45px]">
             Work With Experts Across CRM, AI, Sales, Marketing, and More!
           </Heading>
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
           {teamMembers.map((member) => (
             <div
               key={member.id}

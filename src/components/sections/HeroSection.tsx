@@ -165,7 +165,7 @@ export function HeroSection({
         aria-hidden="true"
         width={60}
         height={20}
-        className="inline-block h-[0.7em] w-auto align-baseline ml-1"
+        className="inline-block h-10 w-auto align-baseline ml-1"
       />
     </>
   );
@@ -185,7 +185,7 @@ export function HeroSection({
           {hideImage ? (
             <div className="flex flex-col items-center justify-center flex-1 w-full px-6 py-12 text-center gap-6">
               <div className="flex items-center justify-center">
-                <Heading as="h1" className="text-white text-center flex items-center justify-center flex-wrap gap-x-4">
+                <Heading as="h1" className="text-white text-center flex items-center justify-center flex-wrap gap-x-4 max-w-[560px]">
                   <BlurScaleHeading>
                     {title || defaultTitle}
                   </BlurScaleHeading>
@@ -243,7 +243,7 @@ export function HeroSection({
 
                 {/* Heading + squiggle */}
                 <div>
-                  <Heading as="h1" className="text-white">
+                  <Heading as="h1" className="text-white max-w-[560px]">
                     <BlurScaleHeading>
                       {title || defaultTitle}
                     </BlurScaleHeading>

@@ -43,7 +43,10 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                 delay={index * 0.1}
                 width="100%"
               >
-                <article className="group relative flex min-h-115 w-full flex-col justify-end overflow-hidden rounded-lg p-8 shadow-lg md:min-h-134.5 md:p-12">
+                <Link
+                  href={`/case-studies/${caseStudy.slug}`}
+                  className="group relative flex min-h-115 w-full flex-col justify-end overflow-hidden rounded-lg p-8 shadow-lg md:min-h-134.5 md:p-12 cursor-pointer"
+                >
                   <div className="absolute inset-0 z-0">
                     <Image
                       src={caseStudy.image}
@@ -58,7 +61,7 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                     <div className="flex flex-col gap-4 text-left lg:col-span-7">
                       <Heading
                         as="h3"
-                        className="text-white !text-[32px] !leading-tight tracking-[-0.24px] md:!text-[40px]"
+                        className="text-white !text-[28px] !leading-tight tracking-[-0.24px] md:!text-[40px]"
                       >
                         {caseStudy.title}
                       </Heading>
@@ -79,13 +82,12 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                     </div>
 
                     <div className="flex flex-col items-start gap-6 lg:col-span-5 lg:items-end">
-                      <Link
-                        href={`/case-studies/${caseStudy.slug}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3 text-p3 text-white shadow-md transition-all hover:scale-105 active:scale-95"
+                      <div
+                        className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3 text-p3 text-white shadow-md transition-all group-hover:scale-105 active:scale-95"
                       >
                         <span>View Project</span>
                         <ArrowRight size={16} />
-                      </Link>
+                      </div>
 
                       <div className="flex max-w-md flex-wrap justify-start gap-2 lg:justify-end">
                         {caseStudy.badges.map((badge) => (
@@ -100,7 +102,7 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                       </div>
                     </div>
                   </div>
-                </article>
+                </Link>
               </Reveal>
             ))}
           </div>

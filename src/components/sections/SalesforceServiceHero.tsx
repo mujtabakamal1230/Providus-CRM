@@ -74,7 +74,7 @@ export function SalesforceServiceHero({
 
               <Heading
                 as="h1"
-                className="max-w-xl text-white !text-[42px] !leading-[0.98] md:!text-[60px]"
+                className="max-w-[560px] text-white !text-[34px] !leading-[1.05] md:!text-[60px] md:!leading-[0.98]"
               >
                 {title}
                 <Image

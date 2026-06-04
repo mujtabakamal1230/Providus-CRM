@@ -63,7 +63,7 @@ export function IndustriesSection({ title, items }: IndustriesSectionProps) {
               height={20}
               className="w-16 h-auto mb-6"
             />
-            <Heading as="h2" className="max-w-4xl !text-[40px] md:!text-[50px] leading-tight">
+            <Heading as="h2" className="max-w-4xl !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[45px]">
               {title || "How We Implement Salesforce Across Industries"}
             </Heading>
           </div>
@@ -78,35 +78,27 @@ export function IndustriesSection({ title, items }: IndustriesSectionProps) {
               delay={0.1 * (index % 3 + 1)}
             >
               <div
-                className="flex flex-col md:flex-row gap-8 p-2 pr-10 h-full"
+                className="flex h-full flex-col gap-5 rounded-[28px] p-2 md:flex-row md:gap-8 md:rounded-[50px] md:pr-10"
                 style={{
                   background: "linear-gradient(221.48deg, #F6FFE8 26.54%, #C7EA92 118.63%)",
                   boxShadow: "0px 4.55px 24.57px 0px #0000001C",
-                  borderRadius: "50px"
                 }}
               >
                 {/* Image Container */}
-                <div className="shrink-0">
-                  <div
-                    className="overflow-hidden"
-                    style={{
-                      borderRadius: "43.68px",
-                      width: "202px",
-                      height: "294px",
-                      position: "relative"
-                    }}
-                  >
+                <div className="w-full shrink-0 md:w-[202px]">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[22px] md:aspect-auto md:h-[294px] md:rounded-[43.68px]">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
                       className="object-cover"
+                      sizes="(max-width: 767px) calc(100vw - 48px), 202px"
                     />
                   </div>
                 </div>
 
                 {/* Text Content */}
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center px-4 pb-7 md:px-0 md:pb-0">
                   <Text variant="p1" className="text-black font-bold mb-4">
                     {item.title}
                   </Text>

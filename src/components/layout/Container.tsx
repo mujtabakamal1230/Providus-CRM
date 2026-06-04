@@ -11,7 +11,7 @@ const sizes: Record<NonNullable<ContainerProps["size"]>, string> = {
   sm: "max-w-2xl",
   md: "max-w-4xl",
   lg: "max-w-6xl",
-  xl: "max-w-[1440px]",
+  xl: "max-w-[1440px] 3xl:max-w-[1600px]",
   full: "max-w-full",
 };
 

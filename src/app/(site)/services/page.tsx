@@ -1,11 +1,11 @@
-import { 
-  HeroSection, 
-  PartnersSection, 
-  WhyChooseSection, 
-  CertifiedSection, 
+import {
+  HeroSection,
+  PartnersSection,
+  WhyChooseSection,
+  CertifiedSection,
   CtaSection,
   CategoriesSection,
-  reasons 
+  reasons
 } from "@/components/sections";
 
 export default function ServicesPage() {
@@ -16,7 +16,7 @@ export default function ServicesPage() {
         src="/images/green-line.svg"
         alt=""
         aria-hidden="true"
-        className="inline-block h-[0.7em] w-auto align-baseline ml-1"
+        className="inline-block h-10 w-auto align-baseline ml-1"
       />
     </>
   );
@@ -32,7 +32,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <HeroSection 
+      <HeroSection
         title={servicesHeroTitle}
         description="End-to-end Salesforce services and certified talent for building CRM solutions around your organisation's processes, challenges, and goals."
         image="/images/our-services-hero.png"
@@ -40,11 +40,11 @@ export default function ServicesPage() {
       />
       <PartnersSection />
       <CategoriesSection />
-      <WhyChooseSection 
+      <WhyChooseSection
         title="Why Choose ProvidusCRM As Your Salesforce Services Partner"
         customReasons={servicesReasons}
       />
-      <CertifiedSection 
+      <CertifiedSection
         title="Certified Salesforce Expertise Behind Every Solution We Deliver"
         description="Our consultants, developers, and architects are certified across platform administration, app building, data architecture, and every major Salesforce cloud. Every engagement is backed by certified expertise."
       />

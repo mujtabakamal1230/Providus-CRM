@@ -38,7 +38,7 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
         src="/images/green-line.svg"
         alt=""
         aria-hidden="true"
-        className="inline-block h-[0.7em] w-auto align-baseline ml-1"
+        className="inline-block h-10 w-auto align-baseline ml-1"
       />
     </>
   );

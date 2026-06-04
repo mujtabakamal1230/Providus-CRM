@@ -12,10 +12,10 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const headingClasses: Record<HeadingLevel, string> = {
-  h1: "typography-h1",
-  h2: "typography-h2",
-  h3: "typography-h3",
-  h4: "typography-h4",
+  h1: "typography-h1 !text-[36px] !leading-[40px] !tracking-[-0.4px] md:!text-[60px] md:!leading-[60.9px] md:!tracking-[-1.24px]",
+  h2: "typography-h2 !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[45px]",
+  h3: "typography-h3 !text-[30px] !leading-[34px] !tracking-[-0.2px] md:!text-[45px] md:!leading-[25px] md:!tracking-[-0.39px]",
+  h4: "typography-h4 !text-[24px] !leading-[30px] md:!text-[30px] md:!leading-[35px]",
 };
 
 export function Heading({
@@ -47,10 +47,10 @@ interface TextProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const textClasses: Record<TextVariant, string> = {
-  p1: "typography-p1",
-  p2: "typography-p2",
-  p3: "typography-p3",
-  p4: "typography-p4",
+  p1: "typography-p1 !text-[18px] !leading-[28px] md:!text-[22px] md:!leading-[30px]",
+  p2: "typography-p2 !text-[17px] !leading-[27px] md:!text-[20px] md:!leading-[30px]",
+  p3: "typography-p3 !text-[15px] !leading-[24px] md:!text-[16px] md:!leading-[26px]",
+  p4: "typography-p4 !text-[13px] !leading-[22px] md:!text-[14px] md:!leading-[24px]",
 };
 
 export function Text({

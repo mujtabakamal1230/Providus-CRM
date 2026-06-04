@@ -158,10 +158,10 @@ function IndustryCard({ item, index, progress, totalCards }: IndustryCardProps) 
 
         {/* Text Content */}
         <div className="flex-1 text-white py-4 flex flex-col gap-4">
-          <Heading as="h3" className="text-white !text-[32px] md:!text-[40px] font-heading font-bold leading-tight">
+          <Heading as="h3" className="text-white !text-[28px] !leading-[32px] md:!text-[40px] md:!leading-[25px] font-heading font-bold">
             {item.title}
           </Heading>
-          <Text variant="p2" className="text-white/90 !text-[16px] md:!text-[18px] leading-relaxed">
+          <Text variant="p2" className="text-white/90 !text-[15px] md:!text-[18px] leading-relaxed">
             {item.description}
           </Text>
         </div>

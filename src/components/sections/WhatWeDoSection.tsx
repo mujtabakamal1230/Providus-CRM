@@ -173,7 +173,7 @@ export function WhatWeDoSection({ title, tabs: customTabs }: WhatWeDoSectionProp
             height={20}
             className="w-16 h-auto"
           />
-          <Heading as="h2" className="text-white !text-[40px] md:!text-[50px]">
+          <Heading as="h2" className="text-white !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[45px]">
             {title || "What We Do"}
           </Heading>
         </div>
@@ -217,7 +217,7 @@ export function WhatWeDoSection({ title, tabs: customTabs }: WhatWeDoSectionProp
             </div>
 
             <div className="relative z-10">
-              <Heading as="h3" className="text-black mb-8 !text-[32px] md:!text-[45px]">
+              <Heading as="h3" className="text-black mb-8 !text-[28px] !leading-[32px] md:!text-[45px] md:!leading-[25px]">
                 {activeContent?.heading}
               </Heading>
 

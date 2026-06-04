@@ -22,6 +22,9 @@
   --font-heading: "Afacad", sans-serif;
   --font-body: "Roboto", sans-serif;
 
+  /* Breakpoints */
+  --breakpoint-3xl: 112.5rem;
+
   /* Spacing Scale */
   --spacing-section-sm: 64px;
   --spacing-section-md: 96px;

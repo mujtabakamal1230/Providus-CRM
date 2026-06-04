@@ -115,7 +115,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 altFallback={caseStudy.title}
                 className="object-contain"
                 priority
-                sizes="(min-width: 1440px) 1376px, calc(100vw - 48px)"
+                sizes="(min-width: 1800px) 1536px, (min-width: 1440px) 1376px, calc(100vw - 48px)"
                 unoptimized
               />
             </div>
@@ -133,7 +133,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           )}
           <Heading
             as="h1"
-            className="mx-auto mt-5 max-w-4xl text-black !text-[36px] !leading-[1.08] md:!text-[52px]"
+            className="mx-auto mt-5 max-w-4xl text-black !text-[32px] !leading-[1.12] md:!text-[52px] md:!leading-[1.08]"
           >
             {caseStudy.title}
           </Heading>

@@ -46,7 +46,7 @@ export function CtaSection({
             height={20}
             className="w-16 h-auto mb-6"
           />
-          <Heading as="h1" className="text-black mb-8 leading-tight !text-[40px] md:!text-[50px]">
+          <Heading as="h1" className="text-black mb-8 !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[60.9px]">
             {displayTitle.split("\n").map((line, index) => (
               <span key={`${line}-${index}`}>
                 {index > 0 && <br />}

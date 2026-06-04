@@ -179,7 +179,6 @@ function DesktopDropdown({ item }: { item: DropdownNavItem }) {
 
 function getNavItems(salesforceServices: NavItem[]): DropdownNavItem[] {
   return [
-    { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     {
       label: "Services",

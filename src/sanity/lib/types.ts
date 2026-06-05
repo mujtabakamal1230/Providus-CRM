@@ -136,6 +136,14 @@ export interface ServiceBenefitsContent {
   items?: ServiceBenefitItem[];
 }
 
+export interface ServiceConsultantCtaContent {
+  title?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  backgroundColor?: string;
+  image?: SanityImage;
+}
+
 export interface ServiceExpertiseItem {
   title: string;
   text?: string;
@@ -190,6 +198,7 @@ export interface ServicePage {
   caseStudies?: CaseStudyListItem[];
   tabsSection?: ServiceTabsContent;
   benefitsSection?: ServiceBenefitsContent;
+  consultantCta?: ServiceConsultantCtaContent;
   expertiseSection?: ServiceExpertiseContent;
   industriesSection?: ServiceIndustriesContent;
   whyChooseSection?: ServiceWhyChooseContent;

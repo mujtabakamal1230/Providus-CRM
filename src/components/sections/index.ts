@@ -22,4 +22,4 @@ export { ContactSection } from "./ContactSection";
 export { SalesforceServiceHero } from "./SalesforceServiceHero";
 export { ServiceCaseStudiesSection } from "./ServiceCaseStudiesSection";
 export { ServiceBenefitsSection } from "./ServiceBenefitsSection";
-
+export { SalesforceConsultCtaSection } from "./SalesforceConsultCtaSection";

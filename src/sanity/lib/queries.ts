@@ -222,6 +222,15 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
     },
     tabsSection,
     benefitsSection,
+    consultantCta {
+      title,
+      buttonLabel,
+      buttonHref,
+      backgroundColor,
+      image {
+        ${imageProjection}
+      }
+    },
     expertiseSection {
       title,
       items[] {

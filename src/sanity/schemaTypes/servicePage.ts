@@ -21,6 +21,7 @@ const colorThemeOptions = [
 const designColorOptions = [
   { title: "Brand Blue", value: "#1D70C5" },
   { title: "Brand Green", value: "#38A81B" },
+  { title: "Consult CTA Blue", value: "#2898FF" },
   { title: "Salesforce Blue", value: "#00A1E0" },
   { title: "Soft Indigo", value: "#687DDA" },
   { title: "Soft Purple", value: "#A670DD" },
@@ -247,6 +248,38 @@ export const servicePage = defineType({
             },
           ],
         }),
+      ],
+    }),
+    defineField({
+      name: "consultantCta",
+      title: "Consultant CTA section",
+      description:
+        "Blue CTA section with consultant image, shown after the tabs section on Salesforce service pages.",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Heading",
+          type: "string",
+        }),
+        defineField({
+          name: "buttonLabel",
+          title: "Button label",
+          type: "string",
+        }),
+        defineField({
+          name: "buttonHref",
+          title: "Button link",
+          type: "string",
+        }),
+        defineField({
+          name: "backgroundColor",
+          title: "Background color",
+          type: "string",
+          initialValue: "#2898FF",
+          options: { list: designColorOptions },
+        }),
+        serviceImageField("image", "Consultant image"),
       ],
     }),
     defineField({

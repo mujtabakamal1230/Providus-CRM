@@ -36,6 +36,7 @@ interface WhyChooseSectionProps {
   customReasons?: WhyChooseReason[];
   image?: string;
   imageAlt?: string;
+  backgroundOverlayColor?: string;
 }
 
 export function WhyChooseSection({
@@ -43,6 +44,7 @@ export function WhyChooseSection({
   customReasons,
   image,
   imageAlt = "Salesforce Specialist",
+  backgroundOverlayColor = "#4EAAFF",
 }: WhyChooseSectionProps) {
   const displayReasons = customReasons || reasons;
   const defaultTitle = "Why Choose ProvidusCRM As Your Salesforce Solutions Partner";
@@ -57,8 +59,14 @@ export function WhyChooseSection({
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[#4EAAFF]/90 mix-blend-darken" />
-        <div className="absolute inset-0 bg-[#4EAAFF]/80" />
+        <div
+          className="absolute inset-0 mix-blend-darken"
+          style={{ backgroundColor: backgroundOverlayColor, opacity: 0.9 }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: backgroundOverlayColor, opacity: 0.8 }}
+        />
       </div>
 
       <Container className="relative z-10">

@@ -192,9 +192,11 @@ export const salesforceConsultingServicesFallback: ServicePage = {
       },
     ],
   },
-  cta: {
-    title: "Connect With Our\nSalesforce Consultants Today!",
-    buttonLabel: "Book a Call",
+  consultantCta: {
+    title:
+      "Connect With Our Salesforce Consultants To Discuss Your CRM Needs And Business Goals.",
+    buttonLabel: "Let's Connect",
     buttonHref: "/contact",
+    backgroundColor: "#2898FF",
   },
 };

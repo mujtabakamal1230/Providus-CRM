@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   CertifiedSection,
-  CtaSection,
   ExpertiseSection,
   IndustriesSection,
   PartnersSection,
+  SalesforceConsultCtaSection,
   SalesforceServiceHero,
   ServiceBenefitsSection,
   ServiceCaseStudiesSection,
@@ -123,8 +123,8 @@ export default async function SalesforceServicePage({
     page.caseStudies && page.caseStudies.length > 0
       ? page.caseStudies
       : fetchedPage
-      ? []
-      : fallbackCaseStudies ?? [];
+        ? []
+        : fallbackCaseStudies ?? [];
 
   const serviceCaseStudies = caseStudySource.map((caseStudy) => ({
     title: caseStudy.title,
@@ -133,6 +133,8 @@ export default async function SalesforceServicePage({
     label: caseStudy.technologies?.[0] || "Salesforce Consulting",
     category: caseStudy.industry,
   }));
+  const consultantCta = page.consultantCta;
+  const legacyCta = page.cta;
 
   return (
     <div className="overflow-x-hidden bg-white">
@@ -155,6 +157,15 @@ export default async function SalesforceServicePage({
       <WhatWeDoSection
         title={page.tabsSection?.title}
         tabs={toWhatWeDoTabs(page)}
+        backgroundOverlayColor="#616161"
+      />
+      <SalesforceConsultCtaSection
+        title={consultantCta?.title || legacyCta?.title}
+        buttonLabel={consultantCta?.buttonLabel || legacyCta?.buttonLabel}
+        buttonHref={consultantCta?.buttonHref || legacyCta?.buttonHref}
+        backgroundColor={consultantCta?.backgroundColor}
+        image={imageUrl(consultantCta?.image)}
+        imageAlt={consultantCta?.image?.alt}
       />
       <ServiceBenefitsSection
         title={page.benefitsSection?.title}
@@ -173,13 +184,9 @@ export default async function SalesforceServicePage({
         customReasons={toWhyChooseReasons(page)}
         image={imageUrl(page.whyChooseSection?.image)}
         imageAlt={page.whyChooseSection?.image?.alt}
+        backgroundOverlayColor="#616161"
       />
-      <CtaSection
-        title={page.cta?.title}
-        buttonLabel={page.cta?.buttonLabel}
-        buttonHref={page.cta?.buttonHref}
-        backgroundImage={imageUrl(page.cta?.backgroundImage)}
-      />
+
     </div>
   );
 }

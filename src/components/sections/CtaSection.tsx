@@ -14,7 +14,7 @@ export function CtaSection({
   title,
   buttonLabel = "Let's Connect",
   buttonHref = "/contact",
-  backgroundImage = "/images/cta-bg.png",
+  backgroundImage = "/images/cta-bg.jpg",
 }: CtaSectionProps) {
   const displayTitle = title || "Ready to\nReinvent Your CRM?";
 

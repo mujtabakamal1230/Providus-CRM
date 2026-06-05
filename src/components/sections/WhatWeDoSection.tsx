@@ -19,6 +19,7 @@ export interface WhatWeDoTab {
 interface WhatWeDoSectionProps {
   title?: string;
   tabs?: WhatWeDoTab[];
+  backgroundOverlayColor?: string;
 }
 
 const tabs: WhatWeDoTab[] = [
@@ -136,7 +137,11 @@ const tabs: WhatWeDoTab[] = [
   },
 ];
 
-export function WhatWeDoSection({ title, tabs: customTabs }: WhatWeDoSectionProps) {
+export function WhatWeDoSection({
+  title,
+  tabs: customTabs,
+  backgroundOverlayColor = "#4EAAFF",
+}: WhatWeDoSectionProps) {
   const displayTabs = (customTabs && customTabs.length > 0 ? customTabs : tabs).map(
     (tab, index) => ({
       ...tab,
@@ -159,8 +164,14 @@ export function WhatWeDoSection({ title, tabs: customTabs }: WhatWeDoSectionProp
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[#4EAAFF]/90 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[#4EAAFF]/40" />
+        <div
+          className="absolute inset-0 mix-blend-multiply"
+          style={{ backgroundColor: backgroundOverlayColor, opacity: 0.9 }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: backgroundOverlayColor, opacity: 0.4 }}
+        />
       </div>
 
       <Container className="relative z-10">

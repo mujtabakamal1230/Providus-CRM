@@ -11,6 +11,21 @@ import {
 } from "@/components/sections";
 
 export default function AboutPage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Us | Providus CRM",
+    "description": "Professional Salesforce Services Grounded in Certified Expertise. We are a certified Salesforce partner in the UK, specializing in tailored CRM consulting.",
+    "url": "https://providuscrm.co.uk/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Providus CRM",
+      "url": "https://providuscrm.co.uk",
+      "logo": "https://providuscrm.co.uk/images/salesforce-partner.png",
+      "description": "Certified Salesforce partner based in the UK, working with organisations across nonprofit, financial services, healthcare, and more."
+    }
+  };
+
   const heroTitle = (
     <>
       Get to Know Your <br />
@@ -26,6 +41,10 @@ export default function AboutPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <HeroSection
         title={heroTitle}
         description="Professional Salesforce Services Grounded in Certified Expertise"
@@ -49,3 +68,4 @@ export default function AboutPage() {
     </>
   );
 }
+

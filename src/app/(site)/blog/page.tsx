@@ -36,8 +36,36 @@ export default async function BlogPage() {
     categories: post.categories?.map((category) => category.title) ?? [],
   }));
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog | Providus CRM",
+    "description": "Read Providus CRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
+    "url": "https://providuscrm.co.uk/blog",
+    "blogPost": (posts ?? []).map((post) => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.excerpt ?? "",
+      "image": post.heroImage?.asset?.url ?? "https://providuscrm.co.uk/images/case-study.png",
+      "datePublished": post.publishedAt,
+      "url": `https://providuscrm.co.uk/blog/${post.slug.current}`,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Providus CRM",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://providuscrm.co.uk/images/salesforce-partner.png"
+        }
+      }
+    }))
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <BlogIndexClient
         posts={blogItems}
         categories={(categories ?? []).map((category) => category.title)}
@@ -46,3 +74,4 @@ export default async function BlogPage() {
     </>
   );
 }
+

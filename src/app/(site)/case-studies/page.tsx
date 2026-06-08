@@ -30,6 +30,29 @@ export default async function CaseStudiesPage() {
     resultSummary: caseStudy.resultSummary,
   }));
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Case Studies | Providus CRM",
+    "description": "Explore real-world Providus CRM Salesforce implementations, automation projects, and customer operations success stories.",
+    "url": "https://providuscrm.co.uk/case-studies",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": caseStudyCards.length,
+      "itemListElement": caseStudyCards.map((cs, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "item": {
+          "@type": "Article",
+          "headline": cs.title,
+          "description": cs.description,
+          "image": cs.image,
+          "url": `https://providuscrm.co.uk/case-studies/${cs.slug}`
+        }
+      }))
+    }
+  };
+
   const heroTitle = (
     <>
       Our Case Studies
@@ -44,6 +67,10 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <HeroSection title={heroTitle} hideImage />
       <PartnersSection />
       <CaseStudiesSection caseStudies={caseStudyCards} />
@@ -51,3 +78,4 @@ export default async function CaseStudiesPage() {
     </>
   );
 }
+

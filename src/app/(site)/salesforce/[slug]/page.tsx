@@ -12,6 +12,7 @@ import {
   WhatWeDoSection,
   WhyChooseSection,
 } from "@/components/sections";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import type {
   ExpertiseItem,
 } from "@/components/sections/ExpertiseSection";
@@ -28,6 +29,7 @@ import {
   SALESFORCE_CONSULTING_SERVICES_SLUG,
   salesforceConsultingServicesFallback,
 } from "@/data/salesforceServicePage";
+import { resolveJsonLd } from "@/lib/jsonLd";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   CASE_STUDIES_QUERY,
@@ -135,9 +137,11 @@ export default async function SalesforceServicePage({
   }));
   const consultantCta = page.consultantCta;
   const legacyCta = page.cta;
+  const jsonLd = resolveJsonLd(page.jsonLd);
 
   return (
     <div className="overflow-x-hidden bg-white">
+      <JsonLdScript data={jsonLd} />
       <SalesforceServiceHero
         badgeTitle={page.hero?.badgeTitle}
         badgeSubtitle={page.hero?.badgeSubtitle}

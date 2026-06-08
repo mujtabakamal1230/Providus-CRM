@@ -5,6 +5,8 @@ import {
   CaseStudiesSection,
   CtaSection,
 } from "@/components/sections";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { CASE_STUDIES_QUERY } from "@/sanity/lib/queries";
 import type { CaseStudyListItem } from "@/sanity/lib/types";
@@ -30,6 +32,30 @@ export default async function CaseStudiesPage() {
     resultSummary: caseStudy.resultSummary,
   }));
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Case Studies | Providus CRM",
+    "description": "Explore real-world Providus CRM Salesforce implementations, automation projects, and customer operations success stories.",
+    "url": "https://providuscrm.co.uk/case-studies",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": caseStudyCards.length,
+      "itemListElement": caseStudyCards.map((cs, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "item": {
+          "@type": "Article",
+          "headline": cs.title,
+          "description": cs.description,
+          "image": cs.image,
+          "url": `https://providuscrm.co.uk/case-studies/${cs.slug}`
+        }
+      }))
+    }
+  };
+  const jsonLd = await getSitePageJsonLd("case-studies", schema);
+
   const heroTitle = (
     <>
       Our Case Studies
@@ -44,6 +70,7 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
+      <JsonLdScript data={jsonLd} />
       <HeroSection title={heroTitle} hideImage />
       <PartnersSection />
       <CaseStudiesSection caseStudies={caseStudyCards} />
@@ -51,3 +78,4 @@ export default async function CaseStudiesPage() {
     </>
   );
 }
+

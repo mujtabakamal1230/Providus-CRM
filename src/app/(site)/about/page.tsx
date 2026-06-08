@@ -9,8 +9,10 @@ import {
   ExploreSection,
   CtaSection
 } from "@/components/sections";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 
-export default function AboutPage() {
+export default async function AboutPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
@@ -25,6 +27,7 @@ export default function AboutPage() {
       "description": "Certified Salesforce partner based in the UK, working with organisations across nonprofit, financial services, healthcare, and more."
     }
   };
+  const jsonLd = await getSitePageJsonLd("about", schema);
 
   const heroTitle = (
     <>
@@ -41,10 +44,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLdScript data={jsonLd} />
       <HeroSection
         title={heroTitle}
         description="Professional Salesforce Services Grounded in Certified Expertise"

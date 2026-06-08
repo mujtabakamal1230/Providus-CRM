@@ -4,8 +4,10 @@ import {
   ExpertiseStackSection,
   CtaSection
 } from "@/components/sections";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 
-export default function PlatformExpertisePage() {
+export default async function PlatformExpertisePage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -50,6 +52,7 @@ export default function PlatformExpertisePage() {
       }
     ]
   };
+  const jsonLd = await getSitePageJsonLd("platform-expertise", schema);
 
   const heroTitle = (
     <>
@@ -65,10 +68,7 @@ export default function PlatformExpertisePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLdScript data={jsonLd} />
       <HeroSection
         title={heroTitle}
         description="Deep technical knowledge across every core Salesforce platform. We don't just configure; we engineer CRM systems that drive real business outcomes."

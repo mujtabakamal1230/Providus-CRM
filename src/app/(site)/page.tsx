@@ -10,8 +10,10 @@ import {
   WhyChooseSection,
   TeamSection,
 } from "@/components/sections";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 
-export default function HomePage() {
+export default async function HomePage() {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -51,13 +53,11 @@ export default function HomePage() {
       }
     ]
   };
+  const jsonLd = await getSitePageJsonLd("home", schema);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLdScript data={jsonLd} />
       <HeroSection />
       <PartnersSection />
       <CertifiedSection />
@@ -71,4 +71,3 @@ export default function HomePage() {
     </>
   );
 }
-

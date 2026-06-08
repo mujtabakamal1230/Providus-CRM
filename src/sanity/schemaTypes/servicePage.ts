@@ -84,6 +84,11 @@ export const servicePage = defineType({
       type: "seo",
     }),
     defineField({
+      name: "jsonLd",
+      title: "JSON-LD",
+      type: "jsonLd",
+    }),
+    defineField({
       name: "hero",
       title: "Hero",
       type: "object",

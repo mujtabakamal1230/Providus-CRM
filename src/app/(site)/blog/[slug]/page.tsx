@@ -9,10 +9,12 @@ import {
   BlogArticleLeftSidebar,
   BlogArticleRightSidebar,
 } from "@/components/sanity/BlogArticleSidebars";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { SanityImage } from "@/components/sanity/SanityImage";
 import { PortableContent } from "@/components/sanity/PortableContent";
 import { CtaSection } from "@/components/sections";
 import { formatDate } from "@/lib/format";
+import { resolveJsonLd } from "@/lib/jsonLd";
 import { getArticleHeadings } from "@/lib/portableText";
 import { getSanityImageAspectRatio } from "@/lib/sanityImage";
 import { sanityFetch } from "@/sanity/lib/fetch";
@@ -92,9 +94,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ).replace(/\/$/, "");
   const shareUrl = `${siteUrl}/blog/${post.slug.current}`;
+  const jsonLd = resolveJsonLd(post.jsonLd);
 
   return (
     <>
+      <JsonLdScript data={jsonLd} />
       <Section background="white" className="pb-0 pt-12 md:pt-20">
         <Container size="xl">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">

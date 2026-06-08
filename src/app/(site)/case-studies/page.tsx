@@ -5,6 +5,8 @@ import {
   CaseStudiesSection,
   CtaSection,
 } from "@/components/sections";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { CASE_STUDIES_QUERY } from "@/sanity/lib/queries";
 import type { CaseStudyListItem } from "@/sanity/lib/types";
@@ -52,6 +54,7 @@ export default async function CaseStudiesPage() {
       }))
     }
   };
+  const jsonLd = await getSitePageJsonLd("case-studies", schema);
 
   const heroTitle = (
     <>
@@ -67,10 +70,7 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLdScript data={jsonLd} />
       <HeroSection title={heroTitle} hideImage />
       <PartnersSection />
       <CaseStudiesSection caseStudies={caseStudyCards} />

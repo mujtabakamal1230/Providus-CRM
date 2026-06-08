@@ -41,6 +41,17 @@ export interface SeoFields {
   ogImage?: SanityImage;
 }
 
+export interface JsonLdField {
+  enabled?: boolean;
+  schemaJson?: string;
+}
+
+export interface SitePageJsonLd {
+  title: string;
+  pageKey: string;
+  jsonLd?: JsonLdField;
+}
+
 export interface BlogPostListItem {
   _id: string;
   title: string;
@@ -55,6 +66,7 @@ export interface BlogPostListItem {
 export interface BlogPost extends BlogPostListItem {
   body?: PortableTextBlock[];
   seo?: SeoFields;
+  jsonLd?: JsonLdField;
 }
 
 export interface CaseStudyListItem {
@@ -76,6 +88,7 @@ export interface CaseStudy extends CaseStudyListItem {
   results?: PortableTextBlock[];
   body?: PortableTextBlock[];
   seo?: SeoFields;
+  jsonLd?: JsonLdField;
 }
 
 export type ServicePageStatus = "published" | "draft";
@@ -193,6 +206,7 @@ export interface ServicePage {
   slug: SanitySlug;
   status?: ServicePageStatus;
   seo?: SeoFields;
+  jsonLd?: JsonLdField;
   hero?: ServiceHeroContent;
   certified?: ServiceCertifiedContent;
   caseStudies?: CaseStudyListItem[];

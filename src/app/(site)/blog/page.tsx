@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { BlogIndexClient } from "@/components/sections/BlogIndexClient";
 import { CtaSection } from "@/components/sections";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { formatDate } from "@/lib/format";
+import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   BLOG_CATEGORIES_QUERY,
@@ -59,13 +61,11 @@ export default async function BlogPage() {
       }
     }))
   };
+  const jsonLd = await getSitePageJsonLd("blog", schema);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLdScript data={jsonLd} />
       <BlogIndexClient
         posts={blogItems}
         categories={(categories ?? []).map((category) => category.title)}
@@ -74,4 +74,3 @@ export default async function BlogPage() {
     </>
   );
 }
-

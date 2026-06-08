@@ -23,6 +23,21 @@ const seoProjection = `
   }
 `;
 
+const jsonLdProjection = `
+  enabled,
+  schemaJson
+`;
+
+export const SITE_PAGE_JSON_LD_QUERY = defineQuery(`
+  *[_type == "sitePageJsonLd" && pageKey == $pageKey][0] {
+    title,
+    pageKey,
+    jsonLd {
+      ${jsonLdProjection}
+    }
+  }
+`);
+
 export const BLOG_CATEGORIES_QUERY = defineQuery(`
   *[_type == "category" && defined(slug.current)] | order(title asc) {
     title,
@@ -96,6 +111,9 @@ export const BLOG_POST_QUERY = defineQuery(`
     },
     seo {
       ${seoProjection}
+    },
+    jsonLd {
+      ${jsonLdProjection}
     }
   }
 `);
@@ -167,6 +185,9 @@ export const CASE_STUDY_QUERY = defineQuery(`
     },
     seo {
       ${seoProjection}
+    },
+    jsonLd {
+      ${jsonLdProjection}
     }
   }
 `);
@@ -192,6 +213,9 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
     status,
     seo {
       ${seoProjection}
+    },
+    jsonLd {
+      ${jsonLdProjection}
     },
     hero {
       badgeTitle,

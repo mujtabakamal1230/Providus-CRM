@@ -94,6 +94,11 @@ export const caseStudy = defineType({
       title: "SEO",
       type: "seo",
     }),
+    defineField({
+      name: "jsonLd",
+      title: "JSON-LD",
+      type: "jsonLd",
+    }),
   ],
   preview: {
     select: {

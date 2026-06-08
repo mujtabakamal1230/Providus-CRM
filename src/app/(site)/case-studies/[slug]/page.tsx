@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { SanityImage } from "@/components/sanity/SanityImage";
 import { PortableContent } from "@/components/sanity/PortableContent";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { CtaSection, ServiceCaseStudiesSection } from "@/components/sections";
 import { urlForImage } from "@/sanity/lib/image";
 import { Badge } from "@/components/ui/Badge";
 import { Heading, Text } from "@/components/ui/Typography";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { resolveJsonLd } from "@/lib/jsonLd";
 import { getSanityImageAspectRatio } from "@/lib/sanityImage";
 import {
   CASE_STUDIES_QUERY,
@@ -98,9 +100,11 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     image: cs.coverImage ? urlForImage(cs.coverImage as any).url() : "/images/case-studies/case-study.png",
     category: cs.industry,
   }));
+  const jsonLd = resolveJsonLd(caseStudy.jsonLd);
 
   return (
     <>
+      <JsonLdScript data={jsonLd} />
       <main className="bg-white">
         <Container size="xl" className="pt-4 md:pt-6">
           {caseStudy.coverImage?.asset && (

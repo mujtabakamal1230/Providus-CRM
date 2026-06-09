@@ -93,6 +93,19 @@ export interface CaseStudy extends CaseStudyListItem {
 
 export type ServicePageStatus = "published" | "draft";
 
+export type ServicePageSectionKey =
+  | "partners"
+  | "certified"
+  | "caseStudies"
+  | "tabs"
+  | "consultantCta"
+  | "benefits"
+  | "process"
+  | "migrationPlatforms"
+  | "expertise"
+  | "industries"
+  | "whyChoose";
+
 export type ServiceBenefitIconKey =
   | "roi"
   | "adoption"
@@ -169,6 +182,18 @@ export interface ServiceProcessContent {
   steps?: ServiceProcessStep[];
 }
 
+export interface ServiceMigrationPlatformItem {
+  name: string;
+  logo?: SanityImage;
+  text?: string;
+  colorTheme?: "blue" | "green";
+}
+
+export interface ServiceMigrationPlatformsContent {
+  title?: string;
+  items?: ServiceMigrationPlatformItem[];
+}
+
 export interface ServiceExpertiseItem {
   title: string;
   text?: string;
@@ -219,6 +244,7 @@ export interface ServicePage {
   status?: ServicePageStatus;
   seo?: SeoFields;
   jsonLd?: JsonLdField;
+  sectionOrder?: ServicePageSectionKey[];
   hero?: ServiceHeroContent;
   certified?: ServiceCertifiedContent;
   caseStudies?: CaseStudyListItem[];
@@ -226,6 +252,7 @@ export interface ServicePage {
   benefitsSection?: ServiceBenefitsContent;
   consultantCta?: ServiceConsultantCtaContent;
   processSection?: ServiceProcessContent;
+  migrationPlatformsSection?: ServiceMigrationPlatformsContent;
   expertiseSection?: ServiceExpertiseContent;
   industriesSection?: ServiceIndustriesContent;
   whyChooseSection?: ServiceWhyChooseContent;

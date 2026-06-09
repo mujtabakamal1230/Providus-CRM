@@ -217,6 +217,7 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
     jsonLd {
       ${jsonLdProjection}
     },
+    sectionOrder,
     hero {
       badgeTitle,
       badgeSubtitle,
@@ -256,6 +257,17 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
       }
     },
     processSection,
+    migrationPlatformsSection {
+      title,
+      items[] {
+        name,
+        text,
+        colorTheme,
+        logo {
+          ${imageProjection}
+        }
+      }
+    },
     expertiseSection {
       title,
       items[] {

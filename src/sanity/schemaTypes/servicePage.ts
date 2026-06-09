@@ -27,6 +27,22 @@ const processIconOptions = [
   { title: "Support", value: "support" },
 ];
 
+const sectionOrderOptions = [
+  { title: "Trusted partners", value: "partners" },
+  { title: "Certified section", value: "certified" },
+  { title: "Case studies", value: "caseStudies" },
+  { title: "Tabs section", value: "tabs" },
+  { title: "Consultant CTA", value: "consultantCta" },
+  { title: "Benefits timeline", value: "benefits" },
+  { title: "Salesforce process", value: "process" },
+  { title: "Migration platforms", value: "migrationPlatforms" },
+  { title: "Expertise carousel", value: "expertise" },
+  { title: "Industries grid", value: "industries" },
+  { title: "Why choose", value: "whyChoose" },
+];
+
+const defaultSectionOrder = sectionOrderOptions.map((option) => option.value);
+
 const designColorOptions = [
   { title: "Brand Blue", value: "#1D70C5" },
   { title: "Brand Green", value: "#38A81B" },
@@ -96,6 +112,24 @@ export const servicePage = defineType({
       name: "jsonLd",
       title: "JSON-LD",
       type: "jsonLd",
+    }),
+    defineField({
+      name: "sectionOrder",
+      title: "Section order",
+      description:
+        "Drag sections up or down to control the page order below the fixed hero section. Missing sections are appended in the default order.",
+      type: "array",
+      initialValue: defaultSectionOrder,
+      validation: (rule) => rule.unique(),
+      of: [
+        defineField({
+          name: "sectionKey",
+          title: "Section",
+          type: "string",
+          options: { list: sectionOrderOptions },
+          validation: (rule) => rule.required(),
+        }),
+      ],
     }),
     defineField({
       name: "hero",
@@ -342,6 +376,59 @@ export const servicePage = defineType({
                     list: [
                       { title: "Green", value: "green" },
                       { title: "Blue", value: "blue" },
+                    ],
+                  },
+                }),
+              ],
+            },
+          ],
+        }),
+      ],
+    }),
+    defineField({
+      name: "migrationPlatformsSection",
+      title: "Migration platforms section",
+      description:
+        "Optional carousel for CRM platforms this Salesforce service migrates from.",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Title",
+          type: "text",
+          rows: 2,
+          description: "Use a line break if the title should split over two lines.",
+        }),
+        defineField({
+          name: "items",
+          title: "Platforms",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({
+                  name: "name",
+                  title: "Platform name",
+                  type: "string",
+                  validation: (rule) => rule.required(),
+                }),
+                serviceImageField("logo", "Logo"),
+                defineField({
+                  name: "text",
+                  title: "Description",
+                  type: "text",
+                  rows: 4,
+                }),
+                defineField({
+                  name: "colorTheme",
+                  title: "Card color theme",
+                  type: "string",
+                  initialValue: "blue",
+                  options: {
+                    list: [
+                      { title: "Blue", value: "blue" },
+                      { title: "Green", value: "green" },
                     ],
                   },
                 }),

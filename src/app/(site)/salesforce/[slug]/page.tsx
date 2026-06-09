@@ -6,6 +6,7 @@ import {
   IndustriesSection,
   PartnersSection,
   SalesforceConsultCtaSection,
+  SalesforceProcessSection,
   SalesforceServiceHero,
   ServiceBenefitsSection,
   ServiceCaseStudiesSection,
@@ -175,6 +176,7 @@ export default async function SalesforceServicePage({
         title={page.benefitsSection?.title}
         items={toBenefitCards(page.benefitsSection?.items)}
       />
+      <SalesforceProcessSection />
       <ExpertiseSection
         title={page.expertiseSection?.title}
         items={toExpertiseItems(page)}

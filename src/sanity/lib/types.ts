@@ -157,6 +157,18 @@ export interface ServiceConsultantCtaContent {
   image?: SanityImage;
 }
 
+export interface ServiceProcessStep {
+  title: string;
+  description?: string;
+  iconKey?: string;
+  colorTheme?: string;
+}
+
+export interface ServiceProcessContent {
+  title?: string;
+  steps?: ServiceProcessStep[];
+}
+
 export interface ServiceExpertiseItem {
   title: string;
   text?: string;
@@ -213,6 +225,7 @@ export interface ServicePage {
   tabsSection?: ServiceTabsContent;
   benefitsSection?: ServiceBenefitsContent;
   consultantCta?: ServiceConsultantCtaContent;
+  processSection?: ServiceProcessContent;
   expertiseSection?: ServiceExpertiseContent;
   industriesSection?: ServiceIndustriesContent;
   whyChooseSection?: ServiceWhyChooseContent;

@@ -138,6 +138,9 @@ export default async function SalesforceServicePage({
   }));
   const consultantCta = page.consultantCta;
   const legacyCta = page.cta;
+  const processSteps = page.processSection?.steps?.filter((step) =>
+    step.title?.trim()
+  );
   const jsonLd = resolveJsonLd(page.jsonLd);
 
   return (
@@ -176,7 +179,12 @@ export default async function SalesforceServicePage({
         title={page.benefitsSection?.title}
         items={toBenefitCards(page.benefitsSection?.items)}
       />
-      <SalesforceProcessSection />
+      {processSteps && processSteps.length > 0 ? (
+        <SalesforceProcessSection
+          title={page.processSection?.title}
+          steps={processSteps}
+        />
+      ) : null}
       <ExpertiseSection
         title={page.expertiseSection?.title}
         items={toExpertiseItems(page)}

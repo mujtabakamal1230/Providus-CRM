@@ -18,6 +18,15 @@ const colorThemeOptions = [
   { title: "Purple", value: "purple" },
 ];
 
+const processIconOptions = [
+  { title: "Analysis", value: "analysis" },
+  { title: "Design", value: "design" },
+  { title: "Strategy", value: "strategy" },
+  { title: "Development", value: "development" },
+  { title: "Release", value: "release" },
+  { title: "Support", value: "support" },
+];
+
 const designColorOptions = [
   { title: "Brand Blue", value: "#1D70C5" },
   { title: "Brand Green", value: "#38A81B" },
@@ -285,6 +294,61 @@ export const servicePage = defineType({
           options: { list: designColorOptions },
         }),
         serviceImageField("image", "Consultant image"),
+      ],
+    }),
+    defineField({
+      name: "processSection",
+      title: "Salesforce process section",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Title",
+          type: "text",
+          rows: 2,
+          description: "Use a line break if the title should split over two lines.",
+        }),
+        defineField({
+          name: "steps",
+          title: "Process steps",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({
+                  name: "title",
+                  title: "Title",
+                  type: "string",
+                  validation: (rule) => rule.required(),
+                }),
+                defineField({
+                  name: "description",
+                  title: "Description",
+                  type: "text",
+                  rows: 3,
+                }),
+                defineField({
+                  name: "iconKey",
+                  title: "Icon",
+                  type: "string",
+                  options: { list: processIconOptions },
+                }),
+                defineField({
+                  name: "colorTheme",
+                  title: "Color theme",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "Green", value: "green" },
+                      { title: "Blue", value: "blue" },
+                    ],
+                  },
+                }),
+              ],
+            },
+          ],
+        }),
       ],
     }),
     defineField({

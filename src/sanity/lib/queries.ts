@@ -255,6 +255,7 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
         ${imageProjection}
       }
     },
+    processSection,
     expertiseSection {
       title,
       items[] {

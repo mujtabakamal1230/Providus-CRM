@@ -12,54 +12,38 @@ import {
   Rocket,
   Headset,
 } from "lucide-react";
-import React from "react";
 
-const processSteps = [
-  {
-    title: "Analysis",
-    description:
-      "We learn how your business runs and where your CRM falls short today. Every requirement gets written down and agreed before anything is built.",
-    icon: ClipboardCheck,
-    colorTheme: "green",
-  },
-  {
-    title: "Design",
-    description:
-      "Next, our developers design the data model, automation, and technical approach. You review the plan and sign it off before the build starts.",
-    icon: DraftingCompass,
-    colorTheme: "blue",
-  },
-  {
-    title: "Strategy",
-    description:
-      "We sequence the work into phases with clear priorities. The highest-value features come first, so ROI starts landing sooner.",
-    icon: Target,
-    colorTheme: "green",
-  },
-  {
-    title: "Development",
-    description:
-      "Our developers build your custom Salesforce org in sandboxes using version control and proper testing.",
-    icon: CodeXml,
-    colorTheme: "blue",
-  },
-  {
-    title: "Release",
-    description:
-      "We deploy through structured pipelines with regression testing at each stage. Releases reach production cleanly, without breaking what already works.",
-    icon: Rocket,
-    colorTheme: "green",
-  },
-  {
-    title: "Support",
-    description:
-      "After release, our team offers ongoing support. We proactively monitor your org and handle enhancements as your needs evolve.",
-    icon: Headset,
-    colorTheme: "blue",
-  },
-];
+export interface SalesforceProcessStep {
+  title: string;
+  description?: string;
+  iconKey?: string;
+  colorTheme?: string;
+}
 
-export function SalesforceProcessSection() {
+interface SalesforceProcessSectionProps {
+  title?: string;
+  steps?: SalesforceProcessStep[];
+}
+
+const iconMap = {
+  analysis: ClipboardCheck,
+  design: DraftingCompass,
+  strategy: Target,
+  development: CodeXml,
+  release: Rocket,
+  support: Headset,
+};
+
+export function SalesforceProcessSection({
+  title = "Our Salesforce\nDevelopment Process",
+  steps,
+}: SalesforceProcessSectionProps) {
+  const displaySteps = (steps ?? []).filter((step) => step.title?.trim());
+
+  if (displaySteps.length === 0) {
+    return null;
+  }
+
   return (
     <Section className="py-20 md:py-32 bg-white relative overflow-hidden">
       <Container>
@@ -72,16 +56,22 @@ export function SalesforceProcessSection() {
             className="inline-block h-10 w-auto align-baseline ml-1"
           />
           <Heading as="h2" className="text-slate-900 mb-6 font-bold">
-            Our Salesforce<br />Development Process
+            {title.split("\n").map((line, index) => (
+              <span key={`${line}-${index}`}>
+                {index > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </Heading>
         </div>
 
         <div className="flex flex-col gap-12 md:gap-16 relative mx-auto z-10">
-          {processSteps.map((step, index) => {
-            const Icon = step.icon;
+          {displaySteps.map((step, index) => {
+            const Icon =
+              iconMap[step.iconKey as keyof typeof iconMap] || ClipboardCheck;
             const isGreen = step.colorTheme === "green";
             const isLeft = index % 2 === 0;
-            const isLast = index === processSteps.length - 1;
+            const isLast = index === displaySteps.length - 1;
 
             return (
               <div

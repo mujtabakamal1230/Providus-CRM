@@ -199,4 +199,51 @@ export const salesforceConsultingServicesFallback: ServicePage = {
     buttonHref: "/contact",
     backgroundColor: "#2898FF",
   },
+  processSection: {
+    title: "Our Salesforce\nDevelopment Process",
+    steps: [
+      {
+        title: "Analysis",
+        description:
+          "We learn how your business runs and where your CRM falls short today. Every requirement gets written down and agreed before anything is built.",
+        iconKey: "analysis",
+        colorTheme: "green",
+      },
+      {
+        title: "Design",
+        description:
+          "Next, our developers design the data model, automation, and technical approach. You review the plan and sign it off before the build starts.",
+        iconKey: "design",
+        colorTheme: "blue",
+      },
+      {
+        title: "Strategy",
+        description:
+          "We sequence the work into phases with clear priorities. The highest-value features come first, so ROI starts landing sooner.",
+        iconKey: "strategy",
+        colorTheme: "green",
+      },
+      {
+        title: "Development",
+        description:
+          "Our developers build your custom Salesforce org in sandboxes using version control and proper testing.",
+        iconKey: "development",
+        colorTheme: "blue",
+      },
+      {
+        title: "Release",
+        description:
+          "We deploy through structured pipelines with regression testing at each stage. Releases reach production cleanly, without breaking what already works.",
+        iconKey: "release",
+        colorTheme: "green",
+      },
+      {
+        title: "Support",
+        description:
+          "After release, our team offers ongoing support. We proactively monitor your org and handle enhancements as your needs evolve.",
+        iconKey: "support",
+        colorTheme: "blue",
+      },
+    ],
+  },
 };

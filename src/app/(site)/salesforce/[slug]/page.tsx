@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Fragment, type ReactNode } from "react";
 import {
   CertifiedSection,
   ExpertiseSection,
   IndustriesSection,
+  MigrationPlatformsSection,
   PartnersSection,
   SalesforceConsultCtaSection,
+  SalesforceProcessSection,
   SalesforceServiceHero,
   ServiceBenefitsSection,
   ServiceCaseStudiesSection,
@@ -19,6 +22,9 @@ import type {
 import type {
   IndustrySectionItem,
 } from "@/components/sections/IndustriesSection";
+import type {
+  MigrationPlatformItem,
+} from "@/components/sections/MigrationPlatformsSection";
 import type {
   WhatWeDoTab,
 } from "@/components/sections/WhatWeDoSection";
@@ -41,6 +47,7 @@ import type {
   SanityImage,
   ServiceBenefitItem,
   ServicePage,
+  ServicePageSectionKey,
 } from "@/sanity/lib/types";
 
 interface SalesforceServicePageProps {
@@ -52,6 +59,22 @@ interface SalesforceServicePageProps {
 interface SlugResult {
   slug: string;
 }
+
+const DEFAULT_SERVICE_SECTION_ORDER: ServicePageSectionKey[] = [
+  "partners",
+  "certified",
+  "caseStudies",
+  "tabs",
+  "consultantCta",
+  "benefits",
+  "process",
+  "migrationPlatforms",
+  "expertise",
+  "industries",
+  "whyChoose",
+];
+
+const SERVICE_SECTION_KEY_SET = new Set<string>(DEFAULT_SERVICE_SECTION_ORDER);
 
 export async function generateStaticParams() {
   const slugs = await sanityFetch<SlugResult[]>({
@@ -137,7 +160,80 @@ export default async function SalesforceServicePage({
   }));
   const consultantCta = page.consultantCta;
   const legacyCta = page.cta;
+  const processSteps = page.processSection?.steps?.filter((step) =>
+    step.title?.trim()
+  );
+  const migrationPlatforms = toMigrationPlatformItems(page);
   const jsonLd = resolveJsonLd(page.jsonLd);
+  const orderedSectionKeys = getOrderedServiceSectionKeys(page.sectionOrder);
+  const sectionRenderers: Record<ServicePageSectionKey, ReactNode> = {
+    partners: <PartnersSection />,
+    certified: (
+      <CertifiedSection
+        title={page.certified?.title}
+        description={page.certified?.description}
+      />
+    ),
+    caseStudies: <ServiceCaseStudiesSection caseStudies={serviceCaseStudies} />,
+    tabs: (
+      <WhatWeDoSection
+        title={page.tabsSection?.title}
+        tabs={toWhatWeDoTabs(page)}
+        backgroundOverlayColor="#616161"
+      />
+    ),
+    consultantCta: (
+      <SalesforceConsultCtaSection
+        title={consultantCta?.title || legacyCta?.title}
+        buttonLabel={consultantCta?.buttonLabel || legacyCta?.buttonLabel}
+        buttonHref={consultantCta?.buttonHref || legacyCta?.buttonHref}
+        backgroundColor={consultantCta?.backgroundColor}
+        image={imageUrl(consultantCta?.image)}
+        imageAlt={consultantCta?.image?.alt}
+      />
+    ),
+    benefits: (
+      <ServiceBenefitsSection
+        title={page.benefitsSection?.title}
+        items={toBenefitCards(page.benefitsSection?.items)}
+      />
+    ),
+    process:
+      processSteps && processSteps.length > 0 ? (
+        <SalesforceProcessSection
+          title={page.processSection?.title}
+          steps={processSteps}
+        />
+      ) : null,
+    migrationPlatforms:
+      migrationPlatforms && migrationPlatforms.length > 0 ? (
+        <MigrationPlatformsSection
+          title={page.migrationPlatformsSection?.title}
+          items={migrationPlatforms}
+        />
+      ) : null,
+    expertise: (
+      <ExpertiseSection
+        title={page.expertiseSection?.title}
+        items={toExpertiseItems(page)}
+      />
+    ),
+    industries: (
+      <IndustriesSection
+        title={page.industriesSection?.title}
+        items={toIndustryItems(page)}
+      />
+    ),
+    whyChoose: (
+      <WhyChooseSection
+        title={page.whyChooseSection?.title}
+        customReasons={toWhyChooseReasons(page)}
+        image={imageUrl(page.whyChooseSection?.image)}
+        imageAlt={page.whyChooseSection?.image?.alt}
+        backgroundOverlayColor="#616161"
+      />
+    ),
+  };
 
   return (
     <div className="overflow-x-hidden bg-white">
@@ -152,45 +248,9 @@ export default async function SalesforceServicePage({
         formButtonLabel={page.hero?.formButtonLabel}
         backgroundImage={imageUrl(page.hero?.backgroundImage)}
       />
-      <PartnersSection />
-      <CertifiedSection
-        title={page.certified?.title}
-        description={page.certified?.description}
-      />
-      <ServiceCaseStudiesSection caseStudies={serviceCaseStudies} />
-      <WhatWeDoSection
-        title={page.tabsSection?.title}
-        tabs={toWhatWeDoTabs(page)}
-        backgroundOverlayColor="#616161"
-      />
-      <SalesforceConsultCtaSection
-        title={consultantCta?.title || legacyCta?.title}
-        buttonLabel={consultantCta?.buttonLabel || legacyCta?.buttonLabel}
-        buttonHref={consultantCta?.buttonHref || legacyCta?.buttonHref}
-        backgroundColor={consultantCta?.backgroundColor}
-        image={imageUrl(consultantCta?.image)}
-        imageAlt={consultantCta?.image?.alt}
-      />
-      <ServiceBenefitsSection
-        title={page.benefitsSection?.title}
-        items={toBenefitCards(page.benefitsSection?.items)}
-      />
-      <ExpertiseSection
-        title={page.expertiseSection?.title}
-        items={toExpertiseItems(page)}
-      />
-      <IndustriesSection
-        title={page.industriesSection?.title}
-        items={toIndustryItems(page)}
-      />
-      <WhyChooseSection
-        title={page.whyChooseSection?.title}
-        customReasons={toWhyChooseReasons(page)}
-        image={imageUrl(page.whyChooseSection?.image)}
-        imageAlt={page.whyChooseSection?.image?.alt}
-        backgroundOverlayColor="#616161"
-      />
-
+      {orderedSectionKeys.map((sectionKey) => (
+        <Fragment key={sectionKey}>{sectionRenderers[sectionKey]}</Fragment>
+      ))}
     </div>
   );
 }
@@ -206,6 +266,33 @@ async function getServicePage(slug: string, metadata = false) {
 
 function imageUrl(image?: SanityImage) {
   return image?.asset?.url;
+}
+
+function getOrderedServiceSectionKeys(sectionOrder?: readonly string[]) {
+  const orderedKeys: ServicePageSectionKey[] = [];
+  const seenKeys = new Set<ServicePageSectionKey>();
+
+  for (const sectionKey of sectionOrder ?? []) {
+    if (
+      isServicePageSectionKey(sectionKey) &&
+      !seenKeys.has(sectionKey)
+    ) {
+      orderedKeys.push(sectionKey);
+      seenKeys.add(sectionKey);
+    }
+  }
+
+  for (const sectionKey of DEFAULT_SERVICE_SECTION_ORDER) {
+    if (!seenKeys.has(sectionKey)) {
+      orderedKeys.push(sectionKey);
+    }
+  }
+
+  return orderedKeys;
+}
+
+function isServicePageSectionKey(value: string): value is ServicePageSectionKey {
+  return SERVICE_SECTION_KEY_SET.has(value);
 }
 
 function toWhatWeDoTabs(page: ServicePage): WhatWeDoTab[] | undefined {
@@ -251,6 +338,26 @@ function toExpertiseItems(page: ServicePage): ExpertiseItem[] | undefined {
     icon: imageUrl(item.icon) || "/images/service-cloud.png",
     shadow: `0px 4.36px 0px 0px ${item.accentColor || "#1D70C5"}`,
   }));
+}
+
+function toMigrationPlatformItems(
+  page: ServicePage
+): MigrationPlatformItem[] | undefined {
+  const items = page.migrationPlatformsSection?.items;
+
+  if (!items || items.length === 0) {
+    return undefined;
+  }
+
+  return items
+    .filter((item) => item.name)
+    .map((item) => ({
+      name: item.name,
+      text: item.text || "",
+      logo: imageUrl(item.logo),
+      logoAlt: item.logo?.alt,
+      colorTheme: item.colorTheme,
+    }));
 }
 
 function toIndustryItems(page: ServicePage): IndustrySectionItem[] | undefined {

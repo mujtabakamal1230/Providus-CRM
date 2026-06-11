@@ -9,7 +9,6 @@ import {
   IndustriesSection,
   WhyChooseSection,
   TeamSection,
-  MigrationPlatformsSection,
 } from "@/components/sections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
@@ -67,7 +66,6 @@ export default async function HomePage() {
       <ExpertiseSection />
       <IndustriesSection />
       <WhyChooseSection />
-      <MigrationPlatformsSection />
       <TeamSection />
       <CtaSection />
     </>

@@ -72,9 +72,9 @@ export function IndustriesSection({ title, items }: IndustriesSectionProps) {
         {/* Industry Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12">
           {displayItems.map((item, index) => (
-            <Reveal 
-              key={index} 
-              direction={index % 2 === 0 ? "right" : "left"} 
+            <Reveal
+              key={index}
+              direction={index % 2 === 0 ? "right" : "left"}
               delay={0.1 * (index % 3 + 1)}
             >
               <div
@@ -92,6 +92,7 @@ export function IndustriesSection({ title, items }: IndustriesSectionProps) {
                       alt={item.title}
                       fill
                       className="object-cover"
+                      unoptimized
                       sizes="(max-width: 767px) calc(100vw - 48px), 202px"
                     />
                   </div>

@@ -104,7 +104,8 @@ export type ServicePageSectionKey =
   | "migrationPlatforms"
   | "expertise"
   | "industries"
-  | "whyChoose";
+  | "whyChoose"
+  | "cta";
 
 export type ServiceBenefitIconKey =
   | "roi"

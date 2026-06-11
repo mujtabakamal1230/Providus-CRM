@@ -15,6 +15,7 @@ import {
   WhatWeDoSection,
   WhyChooseSection,
 } from "@/components/sections";
+import { CtaSection } from "@/components/sections/CtaSection";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import type {
   ExpertiseItem,
@@ -72,6 +73,7 @@ const DEFAULT_SERVICE_SECTION_ORDER: ServicePageSectionKey[] = [
   "expertise",
   "industries",
   "whyChoose",
+  "cta",
 ];
 
 const SERVICE_SECTION_KEY_SET = new Set<string>(DEFAULT_SERVICE_SECTION_ORDER);
@@ -231,6 +233,14 @@ export default async function SalesforceServicePage({
         image={imageUrl(page.whyChooseSection?.image)}
         imageAlt={page.whyChooseSection?.image?.alt}
         backgroundOverlayColor="#616161"
+      />
+    ),
+    cta: (
+      <CtaSection
+        title={legacyCta?.title}
+        buttonLabel={legacyCta?.buttonLabel}
+        buttonHref={legacyCta?.buttonHref}
+        backgroundImage={imageUrl(legacyCta?.backgroundImage)}
       />
     ),
   };

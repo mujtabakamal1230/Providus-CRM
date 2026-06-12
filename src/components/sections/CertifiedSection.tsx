@@ -73,7 +73,7 @@ export function CertifiedSection({ title, description }: CertifiedSectionProps) 
               )}
             </Heading>
 
-            <Text variant="p3" className="mx-auto max-w-md text-black">
+            <Text variant="p3" className="mx-auto text-black">
               {description || defaultDescription}
             </Text>
           </Reveal>

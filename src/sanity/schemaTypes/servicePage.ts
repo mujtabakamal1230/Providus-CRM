@@ -1,4 +1,5 @@
-import { defineField, defineType } from "sanity";
+import { createElement, type CSSProperties } from "react";
+import { defineField, defineType, type FieldProps } from "sanity";
 
 const iconKeyOptions = [
   { title: "ROI", value: "roi" },
@@ -32,13 +33,14 @@ const sectionOrderOptions = [
   { title: "Certified section", value: "certified" },
   { title: "Case studies", value: "caseStudies" },
   { title: "Tabs section", value: "tabs" },
-  { title: "Consultant CTA", value: "consultantCta" },
+  { title: "Consultant CTA (middle)", value: "consultantCta" },
   { title: "Benefits timeline", value: "benefits" },
   { title: "Salesforce process", value: "process" },
   { title: "Migration platforms", value: "migrationPlatforms" },
   { title: "Expertise carousel", value: "expertise" },
   { title: "Industries grid", value: "industries" },
   { title: "Why choose", value: "whyChoose" },
+  { title: "Footer CTA", value: "cta" },
 ];
 
 const defaultSectionOrder = sectionOrderOptions.map((option) => option.value);
@@ -70,6 +72,43 @@ const serviceImageField = (name: string, title: string) =>
       }),
     ],
   });
+
+const sectionFieldWrapperStyle: CSSProperties = {
+  margin: "20px 0",
+};
+
+const sectionHeadingStyle: CSSProperties = {
+  background: "var(--card-muted-bg-color)",
+  border: "1px solid var(--card-border-color)",
+  borderRadius: "8px",
+  marginBottom: "12px",
+  padding: "14px 16px",
+};
+
+const sectionHeadingTextStyle: CSSProperties = {
+  fontSize: "18px",
+  fontWeight: 700,
+  lineHeight: "24px",
+};
+
+function ProminentSectionField(props: FieldProps) {
+  const title = props.title || props.schemaType.title || props.name;
+
+  return createElement(
+    "div",
+    { style: sectionFieldWrapperStyle },
+    createElement(
+      "div",
+      { style: sectionHeadingStyle },
+      createElement("div", { style: sectionHeadingTextStyle }, title)
+    ),
+    createElement("div", null, props.renderDefault({ ...props, title: undefined }))
+  );
+}
+
+const prominentSectionComponents = {
+  field: ProminentSectionField,
+};
 
 export const servicePage = defineType({
   name: "servicePage",
@@ -135,6 +174,7 @@ export const servicePage = defineType({
       name: "hero",
       title: "Hero",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "badgeTitle",
@@ -181,6 +221,7 @@ export const servicePage = defineType({
       name: "certified",
       title: "Certified section",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -200,12 +241,14 @@ export const servicePage = defineType({
       title: "Related case studies",
       description: "Select and order the case studies shown on this service page.",
       type: "array",
+      components: prominentSectionComponents,
       of: [{ type: "reference", to: [{ type: "caseStudy" }] }],
     }),
     defineField({
       name: "tabsSection",
       title: "Tabs section",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -254,6 +297,7 @@ export const servicePage = defineType({
       name: "benefitsSection",
       title: "Benefits timeline",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -304,6 +348,7 @@ export const servicePage = defineType({
       description:
         "Blue CTA section with consultant image, shown after the tabs section on Salesforce service pages.",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -319,6 +364,7 @@ export const servicePage = defineType({
           name: "buttonHref",
           title: "Button link",
           type: "string",
+          initialValue: "/contact",
         }),
         defineField({
           name: "backgroundColor",
@@ -334,6 +380,7 @@ export const servicePage = defineType({
       name: "processSection",
       title: "Salesforce process section",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -391,6 +438,7 @@ export const servicePage = defineType({
       description:
         "Optional carousel for CRM platforms this Salesforce service migrates from.",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -442,6 +490,7 @@ export const servicePage = defineType({
       name: "expertiseSection",
       title: "Expertise carousel",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -486,6 +535,7 @@ export const servicePage = defineType({
       name: "industriesSection",
       title: "Industries grid",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -523,6 +573,7 @@ export const servicePage = defineType({
       name: "whyChooseSection",
       title: "Why choose section",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -568,6 +619,7 @@ export const servicePage = defineType({
       name: "cta",
       title: "CTA section",
       type: "object",
+      components: prominentSectionComponents,
       fields: [
         defineField({
           name: "title",
@@ -583,6 +635,7 @@ export const servicePage = defineType({
           name: "buttonHref",
           title: "Button link",
           type: "string",
+          initialValue: "/contact",
         }),
         serviceImageField("backgroundImage", "Background image"),
       ],

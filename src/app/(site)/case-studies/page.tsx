@@ -6,6 +6,7 @@ import {
   CtaSection,
 } from "@/components/sections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { CASE_STUDIES_QUERY } from "@/sanity/lib/queries";
@@ -59,12 +60,7 @@ export default async function CaseStudiesPage() {
   const heroTitle = (
     <>
       Our Case Studies
-      <img
-        src="/images/green-line.svg"
-        alt=""
-        aria-hidden="true"
-        className="inline-block h-10 w-auto align-baseline ml-1"
-      />
+      <GreenLineMark className="inline-block h-10 w-auto align-baseline ml-1" />
     </>
   );
 

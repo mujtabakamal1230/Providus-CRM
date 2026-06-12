@@ -3,17 +3,16 @@
 import { useMemo, useState } from "react";
 import { HeroSection } from "./HeroSection";
 import { BlogSection, type BlogCardItem } from "./BlogSection";
+import { GreenLineMark } from "@/components/ui/GreenLineMark";
 
 interface BlogIndexClientProps {
   posts: BlogCardItem[];
   categories: string[];
 }
 
-export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
+export function BlogIndexClient({ posts }: BlogIndexClientProps) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-
-  const categoryOptions = ["All", ...categories];
 
   const filteredPosts = useMemo(() => {
     const normalizedSearch = searchQuery.trim().toLowerCase();
@@ -34,12 +33,7 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
   const heroTitle = (
     <>
       Insights And Impact
-      <img
-        src="/images/green-line.svg"
-        alt=""
-        aria-hidden="true"
-        className="inline-block h-10 w-auto align-baseline ml-1"
-      />
+      <GreenLineMark className="inline-block h-10 w-auto align-baseline ml-1" />
     </>
   );
 
@@ -48,8 +42,6 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
       <HeroSection
         title={heroTitle}
         hideImage
-        // categories={categoryOptions}
-        // activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
       />
       <BlogSection

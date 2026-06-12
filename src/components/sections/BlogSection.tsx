@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
+import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -34,12 +35,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
         {/* Section Header with Title & Search */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-100 pb-8 mb-12">
           <div>
-            <img
-              src="/images/green-line.svg"
-              alt=""
-              aria-hidden="true"
-              className="inline-block h-8 w-auto align-baseline ml-1"
-            />
+            <GreenLineMark className="inline-block h-8 w-auto align-baseline ml-1" />
             <Heading as="h2" className="text-black !text-[32px] md:!text-[45px] font-bold font-heading">
               Latest Blogs
             </Heading>

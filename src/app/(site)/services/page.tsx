@@ -8,6 +8,7 @@ import {
   reasons
 } from "@/components/sections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 
 export default async function ServicesPage() {
@@ -23,12 +24,7 @@ export default async function ServicesPage() {
   const servicesHeroTitle = (
     <>
       Our Services{" "}
-      <img
-        src="/images/green-line.svg"
-        alt=""
-        aria-hidden="true"
-        className="inline-block h-10 w-auto align-baseline ml-1"
-      />
+      <GreenLineMark className="inline-block h-10 w-auto align-baseline ml-1" />
     </>
   );
 

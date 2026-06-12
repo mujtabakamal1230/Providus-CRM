@@ -2,6 +2,7 @@
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { Heading, Text } from "@/components/ui/Typography";
 import { cn } from "@/lib/utils";
 import {
@@ -49,12 +50,7 @@ export function SalesforceProcessSection({
       <Container>
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24 flex flex-col items-center">
           {/* Green logo icon to match the image header */}
-          <img
-            src="/images/green-line.svg"
-            alt=""
-            aria-hidden="true"
-            className="inline-block h-10 w-auto align-baseline ml-1"
-          />
+          <GreenLineMark className="inline-block h-10 w-auto align-baseline ml-1" />
           <Heading as="h2" className="text-slate-900 mb-6 font-bold">
             {title.split("\n").map((line, index) => (
               <span key={`${line}-${index}`}>

@@ -43,7 +43,7 @@ export function SalesforceConsultCtaSection({
             </Link>
           </div>
 
-          <div className="pointer-events-none mt-8 flex justify-center lg:absolute lg:bottom-0 lg:right-8 lg:mt-0 lg:w-[58%] lg:justify-end">
+          <div className="pointer-events-none mt-8 flex justify-center lg:absolute lg:bottom-0 lg:right-8 lg:mt-0 lg:w-[58%] lg:justify-end max-h-[450px]">
             <Image
               src={image}
               alt={imageAlt}

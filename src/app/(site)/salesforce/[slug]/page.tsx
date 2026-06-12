@@ -186,9 +186,9 @@ export default async function SalesforceServicePage({
     ),
     consultantCta: (
       <SalesforceConsultCtaSection
-        title={consultantCta?.title || legacyCta?.title}
-        buttonLabel={consultantCta?.buttonLabel || legacyCta?.buttonLabel}
-        buttonHref={consultantCta?.buttonHref || legacyCta?.buttonHref}
+        title={consultantCta?.title}
+        buttonLabel={consultantCta?.buttonLabel}
+        buttonHref={consultantCta?.buttonHref}
         backgroundColor={consultantCta?.backgroundColor}
         image={imageUrl(consultantCta?.image)}
         imageAlt={consultantCta?.image?.alt}
@@ -220,12 +220,12 @@ export default async function SalesforceServicePage({
         items={toExpertiseItems(page)}
       />
     ),
-    industries: (
+    industries: page.industriesSection ? (
       <IndustriesSection
-        title={page.industriesSection?.title}
+        title={page.industriesSection.title}
         items={toIndustryItems(page)}
       />
-    ),
+    ) : null,
     whyChoose: (
       <WhyChooseSection
         title={page.whyChooseSection?.title}

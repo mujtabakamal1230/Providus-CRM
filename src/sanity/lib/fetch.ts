@@ -21,7 +21,7 @@ export async function sanityFetch<T>({
   query,
   params = {},
   tags = [],
-  revalidate = 300,
+  revalidate = 0,
   metadata = false,
 }: SanityFetchOptions): Promise<T | null> {
   if (!isSanityConfigured) {
@@ -33,8 +33,8 @@ export async function sanityFetch<T>({
       ? privateMetadataClient
       : previewClient
     : metadata
-    ? metadataClient
-    : client;
+      ? metadataClient
+      : client;
 
   return fetchClient.fetch<T>(query, params, {
     next: {

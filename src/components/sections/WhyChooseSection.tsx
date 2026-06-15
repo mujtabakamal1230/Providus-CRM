@@ -27,7 +27,7 @@ export const reasons: WhyChooseReason[] = [
     title: "We're a Leading Salesforce Partner in the UK",
     color: "#00A1E0",
     icon: "/images/salesforce-partner.png",
-    text: "ProvidusCRM combines the technical depth of a large consultancy with the responsiveness of a specialist partner. Certified consultants across Sales Cloud, Service Cloud, Marketing Cloud, Data Cloud, Experience Cloud, and Agentforce. A delivery track record across nonprofit, financial services, healthcare, education, manufacturing, and commerce."
+    text: "ProvidusCRM combines the technical depth of a large consultancy with the responsiveness of a specialist partner. Certified consultants across Sales Cloud, Service Cloud, Marketing Cloud, Data Cloud, Experience Cloud, and Agentforce. A delivery track record across nonprofit, financial services, healthcare, education, manufacturing, and commerce. One UK Salesforce partner covering the full platform, the full project lifecycle, and the full range of industries that depend on CRM done right"
   }
 ];
 

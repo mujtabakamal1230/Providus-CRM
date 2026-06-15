@@ -16,7 +16,7 @@ export function CtaSection({
   buttonHref = "/contact",
   backgroundImage = "/images/cta-bg.jpg",
 }: CtaSectionProps) {
-  const displayTitle = title || "Ready to\nReinvent Your CRM?";
+  const displayTitle = title || "Explore How We Align Your CRM Systems With Your Business Initiatives.";
 
   return (
     <section className="relative h-[386px] flex items-center overflow-hidden mt-24 md:mt-40">

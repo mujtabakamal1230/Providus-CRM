@@ -62,13 +62,13 @@ export default async function IndustriesPage() {
       <JsonLdScript data={jsonLd} />
       <HeroSection
         title={heroTitle}
-        description="Deep technical knowledge across every core Salesforce platform. We don't just configure; we engineer CRM systems that drive real business outcomes."
+        description="Explore how we help businesses across different industries make the most out of their Salesforce investments."
         image="/images/industries.png"
         imageClassName="object-contain"
       />
       <IndustryDetailSection />
       <PlatformsSection />
-      <CtaSection />
+      <CtaSection title="Ready to See How Salesforce Fits Your Industry?" />
     </>
   );
 }

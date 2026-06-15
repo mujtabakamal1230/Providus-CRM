@@ -7,16 +7,17 @@ const footerLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Industry", href: "/industry" },
-  { label: "Platform Expertise", href: "/expertise" },
+  { label: "Industries", href: "/industries" },
+  { label: "Platform Expertise", href: "/platform-expertise" },
   { label: "Blog", href: "/blog" },
 ];
 
 const socialLinks = [
-  { icon: "facebook", href: "#" },
-  { icon: "twitter", href: "#" },
-  { icon: "instagram", href: "#" },
-  { icon: "linkedin", href: "#" },
+  { icon: "instagram", href: "https://www.instagram.com/lifeatprovidus" },
+  { icon: "twitter", href: "https://x.com/Providustechllc" },
+  { icon: "youtube", href: "https://www.youtube.com/@ProvidusTech" },
+  { icon: "linkedin", href: "https://www.linkedin.com/company/providus-technologies" },
+  { icon: "facebook", href: "https://www.facebook.com/share/1ASdLhT26p/" },
 ];
 
 export function Footer() {

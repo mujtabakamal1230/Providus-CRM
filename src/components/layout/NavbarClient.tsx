@@ -160,7 +160,7 @@ function DesktopDropdown({ item }: { item: DropdownNavItem }) {
         </svg>
       </Link>
 
-      <div className="invisible absolute left-1/2 top-full z-50 min-w-[260px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+      <div className="invisible absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
         <div className="rounded-[8px] border border-gray-100 bg-white p-2 shadow-xl">
           {item.children?.map((child) => (
             <Link

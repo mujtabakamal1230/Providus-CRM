@@ -67,13 +67,13 @@ export default async function PlatformExpertisePage() {
       <JsonLdScript data={jsonLd} />
       <HeroSection
         title={heroTitle}
-        description="Deep technical knowledge across every core Salesforce platform. We don't just configure; we engineer CRM systems that drive real business outcomes."
+        description="Whether it is sales pipeline management or autonomous AI agents, our certified team delivers end-to-end solutions across the Salesforce platform."
         image="/images/platform-experties.png"
         imageClassName="object-contain"
       />
       <PartnersSection />
       <ExpertiseStackSection />
-      <CtaSection />
+      <CtaSection title="Drive CRM Innovation For Your Organisation" />
     </>
   );
 }

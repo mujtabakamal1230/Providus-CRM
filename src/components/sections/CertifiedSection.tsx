@@ -10,7 +10,7 @@ interface CertifiedSectionProps {
 
 export function CertifiedSection({ title, description }: CertifiedSectionProps) {
   const defaultDescription =
-    "Future-proof customer operations and business processes with ProvidusCRM, a certified Salesforce partner, reinventing CRM systems for organisations in the UK.";
+    "ProvidusCRM consultants hold certifications across the Salesforce platform and industry clouds. We translate our certified expertise into CRM solutions that solve key business challenges and drive better engagement and revenue generation.";
 
   return (
     <Section
@@ -64,11 +64,7 @@ export function CertifiedSection({ title, description }: CertifiedSectionProps) 
             <Heading as="h2" className="mb-4 text-black">
               {title || (
                 <>
-                  Professional Salesforce
-                  <br />
-                  Services Grounded in
-                  <br />
-                  Certified Expertise
+                  Professional Salesforce <br /> Services Grounded in <br /> Certified Expertise
                 </>
               )}
             </Heading>

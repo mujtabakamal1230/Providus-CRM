@@ -60,7 +60,7 @@ export default async function AboutPage() {
       />
       <TeamThoughtsSection />
       <ExploreSection />
-      <CtaSection />
+      <CtaSection title="Ready to Reinvent Your CRM?" />
     </>
   );
 }

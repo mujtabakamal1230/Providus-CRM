@@ -172,7 +172,7 @@ export function ExploreSection() {
 
             {/* Bottom Box - Grey Box */}
             <Reveal direction="right" delay={0.3}>
-              <Link href="/platforms" className="block">
+              <Link href="/platform-expertise" className="block">
                 <motion.div
                   className="relative w-full h-[240px] overflow-hidden flex flex-col justify-between p-10 cursor-pointer select-none group"
                   style={{

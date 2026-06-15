@@ -29,12 +29,18 @@ export default async function ServicesPage() {
   );
 
   const servicesReasons = [
-    reasons[0],
+    {
+      ...reasons[0],
+      text: "We deliver solutions based on the challenges you’re facing. Before any configuration begins, our team maps business processes and bottlenecks. As a result, the Salesforce org that goes live reflects how your business actually runs. "
+    },
     {
       ...reasons[1],
-      text: "We provide you with experienced, certified Salesforce talent who've solved the challenges you're facing today many times for multiple organisations across the UK. You get proven expertise, defined delivery frameworks, documented decisions, and a track record of going live on time with solutions teams actually adopt."
+      text: "We provide you with experienced, certified Salesforce talent who’ve solved the challenges you’re facing today many times for multiple organisations across the UK. You get proven expertise, defined delivery frameworks, documented decisions, and a track record of going live on time with solutions teams actually adopt."
     },
-    reasons[2]
+    {
+      ...reasons[2],
+      text: "ProvidusCRM is a specialist Salesforce services company. Our certified team covers Sales Cloud, Service Cloud, Marketing Cloud, Data Cloud, Experience Cloud, and Agentforce, delivering custom Salesforce solutions around your industry, processes, needs, and goals."
+    }
   ];
 
   return (
@@ -56,7 +62,7 @@ export default async function ServicesPage() {
         title="Certified Salesforce Expertise Behind Every Solution We Deliver"
         description="Our consultants, developers, and architects are certified across platform administration, app building, data architecture, and every major Salesforce cloud. Every engagement is backed by certified expertise."
       />
-      <CtaSection />
+      <CtaSection title="Ready to Reinvent Your CRM?" />
     </>
   );
 }

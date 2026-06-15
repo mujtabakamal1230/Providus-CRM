@@ -1,36 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 import Image from "next/image";
 
+const emptyContactFormState = {
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+  message: "",
+};
+
 export function ContactSection() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    message: ""
-  });
+  const [formState, setFormState] = useState(emptyContactFormState);
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simulate submission
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormState({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        message: ""
+    setStatus("submitting");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
       });
-    }, 3000);
+      const result = (await response.json().catch(() => ({}))) as {
+        message?: string;
+      };
+
+      if (!response.ok) {
+        throw new Error(result.message || "Unable to send your message.");
+      }
+
+      setFormState(emptyContactFormState);
+      setStatus("success");
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Unable to send your message right now."
+      );
+    }
   };
 
   return (
@@ -153,7 +172,7 @@ export function ContactSection() {
             <div className="lg:col-span-7 w-full bg-transparent rounded-2xl">
               <Reveal direction="left" delay={0.2} width="100%">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  {submitted ? (
+                  {status === "success" ? (
                     <div className="bg-[#A0FF88]/20 border border-brand-green-light/45 rounded-xl p-8 text-center flex flex-col items-center gap-3">
                       <svg
                         width="40"
@@ -176,6 +195,15 @@ export function ContactSection() {
                     </div>
                   ) : (
                     <>
+                      {status === "error" && (
+                        <div
+                          role="alert"
+                          className="rounded-[6px] border border-white/40 bg-white/15 px-4 py-3 font-body text-[14px] text-white"
+                        >
+                          {errorMessage}
+                        </div>
+                      )}
+
                       {/* Name & Email */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex flex-col gap-2">
@@ -185,6 +213,9 @@ export function ContactSection() {
                           <input
                             type="text"
                             required
+                            maxLength={100}
+                            pattern="[A-Za-z .'-]+"
+                            title="Name can only include letters, spaces, apostrophes, periods, and hyphens."
                             placeholder="Enter your full name"
                             value={formState.name}
                             onChange={(e) => setFormState({ ...formState, name: e.target.value })}
@@ -199,6 +230,7 @@ export function ContactSection() {
                           <input
                             type="email"
                             required
+                            maxLength={100}
                             placeholder="Enter your email address"
                             value={formState.email}
                             onChange={(e) => setFormState({ ...formState, email: e.target.value })}
@@ -216,9 +248,19 @@ export function ContactSection() {
                           <input
                             type="tel"
                             required
+                            minLength={7}
+                            maxLength={20}
+                            inputMode="numeric"
+                            pattern="[0-9]{7,20}"
+                            title="Phone must contain 7 to 20 digits only."
                             placeholder="Enter your phone number"
                             value={formState.phone}
-                            onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                            onChange={(e) =>
+                              setFormState({
+                                ...formState,
+                                phone: e.target.value.replace(/\D/g, "").slice(0, 20),
+                              })
+                            }
                             className="h-[48px] px-4 bg-white border border-transparent rounded-[6px] text-[14px] font-body text-gray-800 placeholder-gray-400 focus:outline-none focus:border-brand-green transition-all"
                           />
                         </div>
@@ -230,6 +272,7 @@ export function ContactSection() {
                           <input
                             type="text"
                             required
+                            maxLength={150}
                             placeholder="Enter your company name"
                             value={formState.company}
                             onChange={(e) => setFormState({ ...formState, company: e.target.value })}
@@ -246,6 +289,7 @@ export function ContactSection() {
                         </label>
                         <textarea
                           required
+                          maxLength={1000}
                           rows={4}
                           placeholder="Please tell us about your project..."
                           value={formState.message}
@@ -257,9 +301,12 @@ export function ContactSection() {
                       {/* Submit Button */}
                       <button
                         type="submit"
-                        className="w-full bg-[#38A81B] text-white hover:bg-[#2d8c14] focus-visible:outline-[#38A81B] py-3.5 rounded-full font-body font-semibold text-[16px] transition-all cursor-pointer shadow-md active:scale-[0.99] flex items-center justify-center"
+                        disabled={status === "submitting"}
+                        className="w-full bg-[#38A81B] text-white hover:bg-[#2d8c14] focus-visible:outline-[#38A81B] py-3.5 rounded-full font-body font-semibold text-[16px] transition-all cursor-pointer shadow-md active:scale-[0.99] flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-70"
                       >
-                        Let&apos;s Connect
+                        {status === "submitting"
+                          ? "Sending..."
+                          : "Let's Connect"}
                       </button>
                     </>
                   )}

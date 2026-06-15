@@ -36,15 +36,40 @@ export function SalesforceServiceHero({
   backgroundImage = "/images/hero-bg.png",
 }: SalesforceServiceHeroProps) {
   const [formState, setFormState] = useState(emptyForm);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setStatus("submitting");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/service-inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formState, serviceTitle: title }),
+      });
+      const result = (await response.json().catch(() => ({}))) as {
+        message?: string;
+      };
+
+      if (!response.ok) {
+        throw new Error(result.message || "Unable to send your message.");
+      }
+
       setFormState(emptyForm);
-    }, 3000);
+      setStatus("success");
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Unable to send your message right now."
+      );
+    }
   };
 
   return (
@@ -111,7 +136,7 @@ export function SalesforceServiceHero({
             </div>
 
             <div className="rounded-[18px] border border-white/45 bg-white/10 p-5 backdrop-blur-sm md:p-7">
-              {submitted ? (
+              {status === "success" ? (
                 <div className="flex min-h-[360px] flex-col items-center justify-center rounded-[12px] border border-brand-green-light/40 bg-brand-green-light/15 p-8 text-center">
                   <CheckCircle
                     aria-hidden="true"
@@ -135,10 +160,22 @@ export function SalesforceServiceHero({
                     {formTitle}
                   </Heading>
 
+                  {status === "error" && (
+                    <div
+                      role="alert"
+                      className="rounded-[6px] border border-white/40 bg-white/15 px-4 py-3 font-body text-[14px] text-white"
+                    >
+                      {errorMessage}
+                    </div>
+                  )}
+
                   <HeroInput
                     label="Name"
                     value={formState.name}
                     placeholder="Enter your full name"
+                    maxLength={100}
+                    pattern="[A-Za-z .'-]+"
+                    title="Name can only include letters, spaces, apostrophes, periods, and hyphens."
                     onChange={(value) =>
                       setFormState({ ...formState, name: value })
                     }
@@ -148,6 +185,7 @@ export function SalesforceServiceHero({
                     type="email"
                     value={formState.email}
                     placeholder="Enter your email address"
+                    maxLength={100}
                     onChange={(value) =>
                       setFormState({ ...formState, email: value })
                     }
@@ -157,8 +195,16 @@ export function SalesforceServiceHero({
                     type="tel"
                     value={formState.contactNumber}
                     placeholder="Enter your contact number"
+                    minLength={7}
+                    maxLength={20}
+                    inputMode="numeric"
+                    pattern="[0-9]{7,20}"
+                    title="Contact number must contain 7 to 20 digits only."
                     onChange={(value) =>
-                      setFormState({ ...formState, contactNumber: value })
+                      setFormState({
+                        ...formState,
+                        contactNumber: value.replace(/\D/g, "").slice(0, 20),
+                      })
                     }
                   />
 
@@ -168,6 +214,7 @@ export function SalesforceServiceHero({
                     </Text>
                     <textarea
                       required
+                      maxLength={1000}
                       rows={5}
                       placeholder="Tell us about your project"
                       value={formState.message}
@@ -183,9 +230,10 @@ export function SalesforceServiceHero({
 
                   <button
                     type="submit"
-                    className="w-full rounded-[6px] bg-brand-green px-6 py-3 font-body text-[14px] font-semibold text-white shadow-md transition-colors hover:bg-[#2d8c14]"
+                    disabled={status === "submitting"}
+                    className="w-full rounded-[6px] bg-brand-green px-6 py-3 font-body text-[14px] font-semibold text-white shadow-md transition-colors hover:bg-[#2d8c14] disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {formButtonLabel}
+                    {status === "submitting" ? "Sending..." : formButtonLabel}
                   </button>
                 </form>
               )}
@@ -203,6 +251,11 @@ interface HeroInputProps {
   placeholder: string;
   onChange: (value: string) => void;
   type?: "text" | "email" | "tel";
+  maxLength?: number;
+  minLength?: number;
+  pattern?: string;
+  title?: string;
+  inputMode?: "text" | "numeric" | "email" | "tel";
 }
 
 function HeroInput({
@@ -211,6 +264,11 @@ function HeroInput({
   placeholder,
   onChange,
   type = "text",
+  maxLength,
+  minLength,
+  pattern,
+  title,
+  inputMode,
 }: HeroInputProps) {
   return (
     <div className="flex flex-col gap-2">
@@ -222,6 +280,11 @@ function HeroInput({
         type={type}
         value={value}
         placeholder={placeholder}
+        maxLength={maxLength}
+        minLength={minLength}
+        pattern={pattern}
+        title={title}
+        inputMode={inputMode}
         onChange={(event) => onChange(event.target.value)}
         className="h-12 rounded-[6px] border border-transparent bg-white px-4 font-body text-[14px] text-gray-800 outline-none transition-all placeholder:text-gray-400 focus:border-brand-green"
       />

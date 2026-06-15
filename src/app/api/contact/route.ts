@@ -3,6 +3,7 @@ import {
   parseContactFormPayload,
   sendContactFormEmail,
 } from "@/lib/email/sendContactFormEmail";
+import { getEmailDeliveryErrorMessage } from "@/lib/email/errors";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
@@ -22,19 +23,8 @@ export async function POST(request: Request) {
     console.error("Contact form email failed", error);
 
     return NextResponse.json(
-      { message: getEmailErrorMessage(error) },
+      { message: getEmailDeliveryErrorMessage(error) },
       { status: 500 }
     );
   }
-}
-
-function getEmailErrorMessage(error: unknown) {
-  if (
-    error instanceof Error &&
-    error.message === "RESEND_API_KEY is not configured."
-  ) {
-    return "Email service is not configured.";
-  }
-
-  return "Unable to send your message right now.";
 }

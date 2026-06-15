@@ -15,7 +15,7 @@ interface ServiceNavItem {
 const fallbackServices: NavItem[] = [
   {
     label: salesforceConsultingServicesFallback.title,
-    href: `/salesforce/${SALESFORCE_CONSULTING_SERVICES_SLUG}`,
+    href: `/${SALESFORCE_CONSULTING_SERVICES_SLUG}`,
   },
 ];
 
@@ -31,7 +31,7 @@ export async function Navbar() {
     services && services.length > 0
       ? services.map((service) => ({
           label: service.title,
-          href: `/salesforce/${service.slug}`,
+          href: `/${service.slug}`,
         }))
       : [];
 

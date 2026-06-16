@@ -131,10 +131,10 @@ export function ContactSection() {
                       </svg>
                     </div>
                     <a
-                      href="mailto:hello@providus.io"
+                      href="mailto:connect@providuscrm.co.uk"
                       className="font-body font-normal text-[15px] md:text-[18px] text-white hover:text-brand-green-light transition-colors leading-relaxed"
                     >
-                      hello@providus.io
+                      connect@providuscrm.co.uk
                     </a>
                   </div>
                 </Reveal>

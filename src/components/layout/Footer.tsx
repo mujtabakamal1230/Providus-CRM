@@ -182,7 +182,7 @@ export function Footer() {
             © Copyright 2025, All Rights Reserved
           </Text>
 
-          <div className="flex gap-6">
+          {/* <div className="flex gap-6">
             <Link href="/faq" className="text-xs! leading-6! font-roboto text-white/60 hover:text-white">
               FAQ
             </Link>
@@ -192,7 +192,7 @@ export function Footer() {
             <Link href="/privacy" className="text-xs! leading-6! font-roboto text-white/60 hover:text-white">
               Privacy Policy
             </Link>
-          </div>
+          </div> */}
         </div>
       </Container>
     </footer>

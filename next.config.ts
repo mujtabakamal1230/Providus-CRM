@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/salesforce/:slug",
-        destination: "/:slug",
+        destination: "/services/:slug",
         permanent: true,
       },
     ];

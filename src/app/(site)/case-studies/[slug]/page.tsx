@@ -11,6 +11,7 @@ import { Heading, Text } from "@/components/ui/Typography";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { resolveJsonLd } from "@/lib/jsonLd";
 import { getSanityImageAspectRatio } from "@/lib/sanityImage";
+import { buildPageMetadata } from "@/lib/seo";
 import {
   CASE_STUDIES_QUERY,
   CASE_STUDY_QUERY,
@@ -56,20 +57,14 @@ export async function generateMetadata({
     };
   }
 
-  const title = caseStudy.seo?.metaTitle || caseStudy.title;
-  const description = caseStudy.seo?.metaDescription || caseStudy.excerpt;
-  const image =
-    caseStudy.seo?.ogImage?.asset?.url || caseStudy.coverImage?.asset?.url;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: image ? [{ url: image }] : undefined,
-    },
-  };
+  return buildPageMetadata({
+    seo: caseStudy.seo,
+    title: caseStudy.title,
+    description: caseStudy.excerpt,
+    image: caseStudy.coverImage?.asset?.url,
+    canonicalPath: `/case-studies/${caseStudy.slug.current}`,
+    openGraphType: "article",
+  });
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {

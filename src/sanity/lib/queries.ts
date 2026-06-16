@@ -18,7 +18,18 @@ const imageProjection = `
 const seoProjection = `
   metaTitle,
   metaDescription,
+  keywords,
+  canonicalUrl,
+  noIndex,
+  noFollow,
+  ogTitle,
+  ogDescription,
   ogImage {
+    ${imageProjection}
+  },
+  twitterTitle,
+  twitterDescription,
+  twitterImage {
     ${imageProjection}
   }
 `;
@@ -32,6 +43,19 @@ export const SITE_PAGE_JSON_LD_QUERY = defineQuery(`
   *[_type == "sitePageJsonLd" && pageKey == $pageKey][0] {
     title,
     pageKey,
+    jsonLd {
+      ${jsonLdProjection}
+    }
+  }
+`);
+
+export const STATIC_PAGE_SEO_QUERY = defineQuery(`
+  *[_type == "staticPageSeo" && pageKey == $pageKey][0] {
+    title,
+    pageKey,
+    seo {
+      ${seoProjection}
+    },
     jsonLd {
       ${jsonLdProjection}
     }

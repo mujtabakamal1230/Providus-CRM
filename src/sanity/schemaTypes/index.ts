@@ -7,11 +7,13 @@ import { post } from "./post";
 import { seo } from "./seo";
 import { servicePage } from "./servicePage";
 import { sitePageJsonLd } from "./sitePageJsonLd";
+import { staticPageSeo } from "./staticPageSeo";
 
 export const schemaTypes = [
   post,
   caseStudy,
   servicePage,
+  staticPageSeo,
   sitePageJsonLd,
   author,
   category,

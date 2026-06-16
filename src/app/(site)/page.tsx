@@ -12,6 +12,17 @@ import {
 } from "@/components/sections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
+import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
+
+export async function generateMetadata() {
+  return generateStaticPageMetadata("home", {
+    title: "Providus CRM | Certified Salesforce Partner UK",
+    description:
+      "Providus CRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
+    canonicalPath: "/",
+    image: "/images/salesforce-partner.png",
+  });
+}
 
 export default async function HomePage() {
   const schema = {

@@ -12,6 +12,17 @@ import {
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
+import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
+
+export async function generateMetadata() {
+  return generateStaticPageMetadata("about", {
+    title: "About Us",
+    description:
+      "Professional Salesforce services grounded in certified expertise from a UK Salesforce partner.",
+    canonicalPath: "/about",
+    image: "/images/about-us-hero.png",
+  });
+}
 
 export default async function AboutPage() {
   const schema = {

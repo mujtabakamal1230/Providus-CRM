@@ -4,6 +4,7 @@ import { CtaSection } from "@/components/sections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { formatDate } from "@/lib/format";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
+import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   BLOG_CATEGORIES_QUERY,
@@ -11,11 +12,15 @@ import {
 } from "@/sanity/lib/queries";
 import type { BlogPostListItem, Category } from "@/sanity/lib/types";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Read Providus CRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return generateStaticPageMetadata("blog", {
+    title: "Blog",
+    description:
+      "Read Providus CRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
+    canonicalPath: "/blog",
+    image: "/images/case-study.png",
+  });
+}
 
 export default async function BlogPage() {
   const [posts, categories] = await Promise.all([

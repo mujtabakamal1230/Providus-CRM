@@ -37,6 +37,7 @@ import {
   salesforceConsultingServicesFallback,
 } from "@/data/salesforceServicePage";
 import { resolveJsonLd } from "@/lib/jsonLd";
+import { buildPageMetadata } from "@/lib/seo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   CASE_STUDIES_QUERY,
@@ -106,22 +107,13 @@ export async function generateMetadata({
     };
   }
 
-  const title = fetchedPage.seo?.metaTitle || fetchedPage.title;
-  const description =
-    fetchedPage.seo?.metaDescription || fetchedPage.hero?.description;
-  const image =
-    fetchedPage.seo?.ogImage?.asset?.url ||
-    fetchedPage.hero?.backgroundImage?.asset?.url;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: image ? [{ url: image }] : undefined,
-    },
-  };
+  return buildPageMetadata({
+    seo: fetchedPage.seo,
+    title: fetchedPage.title,
+    description: fetchedPage.hero?.description,
+    image: fetchedPage.hero?.backgroundImage?.asset?.url,
+    canonicalPath: `/services/${fetchedPage.slug.current}`,
+  });
 }
 
 export default async function SalesforceServicePage({

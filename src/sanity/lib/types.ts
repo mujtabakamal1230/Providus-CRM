@@ -38,7 +38,16 @@ export interface Author {
 export interface SeoFields {
   metaTitle?: string;
   metaDescription?: string;
+  keywords?: string[];
+  canonicalUrl?: string;
+  noIndex?: boolean;
+  noFollow?: boolean;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: SanityImage;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: SanityImage;
 }
 
 export interface JsonLdField {
@@ -49,6 +58,13 @@ export interface JsonLdField {
 export interface SitePageJsonLd {
   title: string;
   pageKey: string;
+  jsonLd?: JsonLdField;
+}
+
+export interface StaticPageSeo {
+  title: string;
+  pageKey: string;
+  seo?: SeoFields;
   jsonLd?: JsonLdField;
 }
 

@@ -17,6 +17,7 @@ import { formatDate } from "@/lib/format";
 import { resolveJsonLd } from "@/lib/jsonLd";
 import { getArticleHeadings } from "@/lib/portableText";
 import { getSanityImageAspectRatio } from "@/lib/sanityImage";
+import { buildPageMetadata } from "@/lib/seo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   BLOG_POST_QUERY,
@@ -62,19 +63,14 @@ export async function generateMetadata({
     };
   }
 
-  const title = post.seo?.metaTitle || post.title;
-  const description = post.seo?.metaDescription || post.excerpt;
-  const image = post.seo?.ogImage?.asset?.url || post.heroImage?.asset?.url;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: image ? [{ url: image }] : undefined,
-    },
-  };
+  return buildPageMetadata({
+    seo: post.seo,
+    title: post.title,
+    description: post.excerpt,
+    image: post.heroImage?.asset?.url,
+    canonicalPath: `/blog/${post.slug.current}`,
+    openGraphType: "article",
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {

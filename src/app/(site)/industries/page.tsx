@@ -7,6 +7,17 @@ import {
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
+import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
+
+export async function generateMetadata() {
+  return generateStaticPageMetadata("industries", {
+    title: "Industries We Serve",
+    description:
+      "Salesforce implementation and CRM consulting for nonprofit, education, commerce, healthcare, financial services, and manufacturing organisations.",
+    canonicalPath: "/industries",
+    image: "/images/industries.png",
+  });
+}
 
 export default async function IndustriesPage() {
   const schema = {

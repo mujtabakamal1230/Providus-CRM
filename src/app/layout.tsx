@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Afacad, Roboto } from "next/font/google";
 import "@/styles/globals.css";
 
-// ─── Fonts ────────────────────────────────────────────────────
 const afacad = Afacad({
   variable: "--font-heading",
   subsets: ["latin"],
@@ -17,24 +16,22 @@ const roboto = Roboto({
   display: "swap",
 });
 
-// ─── Metadata ─────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: {
-    default: "Brand — Build faster with a design system that scales",
-    template: "%s | Brand",
+    default: "Providus CRM | Certified Salesforce Partner UK",
+    template: "%s | Providus CRM",
   },
   description:
-    "A production-ready Next.js starter with a consistent design system, reusable components, and TypeScript.",
-  keywords: ["next.js", "design system", "typescript", "tailwind"],
+    "Providus CRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
+  keywords: ["Salesforce consulting", "CRM consulting", "Providus CRM"],
   openGraph: {
     type: "website",
-    title: "Brand — Build faster with a design system that scales",
+    title: "Providus CRM | Certified Salesforce Partner UK",
     description:
-      "A production-ready Next.js starter with a consistent design system.",
+      "Certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
   },
 };
 
-// ─── Layout ───────────────────────────────────────────────────
 export default function RootLayout({
   children,
 }: {

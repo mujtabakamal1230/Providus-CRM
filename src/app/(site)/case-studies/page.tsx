@@ -8,15 +8,20 @@ import {
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
+import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { CASE_STUDIES_QUERY } from "@/sanity/lib/queries";
 import type { CaseStudyListItem } from "@/sanity/lib/types";
 
-export const metadata: Metadata = {
-  title: "Case Studies",
-  description:
-    "Explore real-world Providus CRM Salesforce implementations, automation projects, and customer operations success stories.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return generateStaticPageMetadata("case-studies", {
+    title: "Case Studies",
+    description:
+      "Explore real-world Providus CRM Salesforce implementations, automation projects, and customer operations success stories.",
+    canonicalPath: "/case-studies",
+    image: "/images/case-study.png",
+  });
+}
 
 export default async function CaseStudiesPage() {
   const caseStudies = await sanityFetch<CaseStudyListItem[]>({

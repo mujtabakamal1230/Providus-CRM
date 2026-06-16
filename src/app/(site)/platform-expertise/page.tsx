@@ -7,6 +7,17 @@ import {
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
+import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
+
+export async function generateMetadata() {
+  return generateStaticPageMetadata("platform-expertise", {
+    title: "Certified Platform Expertise",
+    description:
+      "Certified Salesforce Platform expertise across Sales Cloud, Service Cloud, Marketing Cloud, Experience Cloud, Data Cloud, Agentforce, and Revenue Cloud.",
+    canonicalPath: "/platform-expertise",
+    image: "/images/platform-experties.png",
+  });
+}
 
 export default async function PlatformExpertisePage() {
   const schema = {

@@ -10,6 +10,17 @@ import {
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
+import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
+
+export async function generateMetadata() {
+  return generateStaticPageMetadata("services", {
+    title: "Salesforce Services",
+    description:
+      "End-to-end Salesforce services and certified talent for building CRM solutions around your organisation's processes, challenges, and goals.",
+    canonicalPath: "/services",
+    image: "/images/our-services-hero.png",
+  });
+}
 
 export default async function ServicesPage() {
   const schema = {

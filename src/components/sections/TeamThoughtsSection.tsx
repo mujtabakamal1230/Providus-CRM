@@ -108,7 +108,6 @@ export function TeamThoughtsSection() {
                     style={{
                       borderRadius: "20px 20px 0 0" // default rounded for mobile top
                     }}
-                    priority
                   />
                   {/* Subtle dark gradient overlay to match image style */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
@@ -202,7 +201,6 @@ export function TeamThoughtsSection() {
                       fill
                       sizes="268px"
                       className="object-cover"
-                      priority
                     />
                   </div>
 

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
-import { Reveal } from "@/components/ui/Reveal";
 
 export interface IndustrySectionItem {
   title: string;
@@ -54,61 +53,54 @@ export function IndustriesSection({ title, items }: IndustriesSectionProps) {
     <section className="py-24 bg-white">
       <Container>
         {/* Header */}
-        <Reveal direction="up" delay={0.1}>
-          <div className="flex flex-col items-center text-center mb-20">
-            <Image
-              src="/images/green-line.svg"
-              alt=""
-              width={60}
-              height={20}
-              className="w-16 h-auto mb-6"
-            />
-            <Heading as="h2" className="max-w-4xl !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[45px]">
-              {title || "How We Implement Salesforce Across Industries"}
-            </Heading>
-          </div>
-        </Reveal>
+        <div className="flex flex-col items-center text-center mb-20">
+          <Image
+            src="/images/green-line.svg"
+            alt=""
+            width={60}
+            height={20}
+            className="w-16 h-auto mb-6"
+          />
+          <Heading as="h2" className="max-w-4xl !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[45px]">
+            {title || "How We Implement Salesforce Across Industries"}
+          </Heading>
+        </div>
 
         {/* Industry Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12">
           {displayItems.map((item, index) => (
-            <Reveal
+            <div
               key={index}
-              direction={index % 2 === 0 ? "right" : "left"}
-              delay={0.1 * (index % 3 + 1)}
+              className="flex h-full flex-col gap-5 rounded-[28px] p-2 transition-transform duration-300 hover:-translate-y-1 md:flex-row md:gap-8 md:rounded-[50px] md:pr-10"
+              style={{
+                background: "linear-gradient(221.48deg, #F6FFE8 26.54%, #C7EA92 118.63%)",
+                boxShadow: "0px 4.55px 24.57px 0px #0000001C",
+              }}
             >
-              <div
-                className="flex h-full flex-col gap-5 rounded-[28px] p-2 md:flex-row md:gap-8 md:rounded-[50px] md:pr-10"
-                style={{
-                  background: "linear-gradient(221.48deg, #F6FFE8 26.54%, #C7EA92 118.63%)",
-                  boxShadow: "0px 4.55px 24.57px 0px #0000001C",
-                }}
-              >
-                {/* Image Container */}
-                <div className="w-full shrink-0 md:w-[202px]">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[22px] md:aspect-auto md:h-[294px] md:rounded-[43.68px]">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                      unoptimized
-                      sizes="(max-width: 767px) calc(100vw - 48px), 202px"
-                    />
-                  </div>
-                </div>
-
-                {/* Text Content */}
-                <div className="flex flex-col justify-center px-4 pb-7 md:px-0 md:pb-0">
-                  <Text variant="p1" className="text-black font-bold mb-4">
-                    {item.title}
-                  </Text>
-                  <Text variant="p4" className="text-[#4F4D4B] leading-relaxed">
-                    {item.description}
-                  </Text>
+              {/* Image Container */}
+              <div className="w-full shrink-0 md:w-[202px]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[22px] md:aspect-auto md:h-[294px] md:rounded-[43.68px]">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                    sizes="(max-width: 767px) calc(100vw - 48px), 202px"
+                  />
                 </div>
               </div>
-            </Reveal>
+
+              {/* Text Content */}
+              <div className="flex flex-col justify-center px-4 pb-7 md:px-0 md:pb-0">
+                <Text variant="p1" className="text-black font-bold mb-4">
+                  {item.title}
+                </Text>
+                <Text variant="p4" className="text-[#4F4D4B] leading-relaxed">
+                  {item.description}
+                </Text>
+              </div>
+            </div>
           ))}
         </div>
       </Container>

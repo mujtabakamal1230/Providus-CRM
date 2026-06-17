@@ -91,8 +91,8 @@ export function ExploreSection() {
                         src="/images/our-services.png"
                         alt="Our Services"
                         fill
+                        sizes="(min-width: 1024px) 38vw, 100vw"
                         className="object-contain object-right-bottom"
-                        priority
                       />
                     </motion.div>
                   </div>
@@ -161,8 +161,8 @@ export function ExploreSection() {
                         src="/images/our-industry.png"
                         alt="Industry Expertise"
                         fill
+                        sizes="(min-width: 1024px) 30vw, 100vw"
                         className="object-contain object-right-bottom"
-                        priority
                       />
                     </motion.div>
                   </div>
@@ -227,8 +227,8 @@ export function ExploreSection() {
                         src="/images/our-platform.png"
                         alt="Platform Expertise"
                         fill
+                        sizes="(min-width: 1024px) 30vw, 100vw"
                         className="object-contain object-right-bottom"
-                        priority
                       />
                     </motion.div>
                   </div>

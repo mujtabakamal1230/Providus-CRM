@@ -26,7 +26,9 @@ export function CtaSection({
           src={backgroundImage}
           alt=""
           fill
+          sizes="100vw"
           className="object-cover object-center"
+          quality={82}
         />
         {/* Overlay Gradient */}
         <div

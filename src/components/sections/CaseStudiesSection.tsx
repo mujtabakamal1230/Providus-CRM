@@ -52,7 +52,9 @@ export function CaseStudiesSection({ caseStudies }: CaseStudiesSectionProps) {
                       src={caseStudy.image}
                       alt={caseStudy.title}
                       fill
+                      sizes="(min-width: 1800px) 1536px, (min-width: 1440px) 1376px, calc(100vw - 48px)"
                       className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      quality={82}
                     />
                     <div className="absolute inset-0 z-10 bg-linear-to-b from-black/0 to-black transition-opacity duration-300 group-hover:opacity-95" />
                   </div>

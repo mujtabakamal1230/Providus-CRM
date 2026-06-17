@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { BlogIndexClient } from "@/components/sections/BlogIndexClient";
-import { CtaSection } from "@/components/sections";
+import { CtaSection, HeroSection } from "@/components/sections";
+import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { formatDate } from "@/lib/format";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import {
-  BLOG_CATEGORIES_QUERY,
-  BLOG_POSTS_QUERY,
-} from "@/sanity/lib/queries";
-import type { BlogPostListItem, Category } from "@/sanity/lib/types";
+import { BLOG_POSTS_QUERY } from "@/sanity/lib/queries";
+import type { BlogPostListItem } from "@/sanity/lib/types";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateStaticPageMetadata("blog", {
@@ -23,16 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BlogPage() {
-  const [posts, categories] = await Promise.all([
-    sanityFetch<BlogPostListItem[]>({
-      query: BLOG_POSTS_QUERY,
-      tags: ["posts"],
-    }),
-    sanityFetch<Category[]>({
-      query: BLOG_CATEGORIES_QUERY,
-      tags: ["categories"],
-    }),
-  ]);
+  const posts = await sanityFetch<BlogPostListItem[]>({
+    query: BLOG_POSTS_QUERY,
+    tags: ["posts"],
+  });
 
   const blogItems = (posts ?? []).map((post) => ({
     title: post.title,
@@ -67,14 +59,18 @@ export default async function BlogPage() {
     }))
   };
   const jsonLd = await getSitePageJsonLd("blog", schema);
+  const heroTitle = (
+    <>
+      Insights And Impact
+      <GreenLineMark className="inline-block h-10 w-auto align-baseline ml-1" />
+    </>
+  );
 
   return (
     <>
       <JsonLdScript data={jsonLd} />
-      <BlogIndexClient
-        posts={blogItems}
-        categories={(categories ?? []).map((category) => category.title)}
-      />
+      <HeroSection title={heroTitle} hideImage />
+      <BlogIndexClient posts={blogItems} />
       <CtaSection />
     </>
   );

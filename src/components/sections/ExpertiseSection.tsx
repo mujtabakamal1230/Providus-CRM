@@ -11,7 +11,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/Carousel";
 import { Heading, Text } from "@/components/ui/Typography";
-import { Reveal } from "@/components/ui/Reveal";
 
 export interface ExpertiseItem {
   id: number | string;
@@ -82,20 +81,18 @@ export function ExpertiseSection({ title, items }: ExpertiseSectionProps) {
   return (
     <Section className="overflow-hidden">
       <Container>
-        <Reveal direction="up" delay={0.1}>
-          <div className="mb-12 flex flex-col items-center text-center md:mb-16">
-            <Image
-              src="/images/green-line.svg"
-              alt=""
-              width={60}
-              height={20}
-              className="w-16 h-auto mb-6"
-            />
-            <Heading as="h2" className="max-w-lg">
-              {title || defaultTitle}
-            </Heading>
-          </div>
-        </Reveal>
+        <div className="mb-12 flex flex-col items-center text-center md:mb-16">
+          <Image
+            src="/images/green-line.svg"
+            alt=""
+            width={60}
+            height={20}
+            className="w-16 h-auto mb-6"
+          />
+          <Heading as="h2" className="max-w-lg">
+            {title || defaultTitle}
+          </Heading>
+        </div>
       </Container>
 
       <Carousel

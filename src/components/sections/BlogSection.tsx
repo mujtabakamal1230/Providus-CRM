@@ -93,7 +93,9 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                           src={firstItem.image}
                           alt={firstItem.title}
                           fill
+                          sizes="(min-width: 1024px) 64vw, 100vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-103"
+                          quality={82}
                           priority
                         />
                       </div>
@@ -128,7 +130,9 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                               src={item.image}
                               alt={item.title}
                               fill
+                              sizes="(min-width: 1024px) 30vw, 100vw"
                               className="object-cover transition-transform duration-500 group-hover:scale-103"
+                              quality={82}
                             />
                           </div>
                           <Heading
@@ -163,7 +167,9 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                           src={item.image}
                           alt={item.title}
                           fill
+                          sizes="(min-width: 1024px) 45vw, 100vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-103"
+                          quality={82}
                         />
                       </div>
                       <Heading
@@ -199,7 +205,9 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
                           src={item.image}
                           alt={item.title}
                           fill
+                          sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-103"
+                          quality={82}
                         />
                       </div>
                       <Heading

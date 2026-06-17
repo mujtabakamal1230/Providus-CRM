@@ -139,7 +139,6 @@ function BelieveCard({ card }: { card: CardItem }) {
               fill
               sizes="156px"
               className="object-contain"
-              priority
             />
           </div>
         </motion.div>

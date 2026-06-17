@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Section } from "@/components/layout/Section";
 import { Heading, Text } from "@/components/ui/Typography";
-import { Reveal } from "@/components/ui/Reveal";
 
 interface CertifiedSectionProps {
   title?: string;
@@ -38,41 +37,37 @@ export function CertifiedSection({ title, description }: CertifiedSectionProps) 
         </div>
 
         <div className="absolute left-1/2 top-[5%] z-20 w-[112px] -translate-x-1/2 sm:w-[128px] md:w-[13%] md:max-w-[160px]">
-          <Reveal direction="up" delay={0.1}>
-            <Image
-              src="/images/salesforce-partner.png"
-              alt="Salesforce Partner"
-              width={446}
-              height={474}
-              className="h-auto w-full"
-            />
-          </Reveal>
+          <Image
+            src="/images/salesforce-partner.png"
+            alt="Salesforce Partner"
+            width={446}
+            height={474}
+            className="h-auto w-full"
+          />
         </div>
 
         <div className="absolute inset-x-4 bottom-[16%] z-10 mx-auto flex max-w-2xl flex-col items-center text-center">
-          <Reveal direction="up" delay={0.3}>
-            <div className="mb-4 flex justify-center">
-              <Image
-                src="/images/green-line.svg"
-                alt=""
-                width={60}
-                height={20}
-                className="h-auto w-16"
-              />
-            </div>
+          <div className="mb-4 flex justify-center">
+            <Image
+              src="/images/green-line.svg"
+              alt=""
+              width={60}
+              height={20}
+              className="h-auto w-16"
+            />
+          </div>
 
-            <Heading as="h2" className="mb-4 text-black">
-              {title || (
-                <>
-                  Professional Salesforce <br /> Services Grounded in <br /> Certified Expertise
-                </>
-              )}
-            </Heading>
+          <Heading as="h2" className="mb-4 text-black">
+            {title || (
+              <>
+                Professional Salesforce <br /> Services Grounded in <br /> Certified Expertise
+              </>
+            )}
+          </Heading>
 
-            <Text variant="p3" className="mx-auto text-black">
-              {description || defaultDescription}
-            </Text>
-          </Reveal>
+          <Text variant="p3" className="mx-auto text-black">
+            {description || defaultDescription}
+          </Text>
         </div>
       </div>
     </Section>

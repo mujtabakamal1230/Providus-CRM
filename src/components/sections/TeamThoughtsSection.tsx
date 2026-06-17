@@ -51,15 +51,15 @@ export function TeamThoughtsSection() {
   const activeMember = teamThoughts[activeIndex];
 
   return (
-    <section
-      className="mt-24 relative py-24 overflow-hidden bg-[#1E5D8F]"
-      style={{
-        backgroundImage: "url('/images/team-bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
-      }}
-    >
+    <section className="mt-24 relative py-24 overflow-hidden bg-[#1E5D8F]">
+      <Image
+        src="/images/team-bg.png"
+        alt=""
+        fill
+        sizes="100vw"
+        className="absolute inset-0 z-0 object-cover object-center"
+        quality={78}
+      />
       <Container className="relative z-10">
         {/* Header */}
         <Reveal direction="up" delay={0.1}>

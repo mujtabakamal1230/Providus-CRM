@@ -56,12 +56,18 @@ export function ContactSection() {
     <section className="mt-4 py-8 md:py-12 bg-white">
       <Container>
         <div
-          className="rounded-3xl overflow-hidden bg-cover bg-center px-6 py-12 md:px-12 lg:px-16 md:py-16 lg:py-20 text-white shadow-xl"
-          style={{
-            backgroundImage: "url('/images/hero-bg.png')",
-          }}
+          className="relative rounded-3xl overflow-hidden bg-brand-blue px-6 py-12 md:px-12 lg:px-16 md:py-16 lg:py-20 text-white shadow-xl"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <Image
+            src="/images/hero-bg.png"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1800px) 1696px, calc(100vw - 48px)"
+            className="absolute inset-0 z-0 object-cover object-center"
+            quality={78}
+          />
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left Column — Contact Details */}
             <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8">
               <Reveal direction="up" delay={0.1}>

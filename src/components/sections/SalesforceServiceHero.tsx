@@ -76,10 +76,18 @@ export function SalesforceServiceHero({
     <section className="bg-white pb-10 pt-4 md:pb-14 md:pt-6">
       <Container>
         <div
-          className="overflow-hidden rounded-[20px] bg-brand-blue bg-cover bg-center px-6 py-10 text-white shadow-xl md:px-10 md:py-14 lg:px-14 lg:py-16"
-          style={{ backgroundImage: `url('${backgroundImage}')` }}
+          className="relative overflow-hidden rounded-[20px] bg-brand-blue px-6 py-10 text-white shadow-xl md:px-10 md:py-14 lg:px-14 lg:py-16"
         >
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,500px)] lg:items-center">
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1800px) 1696px, calc(100vw - 48px)"
+            className="absolute inset-0 z-0 object-cover object-center"
+            quality={78}
+          />
+          <div className="relative z-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,500px)] lg:items-center">
             <div className="max-w-2xl">
               <div className="mb-8 flex items-center gap-4">
                 <div className="shrink-0 bg-white rounded-sm overflow-hidden">

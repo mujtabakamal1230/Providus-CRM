@@ -36,15 +36,15 @@ const believeCards = [
 
 export function BelieveSection() {
   return (
-    <section
-      className="relative py-24 bg-white"
-      style={{
-        backgroundImage: "url('/images/believe-bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
-      }}
-    >
+    <section className="relative overflow-hidden py-24 bg-white">
+      <Image
+        src="/images/believe-bg.png"
+        alt=""
+        fill
+        sizes="100vw"
+        className="absolute inset-0 z-0 object-cover object-center"
+        quality={78}
+      />
       <Container className="relative z-10">
         {/* Header */}
         <Reveal direction="up" delay={0.1}>

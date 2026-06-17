@@ -21,7 +21,7 @@ export async function sanityFetch<T>({
   query,
   params = {},
   tags = [],
-  revalidate = 0,
+  revalidate = 300,
   metadata = false,
 }: SanityFetchOptions): Promise<T | null> {
   if (!isSanityConfigured) {

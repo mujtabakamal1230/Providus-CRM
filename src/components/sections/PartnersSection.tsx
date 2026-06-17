@@ -3,18 +3,18 @@ import { Container } from "@/components/layout/Container";
 import { Heading } from "@/components/ui/Typography";
 
 const logos = [
-  "/images/partners/1.png",
-  "/images/partners/2.png",
-  "/images/partners/3.png",
-  "/images/partners/4.png",
-  "/images/partners/5.png",
-  "/images/partners/6.png",
-  "/images/partners/7.png",
-  "/images/partners/8.png",
-  "/images/partners/9.png",
-  "/images/partners/10.png",
-  "/images/partners/11.png",
-  "/images/partners/12.png",
+  "/images/partners/1.webp",
+  "/images/partners/2.webp",
+  "/images/partners/3.webp",
+  "/images/partners/4.webp",
+  "/images/partners/5.webp",
+  "/images/partners/6.webp",
+  "/images/partners/7.webp",
+  "/images/partners/8.webp",
+  "/images/partners/9.webp",
+  "/images/partners/10.webp",
+  "/images/partners/11.webp",
+  "/images/partners/12.webp",
 ];
 
 export function PartnersSection() {
@@ -33,7 +33,7 @@ export function PartnersSection() {
                 <div key={`logo-1-${idx}`} className="shrink-0 h-[60px] md:h-[100px] w-[140px] md:w-[220px] flex items-center justify-center">
                   <Image
                     src={logo}
-                    alt="Partner logo"
+                    alt={`Partner ${idx + 1} logo`}
                     width={220}
                     height={100}
                     className="max-h-[50px] md:max-h-[85px] max-w-full w-auto object-contain brightness-0 opacity-70 hover:brightness-100 hover:opacity-100 transition-all duration-300"
@@ -45,7 +45,7 @@ export function PartnersSection() {
                 <div key={`logo-2-${idx}`} className="shrink-0 h-[60px] md:h-[100px] w-[140px] md:w-[220px] flex items-center justify-center">
                   <Image
                     src={logo}
-                    alt="Partner logo"
+                    alt={`Partner ${idx + 1} logo`}
                     width={220}
                     height={100}
                     className="max-h-[50px] md:max-h-[85px] max-w-full w-auto object-contain brightness-0 opacity-70 hover:brightness-100 hover:opacity-100 transition-all duration-300"

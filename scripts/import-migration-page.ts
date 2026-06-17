@@ -337,22 +337,22 @@ const EXPERTISE_ACCENT_COLORS = [
 ];
 
 const EXPERTISE_ICON_PATHS: Record<string, string> = {
-  "Sales Cloud": "public/images/sales-cloud.png",
-  "Service Cloud": "public/images/service-cloud.png",
-  "Marketing Cloud": "public/images/marketing-cloud.png",
-  "Experience Cloud": "public/images/experience-cloud.png",
-  "Revenue Cloud": "public/images/revenue-cloud.png",
-  Agentforce: "public/images/agent-force.png",
+  "Sales Cloud": "public/images/sales-cloud.webp",
+  "Service Cloud": "public/images/service-cloud.webp",
+  "Marketing Cloud": "public/images/marketing-cloud.webp",
+  "Experience Cloud": "public/images/experience-cloud.webp",
+  "Revenue Cloud": "public/images/revenue-cloud.webp",
+  Agentforce: "public/images/agent-force.webp",
 };
 
 const MIGRATION_LOGO_PATHS: Record<string, string> = {
-  HubSpot: "public/images/migration-logos/hubspot.png",
-  "Zoho CRM": "public/images/migration-logos/zohocrm.png",
-  "Microsoft Dynamics 365": "public/images/migration-logos/dynamics.png",
-  Pipedrive: "public/images/migration-logos/pipedrive.png",
-  "Monday CRM": "public/images/migration-logos/monday-sales-crm.png",
-  SugarCRM: "public/images/migration-logos/sugarcrm.png",
-  "NetSuite CRM": "public/images/migration-logos/netsuite.png",
+  HubSpot: "public/images/migration-logos/hubspot.webp",
+  "Zoho CRM": "public/images/migration-logos/zohocrm.webp",
+  "Microsoft Dynamics 365": "public/images/migration-logos/dynamics.webp",
+  Pipedrive: "public/images/migration-logos/pipedrive.webp",
+  "Monday CRM": "public/images/migration-logos/monday-sales-crm.webp",
+  SugarCRM: "public/images/migration-logos/sugarcrm.webp",
+  "NetSuite CRM": "public/images/migration-logos/netsuite.webp",
 };
 
 async function run() {

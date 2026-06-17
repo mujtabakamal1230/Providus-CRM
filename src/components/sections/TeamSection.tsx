@@ -3,14 +3,14 @@ import { Container } from "@/components/layout/Container";
 import { Heading } from "@/components/ui/Typography";
 
 const teamMembers = [
-  { id: 1, image: "/images/team/1.png" },
-  { id: 2, image: "/images/team/2.png" },
-  { id: 3, image: "/images/team/3.png" },
-  { id: 4, image: "/images/team/4.png" },
-  { id: 5, image: "/images/team/5.png" },
-  { id: 6, image: "/images/team/6.png" },
-  { id: 7, image: "/images/team/7.png" },
-  { id: 8, image: "/images/team/8.png" },
+  { id: 1, image: "/images/team/1.webp" },
+  { id: 2, image: "/images/team/2.webp" },
+  { id: 3, image: "/images/team/3.webp" },
+  { id: 4, image: "/images/team/4.webp" },
+  { id: 5, image: "/images/team/5.webp" },
+  { id: 6, image: "/images/team/6.webp" },
+  { id: 7, image: "/images/team/7.webp" },
+  { id: 8, image: "/images/team/8.webp" },
 ];
 
 export function TeamSection() {
@@ -40,7 +40,7 @@ export function TeamSection() {
             >
               <Image
                 src={member.image}
-                alt={`Team Member ${member.id}`}
+                alt={`Team member portrait ${member.id}`}
                 fill
                 className="object-cover"
               />

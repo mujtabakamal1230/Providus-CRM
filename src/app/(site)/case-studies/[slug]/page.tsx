@@ -18,6 +18,7 @@ import {
   CASE_STUDY_SLUGS_QUERY,
 } from "@/sanity/lib/queries";
 import type { CaseStudy, CaseStudyListItem } from "@/sanity/lib/types";
+import type { Image as SanityImageType } from "sanity";
 
 interface CaseStudyPageProps {
   params: Promise<{
@@ -53,7 +54,8 @@ export async function generateMetadata({
 
   if (!caseStudy) {
     return {
-      title: "Case study",
+      title: "Case Study Not Found | Providus CRM",
+      description: "This case study is no longer available.",
     };
   }
 
@@ -91,8 +93,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const mappedCaseStudies = recentCaseStudies.map((cs) => ({
     title: cs.title,
     slug: cs.slug.current,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    image: cs.coverImage ? urlForImage(cs.coverImage as any).url() : "/images/case-studies/case-study.png",
+    image: cs.coverImage ? urlForImage(cs.coverImage as SanityImageType).url() : "/images/case-studies/case-study.webp",
     category: cs.industry,
   }));
   const jsonLd = resolveJsonLd(caseStudy.jsonLd);

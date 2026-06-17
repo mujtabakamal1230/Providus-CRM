@@ -41,7 +41,7 @@ export function BlogArticleLeftSidebar({
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Share on Facebook"
             className="flex h-8 w-8 items-center justify-center rounded-sm bg-white"
           >
@@ -57,7 +57,7 @@ export function BlogArticleLeftSidebar({
           <a
             href={`https://x.com/intent/post?text=${encodedTitle}&url=${encodedUrl}`}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Share on X"
             className="flex h-8 w-8 items-center justify-center rounded-sm border border-white bg-white text-black"
           >
@@ -68,7 +68,7 @@ export function BlogArticleLeftSidebar({
           <a
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Share on LinkedIn"
             className="flex h-8 w-8 items-center justify-center rounded-sm bg-white"
           >

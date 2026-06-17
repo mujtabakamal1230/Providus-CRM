@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Read Providus CRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
     canonicalPath: "/blog",
-    image: "/images/case-study.png",
+    image: "/images/case-study.webp",
   });
 }
 
@@ -31,7 +31,7 @@ export default async function BlogPage() {
     slug: post.slug.current,
     date: formatDate(post.publishedAt),
     excerpt: post.excerpt ?? "",
-    image: post.heroImage?.asset?.url ?? "/images/case-study.png",
+    image: post.heroImage?.asset?.url ?? "/images/case-study.webp",
     categories: post.categories?.map((category) => category.title) ?? [],
   }));
 
@@ -45,7 +45,7 @@ export default async function BlogPage() {
       "@type": "BlogPosting",
       "headline": post.title,
       "description": post.excerpt ?? "",
-      "image": post.heroImage?.asset?.url ?? "https://providuscrm.co.uk/images/case-study.png",
+      "image": post.heroImage?.asset?.url ?? "https://providuscrm.co.uk/images/case-study.webp",
       "datePublished": post.publishedAt,
       "url": `https://providuscrm.co.uk/blog/${post.slug.current}`,
       "publisher": {
@@ -53,7 +53,7 @@ export default async function BlogPage() {
         "name": "Providus CRM",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://providuscrm.co.uk/images/salesforce-partner.png"
+          "url": "https://providuscrm.co.uk/images/salesforce-partner.webp"
         }
       }
     }))

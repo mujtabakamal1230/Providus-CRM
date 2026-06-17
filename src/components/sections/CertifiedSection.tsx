@@ -21,14 +21,14 @@ export function CertifiedSection({ title, description }: CertifiedSectionProps) 
           className="pointer-events-none absolute inset-0 hidden md:block"
         >
           <Image
-            src="/images/certified-left.png"
+            src="/images/certified-left.webp"
             alt=""
             width={1236}
             height={1385}
             className="absolute bottom-0 left-[7%] h-auto w-[42.5%]"
           />
           <Image
-            src="/images/certified-right.png"
+            src="/images/certified-right.webp"
             alt=""
             width={1236}
             height={1385}
@@ -38,7 +38,7 @@ export function CertifiedSection({ title, description }: CertifiedSectionProps) 
 
         <div className="absolute left-1/2 top-[5%] z-20 w-[112px] -translate-x-1/2 sm:w-[128px] md:w-[13%] md:max-w-[160px]">
           <Image
-            src="/images/salesforce-partner.png"
+            src="/images/salesforce-partner.webp"
             alt="Salesforce Partner"
             width={446}
             height={474}

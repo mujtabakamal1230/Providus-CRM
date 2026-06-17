@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Explore real-world Providus CRM Salesforce implementations, automation projects, and customer operations success stories.",
     canonicalPath: "/case-studies",
-    image: "/images/case-study.png",
+    image: "/images/case-study.webp",
   });
 }
 
@@ -33,7 +33,7 @@ export default async function CaseStudiesPage() {
     title: caseStudy.title,
     slug: caseStudy.slug.current,
     description: caseStudy.excerpt ?? "",
-    image: caseStudy.coverImage?.asset?.url ?? "/images/case-study.png",
+    image: caseStudy.coverImage?.asset?.url ?? "/images/case-study.webp",
     badges: caseStudy.technologies ?? [],
     resultSummary: caseStudy.resultSummary,
   }));

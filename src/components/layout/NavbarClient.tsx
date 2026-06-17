@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { CtaButton } from "@/components/ui/CtaButton";
 import type { NavItem } from "@/types";
 import { Container } from "./Container";
@@ -17,7 +18,23 @@ interface NavbarClientProps {
 
 export function NavbarClient({ salesforceServices }: NavbarClientProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const navItems = getNavItems(salesforceServices);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  const isActive = (href: string) => pathname === href;
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
@@ -43,6 +60,7 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
                   key={item.href}
                   href={item.href}
                   className="text-p3 whitespace-nowrap text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
+                  aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   {item.label}
                 </Link>
@@ -61,7 +79,8 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
           <button
             className="p-2 text-[#2E2E2E] lg:hidden"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
           >
             <svg
               className="h-5 w-5"
@@ -89,7 +108,12 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
         </div>
 
         {isOpen && (
-          <div className="flex flex-col gap-3 border-t border-gray-100 py-4 lg:hidden">
+          <div
+            className="flex flex-col gap-3 border-t border-gray-100 py-4 lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main navigation"
+          >
             {navItems.map((item) =>
               item.children ? (
                 <div key={item.href} className="flex flex-col gap-2">
@@ -97,6 +121,7 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
                     href={item.href}
                     className="text-p3 px-2 py-1 text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
                     onClick={() => setIsOpen(false)}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                   >
                     {item.label}
                   </Link>
@@ -107,6 +132,7 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
                         href={child.href}
                         className="text-p4 px-2 py-1 text-[#5F5F5F] transition-colors hover:text-[#1D70C5]"
                         onClick={() => setIsOpen(false)}
+                        aria-current={isActive(child.href) ? "page" : undefined}
                       >
                         {child.label}
                       </Link>
@@ -119,6 +145,7 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
                   href={item.href}
                   className="text-p3 px-2 py-1 text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
                   onClick={() => setIsOpen(false)}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   {item.label}
                 </Link>
@@ -139,10 +166,25 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
 }
 
 function DesktopDropdown({ item }: { item: DropdownNavItem }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="group relative">
+    <div
+      className="group relative"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       <Link
         href={item.href}
+        role="menuitem"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        onFocus={() => setIsOpen(true)}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+            setIsOpen(false);
+          }
+        }}
         className="text-p3 flex items-center gap-1 whitespace-nowrap text-[#2E2E2E] transition-colors hover:text-[#1D70C5]"
       >
         {item.label}
@@ -160,12 +202,19 @@ function DesktopDropdown({ item }: { item: DropdownNavItem }) {
         </svg>
       </Link>
 
-      <div className="invisible absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+      <div
+        className={`invisible absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 ${
+          isOpen ? "visible opacity-100" : ""
+        }`}
+        role="menu"
+        aria-label={`${item.label} submenu`}
+      >
         <div className="rounded-[8px] border border-gray-100 bg-white p-2 shadow-xl">
           {item.children?.map((child) => (
             <Link
               key={child.href}
               href={child.href}
+              role="menuitem"
               className="text-p3 block rounded-[6px] px-4 py-3 text-[#2E2E2E] transition-colors hover:bg-brand-blue-light hover:text-[#1D70C5]"
             >
               {child.label}

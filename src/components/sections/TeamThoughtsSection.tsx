@@ -14,7 +14,7 @@ const teamThoughts = [
     displayName: "Mohsin Khan",
     designation: "Founder",
     fullDesignation: "Founder at ProvidusCRM",
-    image: "/images/team/9.png",
+    image: "/images/team/9.webp",
     quote: "I have seen too many organisations stuck with CRM systems that no longer serve them. We exist to fix that, and to make sure new implementations do not end up the same way."
   },
   {
@@ -23,7 +23,7 @@ const teamThoughts = [
     displayName: "Mustansir Mustafa",
     designation: "Senior Director of Business Operations",
     fullDesignation: "Senior Director of Business Operations",
-    image: "/images/team/10.png",
+    image: "/images/team/10.webp",
     quote: "Operational excellence in CRM is not just about writing clean code; it's about aligning technology with business processes to achieve predictable, repeatable success."
   },
   {
@@ -32,7 +32,7 @@ const teamThoughts = [
     displayName: "Sami Haroon",
     designation: "Vice President of AI Engineering",
     fullDesignation: "Vice President of AI Engineering",
-    image: "/images/team/8.png",
+    image: "/images/team/8.webp",
     quote: "Integrating AI with Salesforce is the next frontier of productivity. We build intelligent workflows that turn data into insights and actions, helping teams scale effortlessly."
   },
   {
@@ -41,7 +41,7 @@ const teamThoughts = [
     displayName: "Adil Raja",
     designation: "Chief CRM Officer",
     fullDesignation: "Chief CRM Officer",
-    image: "/images/team/1.png",
+    image: "/images/team/1.webp",
     quote: "A CRM should empower people, not restrict them. We design user-centric Salesforce systems that teams love to use, driving high adoption and maximum long-term value."
   }
 ];
@@ -53,7 +53,7 @@ export function TeamThoughtsSection() {
   return (
     <section className="mt-24 relative py-24 overflow-hidden bg-[#1E5D8F]">
       <Image
-        src="/images/team-bg.png"
+        src="/images/team-bg.webp"
         alt=""
         fill
         sizes="100vw"
@@ -177,7 +177,10 @@ export function TeamThoughtsSection() {
                 <div
                   className={`cursor-pointer transition-all duration-300 flex flex-col items-center select-none w-full max-w-[284px] ${isActive ? "ring-4 ring-white/30 translate-y-[-8px]" : "hover:translate-y-[-4px]"
                     }`}
+                  tabIndex={0}
                   onMouseEnter={() => setActiveIndex(index)}
+                  onClick={() => setActiveIndex(index)}
+                  onFocus={() => setActiveIndex(index)}
                   style={{
                     borderRadius: "40px",
                     boxShadow: "0px 16.25px 35.54px 0px rgba(0, 0, 0, 0.04), 0px 63.97px 63.97px 0px rgba(0, 0, 0, 0.04), 0px 144.19px 86.31px 0px rgba(0, 0, 0, 0.02), 0px 255.88px 102.56px 0px rgba(0, 0, 0, 0.01), 0px 399.05px 111.69px 0px rgba(0, 0, 0, 0.0)",

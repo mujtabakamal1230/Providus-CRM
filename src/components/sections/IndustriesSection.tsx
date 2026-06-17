@@ -16,32 +16,32 @@ interface IndustriesSectionProps {
 const industries: IndustrySectionItem[] = [
   {
     title: "Non-Profit Cloud",
-    image: "/images/non-profit.png",
+    image: "/images/non-profit.webp",
     description: "Charities and nonprofit organisations run on relationships, but most CRM systems were never built for how nonprofits actually work. Our Nonprofit Cloud consultants configure donor lifecycles, track programme outcomes, automate gift processing, and consolidate fundraising data in one place. From donation pages and recurring giving to grant tracking and volunteer management, every setup reflects how nonprofit teams operate day to day."
   },
   {
     title: "Education Cloud",
-    image: "/images/education-cloud.png",
+    image: "/images/education-cloud.webp",
     description: "Universities, colleges, and training providers manage thousands of relationships across recruitment, admissions, student success, and alumni engagement. Our Education Cloud specialists connect every stage of the student lifecycle in one platform. Recruitment pipelines, application tracking, student case management, and alumni fundraising all run from the same data, so no department works in isolation, and no student record falls through the gaps."
   },
   {
     title: "Commerce Cloud",
-    image: "/images/commerce-cloud.png",
+    image: "/images/commerce-cloud.webp",
     description: "Selling online gets complicated fast. Product catalogues grow, pricing rules multiply, and customers expect the same experience across every channel. Our Commerce Cloud consultants build B2B and B2C storefronts connected directly to CRM data, order management, and marketing automation. Inventory visibility, pricing logic, checkout flows, and post-purchase journeys all live inside one platform, so the commerce experience matches what the rest of the business already knows about the customer."
   },
   {
     title: "Health Cloud",
-    image: "/images/health-cloud.png",
+    image: "/images/health-cloud.webp",
     description: "Patient data is sensitive, care coordination is complex, and compliance is not optional. Our Health Cloud implementation experts give healthcare providers a complete view of every patient across referrals, appointments, care plans, and follow-ups. Clinical and non-clinical teams work from the same record, consent tracking is built into every workflow, and reporting meets regulatory standards. Better care coordination with less administrative overhead."
   },
   {
     title: "Financial Services Cloud",
-    image: "/images/finance-services-cloud.png",
+    image: "/images/finance-services-cloud.webp",
     description: "Banks, lenders, wealth managers, and fintechs need CRM that understands financial relationships, not just contacts and opportunities. Our Financial Services Cloud consultants set up client household management, financial account tracking, compliance workflow automation, and full advisor dashboards. KYC processes, referral tracking, and pipeline management all operate within a platform built specifically for how financial services teams work and what regulators expect."
   },
   {
     title: "Manufacturing Cloud",
-    image: "/images/manufacturing-cloud.png",
+    image: "/images/manufacturing-cloud.webp",
     description: "Manufacturers deal with long sales cycles, complex account hierarchies, and forecasting that depends on both sales agreements and actual production capacity. Our Manufacturing Cloud specialists connect sales forecasts with operations data, manage account-based agreements, and give commercial teams accurate visibility into run-rate business and new opportunities. Rebate management, partner collaboration, and demand planning all run from one system instead of five disconnected spreadsheets."
   }
 ];

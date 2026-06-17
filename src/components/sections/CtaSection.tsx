@@ -14,7 +14,7 @@ export function CtaSection({
   title,
   buttonLabel = "Let's Connect",
   buttonHref = "/contact",
-  backgroundImage = "/images/cta-bg.jpg",
+  backgroundImage = "/images/cta-bg.webp",
 }: CtaSectionProps) {
   const displayTitle = title || "Explore How We Align Your CRM Systems With Your Business Initiatives.";
 
@@ -48,7 +48,7 @@ export function CtaSection({
             height={20}
             className="w-16 h-auto mb-6"
           />
-          <Heading as="h1" className="text-black mb-8 !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[60.9px]">
+          <Heading as="h2" className="text-black mb-8 !text-[34px] !leading-[38px] md:!text-[50px] md:!leading-[60.9px]">
             {displayTitle.split("\n").map((line, index) => (
               <span key={`${line}-${index}`}>
                 {index > 0 && <br />}
@@ -58,11 +58,11 @@ export function CtaSection({
           </Heading>
 
           <Link href={buttonHref} className="inline-block">
-            <button className="flex items-center gap-2 bg-[#38A81B] text-white px-6 py-3 rounded-full hover:bg-[#2e8b16] transition-colors group cursor-pointer">
+            <button className="flex items-center gap-2 bg-brand-green text-white px-6 py-3 rounded-full hover:bg-[#2e8b16] transition-colors group cursor-pointer">
               <div className="bg-white rounded-full p-1 group-hover:scale-110 transition-transform">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="#38A81B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                  <path d="M9 18L15 12L9 6" stroke="var(--color-brand-green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               </div>
               <span className="font-semibold">{buttonLabel}</span>
             </button>

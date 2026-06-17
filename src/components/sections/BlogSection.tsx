@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { GreenLineMark } from "@/components/ui/GreenLineMark";
 import { Heading, Text } from "@/components/ui/Typography";
@@ -63,6 +64,7 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
             <input
               type="text"
               placeholder="What are you looking for?"
+              aria-label="Search blog posts"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               className="w-full pl-12 pr-6 py-3.5 bg-gray-50 border border-gray-200 rounded-full text-[14px] font-body text-black placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:bg-white transition-all shadow-sm"
@@ -228,8 +230,8 @@ export function BlogSection({ posts, searchQuery, onSearchChange }: BlogSectionP
             {/* Load More Button */}
             <div className="flex justify-center mt-8">
               <button className="flex items-center gap-2 border border-gray-300 text-black px-8 py-3.5 rounded-full hover:bg-gray-50 transition-all font-semibold cursor-pointer">
-                <span>Load More</span>
-                <span>➔</span>
+                Load More
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>

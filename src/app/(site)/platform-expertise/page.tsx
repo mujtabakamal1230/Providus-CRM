@@ -15,7 +15,7 @@ export async function generateMetadata() {
     description:
       "Certified Salesforce Platform expertise across Sales Cloud, Service Cloud, Marketing Cloud, Experience Cloud, Data Cloud, Agentforce, and Revenue Cloud.",
     canonicalPath: "/platform-expertise",
-    image: "/images/platform-experties.png",
+    image: "/images/platform-experties.webp",
   });
 }
 
@@ -79,7 +79,7 @@ export default async function PlatformExpertisePage() {
       <HeroSection
         title={heroTitle}
         description="Whether it is sales pipeline management or autonomous AI agents, our certified team delivers end-to-end solutions across the Salesforce platform."
-        image="/images/platform-experties.png"
+        image="/images/platform-experties.webp"
         imageClassName="object-contain"
       />
       <PartnersSection />

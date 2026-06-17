@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       "Get in touch with Providus CRM. Speak to our certified Salesforce experts and CRM consultants today.",
     canonicalPath: "/contact",
-    image: "/images/hero-bg.png",
+    image: "/images/hero-bg.webp",
   });
 }
 

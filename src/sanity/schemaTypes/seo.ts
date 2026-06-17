@@ -16,7 +16,7 @@ export const seo = defineType({
       title: "Meta description",
       type: "text",
       rows: 3,
-      validation: (rule) => rule.max(160),
+      validation: (rule) => rule.max(500),
     }),
     defineField({
       name: "keywords",
@@ -56,7 +56,7 @@ export const seo = defineType({
       title: "Open Graph description",
       type: "text",
       rows: 3,
-      validation: (rule) => rule.max(200),
+      validation: (rule) => rule.max(500),
     }),
     defineField({
       name: "ogImage",
@@ -82,7 +82,7 @@ export const seo = defineType({
       title: "Twitter/X description",
       type: "text",
       rows: 3,
-      validation: (rule) => rule.max(200),
+      validation: (rule) => rule.max(500),
     }),
     defineField({
       name: "twitterImage",

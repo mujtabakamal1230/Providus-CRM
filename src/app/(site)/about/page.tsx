@@ -20,7 +20,7 @@ export async function generateMetadata() {
     description:
       "Professional Salesforce services grounded in certified expertise from a UK Salesforce partner.",
     canonicalPath: "/about",
-    image: "/images/about-us-hero.png",
+    image: "/images/about-us-hero.webp",
   });
 }
 
@@ -35,7 +35,7 @@ export default async function AboutPage() {
       "@type": "Organization",
       "name": "Providus CRM",
       "url": "https://providuscrm.co.uk",
-      "logo": "https://providuscrm.co.uk/images/salesforce-partner.png",
+      "logo": "https://providuscrm.co.uk/images/salesforce-partner.webp",
       "description": "Certified Salesforce partner based in the UK, working with organisations across nonprofit, financial services, healthcare, and more."
     }
   };
@@ -55,7 +55,7 @@ export default async function AboutPage() {
       <HeroSection
         title={heroTitle}
         description="Professional Salesforce Services Grounded in Certified Expertise"
-        image="/images/about-us-hero.png"
+        image="/images/about-us-hero.webp"
         imageClassName="object-contain p-4"
       />
       <PartnersSection />

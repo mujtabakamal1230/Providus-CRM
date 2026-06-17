@@ -103,7 +103,7 @@ export async function generateMetadata({
 
   if (!fetchedPage) {
     return {
-      title: "Salesforce service",
+      title: "Service Not Found | Providus CRM",
     };
   }
 
@@ -148,7 +148,7 @@ export default async function SalesforceServicePage({
   const serviceCaseStudies = caseStudySource.map((caseStudy) => ({
     title: caseStudy.title,
     slug: caseStudy.slug.current,
-    image: imageUrl(caseStudy.coverImage) || "/images/case-study.png",
+    image: imageUrl(caseStudy.coverImage) || "/images/case-study.webp",
     label: caseStudy.technologies?.[0] || "Salesforce Consulting",
     category: caseStudy.industry,
   }));
@@ -337,7 +337,7 @@ function toExpertiseItems(page: ServicePage): ExpertiseItem[] | undefined {
     id: `${slugify(item.title)}-${index}`,
     title: item.title,
     text: item.text || "",
-    icon: imageUrl(item.icon) || "/images/service-cloud.png",
+    icon: imageUrl(item.icon) || "/images/service-cloud.webp",
     shadow: `0px 4.36px 0px 0px ${item.accentColor || "#1D70C5"}`,
   }));
 }
@@ -372,7 +372,7 @@ function toIndustryItems(page: ServicePage): IndustrySectionItem[] | undefined {
   return items.map((item) => ({
     title: item.title,
     description: item.description || "",
-    image: imageUrl(item.image) || "/images/industries.png",
+    image: imageUrl(item.image) || "/images/industries.webp",
   }));
 }
 
@@ -384,9 +384,9 @@ function toWhyChooseReasons(page: ServicePage): WhyChooseReason[] | undefined {
   }
 
   const fallbackIcons = [
-    "/images/different.png",
-    "/images/better.png",
-    "/images/salesforce-partner.png",
+    "/images/different.webp",
+    "/images/better.webp",
+    "/images/salesforce-partner.webp",
   ];
 
   return reasons.map((reason, index) => ({

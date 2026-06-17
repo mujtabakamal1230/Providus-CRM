@@ -59,7 +59,8 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Blog post",
+      title: "Post Not Found | Providus CRM",
+      description: "This blog post is no longer available.",
     };
   }
 
@@ -107,7 +108,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 aria-hidden="true"
                 className="mb-5 h-auto w-16"
               />
-              <Heading as="h2" className="text-black">
+              <Heading as="h1" className="text-black">
                 {post.title}
               </Heading>
               <Text variant="p3" className="mt-4 text-[#5F5F5F]">

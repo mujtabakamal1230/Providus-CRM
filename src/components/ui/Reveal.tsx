@@ -2,6 +2,7 @@
 
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -57,7 +58,7 @@ export const Reveal = ({
 
   if (reducedMotion) {
     return (
-      <div className={className} style={{ position: "relative", width, height, overflow }}>
+      <div className={cn(className, "contain-layout")} style={{ position: "relative", width, height, overflow }}>
         {children}
       </div>
     );
@@ -66,7 +67,7 @@ export const Reveal = ({
   return (
     <div
       ref={ref}
-      className={className}
+      className={cn(className, "contain-layout")}
       style={{ position: "relative", width, height, overflow }}
     >
       <motion.div

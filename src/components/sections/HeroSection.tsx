@@ -170,13 +170,13 @@ export function HeroSection({
                     />
                   </div>
                   <div className="flex flex-col">
-                    <Text variant="p4" className="text-white/85 leading-tight">
+                    <Text variant="p4" className="text-white/90 leading-tight">
                       Certified
                     </Text>
                     <Text variant="p4" className="text-white font-semibold leading-snug">
                       Salesforce Partner
                     </Text>
-                    <Text variant="p4" className="text-white/85 leading-tight">
+                    <Text variant="p4" className="text-white/90 leading-tight">
                       in the UK
                     </Text>
                   </div>
@@ -192,7 +192,7 @@ export function HeroSection({
                 </div>
 
                 {/* Subtext */}
-                <Text variant="p2" className="text-white/85 max-w-md">
+                <Text variant="p2" className="text-white/90 max-w-md">
                   {description || defaultDescription}
                 </Text>
 

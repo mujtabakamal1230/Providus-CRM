@@ -156,15 +156,15 @@
 
 @keyframes hero-heading-letter-in {
   from {
-    opacity: 0;
+    opacity: 1;
     filter: blur(8px);
-    transform: translate3d(0, 10px, 0) scale(0.92);
+    transform: translateY(10px) scale(0.92);
   }
 
   to {
     opacity: 1;
     filter: blur(0);
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -193,7 +193,6 @@
     filter: none;
     transform: none;
     animation: none;
-    will-change: auto;
   }
 
   .marquee-track,

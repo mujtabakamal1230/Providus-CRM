@@ -176,9 +176,6 @@ function DesktopDropdown({ item }: { item: DropdownNavItem }) {
     >
       <Link
         href={item.href}
-        role="menuitem"
-        aria-haspopup="true"
-        aria-expanded={isOpen}
         onFocus={() => setIsOpen(true)}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -206,15 +203,12 @@ function DesktopDropdown({ item }: { item: DropdownNavItem }) {
         className={`invisible absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 ${
           isOpen ? "visible opacity-100" : ""
         }`}
-        role="menu"
-        aria-label={`${item.label} submenu`}
       >
         <div className="rounded-[8px] border border-gray-100 bg-white p-2 shadow-xl">
           {item.children?.map((child) => (
             <Link
               key={child.href}
               href={child.href}
-              role="menuitem"
               className="text-p3 block rounded-[6px] px-4 py-3 text-[#2E2E2E] transition-colors hover:bg-brand-blue-light hover:text-[#1D70C5]"
             >
               {child.label}

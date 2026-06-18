@@ -107,7 +107,7 @@ export function ExpertiseSection({ title, items }: ExpertiseSectionProps) {
               className="basis-[84%] sm:basis-[48%] lg:basis-[31%] xl:basis-[26%]"
             >
               <div
-                className="flex h-[310px] w-full flex-col items-center rounded-[8px] bg-gradient-to-b from-white to-brand-blue-light p-8 text-center transition-transform hover:-translate-y-1"
+                className="flex min-h-[310px] h-full w-full flex-col items-center rounded-[8px] bg-gradient-to-b from-white to-brand-blue-light p-8 text-center transition-transform hover:-translate-y-1"
                 style={{
                   boxShadow: item.shadow,
                 }}

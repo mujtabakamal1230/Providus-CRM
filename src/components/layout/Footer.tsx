@@ -138,7 +138,7 @@ export function Footer() {
         {/* Lower Footer */}
         <div className="mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <Text className="text-xs! leading-6.25! font-roboto text-white/60">
-            © Copyright 2025, All Rights Reserved
+            © Copyright 2026, All Rights Reserved
           </Text>
 
           {/* <div className="flex gap-6">

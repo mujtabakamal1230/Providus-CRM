@@ -12,20 +12,20 @@ export interface WhyChooseReason {
 export const reasons: WhyChooseReason[] = [
   {
     title: "We're Different",
-    color: "#687DDA",
-    icon: "/images/different.png",
+    color: "var(--color-soft-indigo)",
+    icon: "/images/different.webp",
     text: "Most Salesforce partners just sell hours. We sell outcomes. Every engagement starts with understanding what the business actually needs, not what is easiest to configure. Our consultants challenge requirements before building anything, so the solution that goes live is the one that holds up six months later."
   },
   {
     title: "We're Better",
-    color: "#A670DD",
-    icon: "/images/better.png",
+    color: "var(--color-soft-purple)",
+    icon: "/images/better.webp",
     text: "Certified across every core Salesforce platform. Experienced across six industry verticals. Built on a delivery framework that has never relied on 'we'll figure it out as we go.' While other partners staff projects with junior consultants and learn on the job, our team brings deep platform knowledge and real implementation experience to every engagement."
   },
   {
     title: "We're a Leading Salesforce Partner in the UK",
-    color: "#00A1E0",
-    icon: "/images/salesforce-partner.png",
+    color: "var(--color-salesforce-blue)",
+    icon: "/images/salesforce-partner.webp",
     text: "ProvidusCRM combines the technical depth of a large consultancy with the responsiveness of a specialist partner. Certified consultants across Sales Cloud, Service Cloud, Marketing Cloud, Data Cloud, Experience Cloud, and Agentforce. A delivery track record across nonprofit, financial services, healthcare, education, manufacturing, and commerce. One UK Salesforce partner covering the full platform, the full project lifecycle, and the full range of industries that depend on CRM done right"
   }
 ];
@@ -43,7 +43,7 @@ export function WhyChooseSection({
   customReasons,
   image,
   imageAlt = "Salesforce Specialist",
-  backgroundOverlayColor = "#4EAAFF",
+  backgroundOverlayColor = "var(--color-tab-highlight)",
 }: WhyChooseSectionProps) {
   const displayReasons = customReasons || reasons;
   const defaultTitle = "Why Choose ProvidusCRM As Your Salesforce Solutions Partner";
@@ -53,7 +53,7 @@ export function WhyChooseSection({
       {/* Background and Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/why-choose-bg.png"
+          src="/images/why-choose-bg.webp"
           alt=""
           fill
           className="object-cover"
@@ -118,7 +118,7 @@ export function WhyChooseSection({
           <div className="bg-white p-3 rounded-md shadow-2xl h-full min-h-[600px] lg:min-h-0">
             <div className="relative w-full h-full rounded-md overflow-hidden">
               <Image
-                src={image || "/images/why-choose.png"}
+                src={image || "/images/why-choose.webp"}
                 alt={imageAlt}
                 fill
                 className="object-cover object-center"

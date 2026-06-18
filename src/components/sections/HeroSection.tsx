@@ -40,23 +40,28 @@ export function BlurScaleHeading({ children, className }: BlurScaleHeadingProps)
             }
 
             return (
-              <span
-                key={tokenPath}
-                className="inline-block whitespace-nowrap hero-heading-word"
-              >
-                {token.split("").map((character, characterIndex) => (
-                  <span
-                    key={`${tokenPath}-${characterIndex}`}
-                    className="inline-block hero-heading-letter"
-                    style={{
-                      animationDelay: `${Math.min(animatedIndex++ * 18, 720)}ms`,
-                      transformOrigin: "center bottom",
-                    }}
-                  >
-                    {character}
-                  </span>
-                ))}
-              </span>
+              <React.Fragment key={tokenPath}>
+                {/* Screen reader accessible text */}
+                <span className="sr-only">{token}</span>
+                {/* Animated visual text (hidden from screen readers) */}
+                <span
+                  className="inline-block whitespace-nowrap hero-heading-word"
+                  aria-hidden="true"
+                >
+                  {token.split("").map((character, characterIndex) => (
+                    <span
+                      key={`${tokenPath}-${characterIndex}`}
+                      className="inline-block hero-heading-letter"
+                      style={{
+                        animationDelay: `${Math.min(animatedIndex++ * 18, 720)}ms`,
+                        transformOrigin: "center bottom",
+                      }}
+                    >
+                      {character}
+                    </span>
+                  ))}
+                </span>
+              </React.Fragment>
             );
           })}
         </React.Fragment>
@@ -103,7 +108,7 @@ export function BlurScaleHeading({ children, className }: BlurScaleHeadingProps)
 export function HeroSection({
   title,
   description,
-  image = "/images/hero-img.png",
+  image = "/images/hero-img.webp",
   imageClassName = "object-cover object-center",
   hideImage = false,
 }: HeroSectionProps) {
@@ -121,7 +126,7 @@ export function HeroSection({
     </>
   );
 
-  const defaultDescription = "Future-proof customer operations and business processes with ProviduseCRM, a certified Salesforce partner, reinventing CRM systems for organisations in the UK.";
+  const defaultDescription = "Future-proof customer operations and business processes with ProvidusCRM, a certified Salesforce partner, reinventing CRM systems for organisations in the UK.";
 
   return (
     <section className="mt-4">
@@ -131,7 +136,7 @@ export function HeroSection({
             }`}
         >
           <Image
-            src="/images/hero-bg.png"
+            src="/images/hero-bg.webp"
             alt=""
             fill
             priority
@@ -142,7 +147,7 @@ export function HeroSection({
           {hideImage ? (
             <div className="relative z-10 flex flex-col items-center justify-center flex-1 w-full px-6 py-12 text-center gap-6">
               <div className="flex items-center justify-center">
-                <Heading as="h1" className="text-white text-center flex items-center justify-center flex-wrap gap-x-4 max-w-[680px] min-h-[130px] md:min-h-[122px]">
+                <Heading as="h1" className="text-white text-center flex items-center justify-center flex-wrap gap-x-4 max-w-[680px]">
                   <BlurScaleHeading>
                     {title || defaultTitle}
                   </BlurScaleHeading>
@@ -157,7 +162,7 @@ export function HeroSection({
                 <div className="flex items-center gap-4 w-fit">
                   <div className="shrink-0 bg-white rounded-sm overflow-hidden">
                     <Image
-                      src="/images/salesforce-partner.png"
+                      src="/images/salesforce-partner.webp"
                       alt="Salesforce Partner"
                       width={66}
                       height={71}
@@ -179,7 +184,7 @@ export function HeroSection({
 
                 {/* Heading + squiggle */}
                 <div>
-                  <Heading as="h1" className="text-white max-w-[560px] min-h-[190px] md:min-h-[183px]">
+                  <Heading as="h1" className="text-white max-w-[560px]">
                     <BlurScaleHeading>
                       {title || defaultTitle}
                     </BlurScaleHeading>

@@ -54,7 +54,7 @@ export function buildPageMetadata({
       title: openGraphTitle,
       description: openGraphDescription,
       url: canonicalUrl,
-      images: imageUrl ? [{ url: imageUrl }] : undefined,
+      images: imageUrl ? [{ url: imageUrl, alt: openGraphTitle }] : undefined,
     },
     twitter: {
       card: "summary_large_image",

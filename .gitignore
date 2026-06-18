@@ -39,3 +39,6 @@ next-env.d.ts
 
 # Content
 content/
+
+.claude/
+.agents/

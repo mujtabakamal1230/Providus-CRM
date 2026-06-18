@@ -140,7 +140,7 @@ const tabs: WhatWeDoTab[] = [
 export function WhatWeDoSection({
   title,
   tabs: customTabs,
-  backgroundOverlayColor = "#4EAAFF",
+  backgroundOverlayColor = "var(--color-tab-highlight)",
 }: WhatWeDoSectionProps) {
   const displayTabs = (customTabs && customTabs.length > 0 ? customTabs : tabs).map(
     (tab, index) => ({
@@ -159,7 +159,7 @@ export function WhatWeDoSection({
       {/* Background with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/what-we-do-bg.png"
+          src="/images/what-we-do-bg.webp"
           alt=""
           fill
           className="object-cover"
@@ -199,7 +199,7 @@ export function WhatWeDoSection({
                 className={cn(
                   "w-full text-left px-6 py-5 transition-all duration-300 flex justify-between items-center",
                   activeTab === tab.id
-                    ? "bg-[#A0FF88] text-black rounded-[12px] shadow-lg translate-x-2"
+                    ? "bg-brand-green-light text-black rounded-[12px] shadow-lg translate-x-2"
                     : "bg-white text-black rounded-[12px] hover:bg-white/90"
                 )}
               >
@@ -220,7 +220,7 @@ export function WhatWeDoSection({
             {/* Content Background Image */}
             <div className="absolute top-0 right-0 pointer-events-none h-full w-full">
               <Image
-                src="/images/tab-content-bg.png"
+                src="/images/tab-content-bg.webp"
                 alt=""
                 fill
                 className="object-cover object-top opacity-30"

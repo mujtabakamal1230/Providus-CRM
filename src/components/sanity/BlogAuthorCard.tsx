@@ -53,7 +53,7 @@ export function BlogAuthorCard({ author }: BlogAuthorCardProps) {
               <a
                 href={author.linkedinUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={`${author.name} on LinkedIn`}
                 className="flex h-9 w-9 items-center justify-center rounded-sm bg-[#0A66C2] transition-opacity hover:opacity-80"
               >
@@ -71,7 +71,7 @@ export function BlogAuthorCard({ author }: BlogAuthorCardProps) {
               <a
                 href={author.xUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={`${author.name} on X`}
                 className="flex h-9 w-9 items-center justify-center text-black transition-opacity hover:opacity-70"
               >

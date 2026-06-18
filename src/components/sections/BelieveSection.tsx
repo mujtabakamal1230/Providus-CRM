@@ -11,26 +11,26 @@ const believeCards = [
   {
     title: "Build What Matters",
     description: "We dig past surface-level requirements to understand what the business actually needs. As a result, the solutions we deliver fix root causes, not symptoms.",
-    icon: "/images/build-matters.png",
-    bgImage: "/images/build-matters-bg.png"
+    icon: "/images/build-matters.webp",
+    bgImage: "/images/build-matters-bg.webp"
   },
   {
     title: "Get It Right",
     description: "Every configuration, integration, and line of code follows Salesforce best practices. Consequently, our work holds up under pressure and remains easy to maintain over time.",
-    icon: "/images/get-it-right.png",
-    bgImage: "/images/get-it-right-bg.png"
+    icon: "/images/get-it-right.webp",
+    bgImage: "/images/get-it-right-bg.webp"
   },
   {
     title: "Own Every Outcome",
     description: "We take responsibility for what we deliver. From scoping to post-launch support, our team stays accountable to the timelines, budgets, and results we commit to.",
-    icon: "/images/outcome.png",
-    bgImage: "/images/outcome-bg.png"
+    icon: "/images/outcome.webp",
+    bgImage: "/images/outcome-bg.webp"
   },
   {
     title: "Drive Self-Sufficiency",
     description: "We do not build dependency. Instead, we transfer knowledge through documentation and training so client teams can run their Salesforce platform with confidence.",
-    icon: "/images/drive-self.png",
-    bgImage: "/images/drive-self-bg.png"
+    icon: "/images/drive-self.webp",
+    bgImage: "/images/drive-self-bg.webp"
   }
 ];
 
@@ -38,7 +38,7 @@ export function BelieveSection() {
   return (
     <section className="relative overflow-hidden py-24 bg-white">
       <Image
-        src="/images/believe-bg.png"
+        src="/images/believe-bg.webp"
         alt=""
         fill
         sizes="100vw"

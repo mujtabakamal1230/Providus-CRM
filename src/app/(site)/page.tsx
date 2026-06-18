@@ -1,18 +1,23 @@
 import {
   HeroSection,
   CtaSection,
-  PartnersSection,
   CertifiedSection,
-  BentoSection,
   WhatWeDoSection,
   ExpertiseSection,
   IndustriesSection,
   WhyChooseSection,
-  TeamSection,
 } from "@/components/sections";
+import NextDynamic from "next/dynamic";
+
+const PartnersSection = NextDynamic(() => import("@/components/sections/PartnersSection").then((mod) => mod.PartnersSection));
+const TeamSection = NextDynamic(() => import("@/components/sections/TeamSection").then((mod) => mod.TeamSection));
+const BentoSection = NextDynamic(() => import("@/components/sections/BentoSection").then((mod) => mod.BentoSection));
+
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { getSitePageJsonLd } from "@/lib/siteJsonLd";
 import { generateStaticPageMetadata } from "@/lib/staticPageSeo";
+
+export const dynamic = "force-static";
 
 export async function generateMetadata() {
   return generateStaticPageMetadata("home", {
@@ -20,7 +25,7 @@ export async function generateMetadata() {
     description:
       "Providus CRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
     canonicalPath: "/",
-    image: "/images/salesforce-partner.png",
+    image: "/images/salesforce-partner.webp",
   });
 }
 
@@ -35,7 +40,7 @@ export default async function HomePage() {
         "url": "https://providuscrm.co.uk",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://providuscrm.co.uk/images/salesforce-partner.png"
+          "url": "https://providuscrm.co.uk/images/salesforce-partner.webp"
         },
         "description": "Providus CRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
         "email": "info@providuscrm.co.uk",

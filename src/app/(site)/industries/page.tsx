@@ -15,7 +15,7 @@ export async function generateMetadata() {
     description:
       "Salesforce implementation and CRM consulting for nonprofit, education, commerce, healthcare, financial services, and manufacturing organisations.",
     canonicalPath: "/industries",
-    image: "/images/industries.png",
+    image: "/images/industries.webp",
   });
 }
 
@@ -74,7 +74,7 @@ export default async function IndustriesPage() {
       <HeroSection
         title={heroTitle}
         description="Explore how we help businesses across different industries make the most out of their Salesforce investments."
-        image="/images/industries.png"
+        image="/images/industries.webp"
         imageClassName="object-contain"
       />
       <IndustryDetailSection />

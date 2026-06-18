@@ -18,7 +18,7 @@ export async function generateMetadata() {
     description:
       "End-to-end Salesforce services and certified talent for building CRM solutions around your organisation's processes, challenges, and goals.",
     canonicalPath: "/services",
-    image: "/images/our-services-hero.png",
+    image: "/images/our-services-hero.webp",
   });
 }
 
@@ -60,7 +60,7 @@ export default async function ServicesPage() {
       <HeroSection
         title={servicesHeroTitle}
         description="End-to-end Salesforce services and certified talent for building CRM solutions around your organisation's processes, challenges, and goals."
-        image="/images/our-services-hero.png"
+        image="/images/our-services-hero.webp"
         imageClassName="object-contain"
       />
       <PartnersSection />

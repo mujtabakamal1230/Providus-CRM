@@ -4,18 +4,18 @@ import { Heading } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
 const logos = [
-  "/images/platform-logos/1.png",
-  "/images/platform-logos/2.png",
-  "/images/platform-logos/3.png",
-  "/images/platform-logos/4.png",
-  "/images/platform-logos/5.png",
-  "/images/platform-logos/6.png",
-  "/images/platform-logos/7.png",
-  "/images/platform-logos/8.png",
-  "/images/platform-logos/9.png",
-  "/images/platform-logos/10.png",
-  "/images/platform-logos/11.png",
-  "/images/platform-logos/12.png",
+  "/images/platform-logos/1.webp",
+  "/images/platform-logos/2.webp",
+  "/images/platform-logos/3.webp",
+  "/images/platform-logos/4.webp",
+  "/images/platform-logos/5.webp",
+  "/images/platform-logos/6.webp",
+  "/images/platform-logos/7.webp",
+  "/images/platform-logos/8.webp",
+  "/images/platform-logos/9.webp",
+  "/images/platform-logos/10.webp",
+  "/images/platform-logos/11.webp",
+  "/images/platform-logos/12.webp",
 ];
 
 interface PlatformsSectionProps {

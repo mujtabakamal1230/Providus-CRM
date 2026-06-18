@@ -55,7 +55,7 @@ export function BentoSection() {
           {/* Box 3 - Blue Testimonial with Image BG */}
           <div className="md:col-span-7 rounded-[20px] overflow-hidden relative min-h-[450px] flex flex-col justify-end p-8 md:p-12">
             <Image
-              src="/images/testimonial-bg.jpg"
+              src="/images/testimonial-bg.webp"
               alt=""
               fill
               className="object-cover"
@@ -89,7 +89,7 @@ export function BentoSection() {
                 <Tag>Case Studies</Tag>
               </div>
               <Image
-                src="/images/case-study.png"
+                src="/images/case-study.webp"
                 alt="Case Study"
                 fill
                 className="object-cover"

@@ -39,6 +39,30 @@
 
   /* Shadows */
   --shadow-partner: 0px 24.85px 51.88px -21.86px #4eb83545;
+
+  /* Brand-adjacent colors used in sections */
+  --color-explore-blue: #0c8cc3;
+  --color-explore-purple: #ac2c6d;
+  --color-explore-orange: #e97601;
+  --color-explore-lavender: #8a8fd2;
+  --color-explore-sky: #0d9dda;
+  --color-explore-violet: #c65efe;
+  --color-explore-teal: #06bcaa;
+  --color-soft-indigo: #687dda;
+  --color-soft-purple: #a670dd;
+  --color-salesforce-blue: #00a1e0;
+  --color-explore-green-accent: #cdff80;
+  --color-explore-green-dark: #64bd4e;
+  --color-neutral-500: #686868;
+  --color-neutral-900: #242424;
+  --color-consult-blue: #2898ff;
+  --color-tab-highlight: #4eaaff;
+  --color-gray-400: #b6b6b6;
+  --color-gray-500: #4a4a4a;
+  --color-gray-100-bg: #f8f8f8;
+  --color-gray-border: #d4d4d4;
+  --color-gray-text: #5f5f5f;
+  --color-migration-blue: #308fff;
 }
 
 /* ─── Base Styles ────────────────────────────────────────────── */
@@ -52,38 +76,6 @@
     font-family: "Roboto", sans-serif;
     color: #111;
     background-color: #fff;
-  }
-
-  h1 {
-    font-family: "Afacad", sans-serif;
-    font-size: 60px;
-    font-weight: 700;
-    line-height: 60.9px;
-    letter-spacing: -1.24px;
-  }
-
-  h2 {
-    font-family: "Afacad", sans-serif;
-    font-size: 50px;
-    font-weight: 700;
-    line-height: 45px;
-    letter-spacing: 0px;
-  }
-
-  h3 {
-    font-family: "Afacad", sans-serif;
-    font-size: 45px;
-    font-weight: 600;
-    line-height: 25px;
-    letter-spacing: -0.39px;
-  }
-
-  h4 {
-    font-family: "Afacad", sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 35px;
-    letter-spacing: 0px;
   }
 }
 
@@ -178,7 +170,6 @@
 
 .hero-heading-letter {
   opacity: 0;
-  will-change: transform, opacity, filter;
   animation: hero-heading-letter-in 0.48s cubic-bezier(0.2, 0.65, 0.3, 1) forwards;
 }
 
@@ -203,5 +194,10 @@
     transform: none;
     animation: none;
     will-change: auto;
+  }
+
+  .marquee-track,
+  [class*="marquee"] {
+    animation-play-state: paused !important;
   }
 }

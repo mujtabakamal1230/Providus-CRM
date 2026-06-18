@@ -33,7 +33,7 @@ export function SalesforceServiceHero({
   bullets = [],
   formTitle = "Fill a form today",
   formButtonLabel = "Let's Connect",
-  backgroundImage = "/images/hero-bg.png",
+  backgroundImage = "/images/hero-bg.webp",
 }: SalesforceServiceHeroProps) {
   const [formState, setFormState] = useState(emptyForm);
   const [status, setStatus] = useState<
@@ -92,7 +92,7 @@ export function SalesforceServiceHero({
               <div className="mb-8 flex items-center gap-4">
                 <div className="shrink-0 bg-white rounded-sm overflow-hidden">
                   <Image
-                    src="/images/salesforce-partner.png"
+                    src="/images/salesforce-partner.webp"
                     alt="Salesforce Partner"
                     width={66}
                     height={71}

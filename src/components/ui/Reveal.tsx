@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useAnimation } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -24,6 +24,15 @@ export const Reveal = ({
 }: RevealProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   const mainControls = useAnimation();
 
@@ -46,9 +55,17 @@ export const Reveal = ({
     },
   };
 
+  if (reducedMotion) {
+    return (
+      <div className={className} style={{ position: "relative", width, height, overflow }}>
+        {children}
+      </div>
+    );
+  }
+
   return (
-    <div 
-      ref={ref} 
+    <div
+      ref={ref}
       className={className}
       style={{ position: "relative", width, height, overflow }}
     >

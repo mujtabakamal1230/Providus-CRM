@@ -17,8 +17,8 @@ export function SalesforceConsultCtaSection({
   title = "Connect With Our Salesforce Consultants To Discuss Your CRM Needs And Business Goals.",
   buttonLabel = "Let's Connect",
   buttonHref = "/contact",
-  backgroundColor = "#2898FF",
-  image = "/images/consult.png",
+  backgroundColor = "var(--color-consult-blue)",
+  image = "/images/consult.webp",
   imageAlt = "",
 }: SalesforceConsultCtaSectionProps) {
   return (

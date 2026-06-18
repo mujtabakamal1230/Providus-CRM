@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/Container";
-import { Heading } from "@/components/ui/Typography";
+import { Heading, Text } from "@/components/ui/Typography";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function ExploreSection() {
@@ -30,7 +30,7 @@ export function ExploreSection() {
                 <motion.div
                   className="relative w-full h-[500px] lg:h-[504px] overflow-hidden flex flex-col justify-between p-10 cursor-pointer select-none group"
                   style={{
-                    background: "linear-gradient(178.75deg, #161913 1.07%, #64BD4E 111.45%)",
+                    background: "linear-gradient(178.75deg, #161913 1.07%, var(--color-explore-green-dark) 111.45%)",
                     borderRadius: "16px"
                   }}
                   whileHover={{ y: -6 }}
@@ -38,28 +38,13 @@ export function ExploreSection() {
                 >
                   {/* Text Content */}
                   <div className="relative z-10 flex flex-col gap-4">
-                    <h3
-                      style={{
-                        fontFamily: "Afacad, sans-serif",
-                        fontWeight: 700,
-                        fontSize: "40px",
-                        lineHeight: "33.76px",
-                        letterSpacing: "-0.25px"
-                      }}
-                      className="text-white"
-                    >
+                    <Heading as="h3" className="text-white">
                       Our Services
-                    </h3>
-                    <div
-                      className="flex items-center gap-2"
-                      style={{
-                        fontFamily: "DM Sans, sans-serif",
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        lineHeight: "19.18px",
-                        letterSpacing: "-0.15px",
-                        color: "#CDFF80"
-                      }}
+                    </Heading>
+                    <Text
+                      variant="p3"
+                      className="flex items-center gap-2 font-medium"
+                      style={{ color: "var(--color-explore-green-accent)" }}
                     >
                       <span>Explore</span>
                       <motion.span
@@ -73,7 +58,7 @@ export function ExploreSection() {
                       >
                         →
                       </motion.span>
-                    </div>
+                    </Text>
                   </div>
 
                   {/* Graphic/Illustration */}
@@ -88,7 +73,7 @@ export function ExploreSection() {
                       transition={{ duration: 0.4 }}
                     >
                       <Image
-                        src="/images/our-services.png"
+                        src="/images/our-services.webp"
                         alt="Our Services"
                         fill
                         sizes="(min-width: 1024px) 38vw, 100vw"
@@ -118,32 +103,17 @@ export function ExploreSection() {
                 >
                   {/* Text Content */}
                   <div className="relative z-10 flex flex-col gap-4 max-w-[55%]">
-                    <h3
-                      style={{
-                        fontFamily: "Afacad, sans-serif",
-                        fontWeight: 700,
-                        fontSize: "40px",
-                        lineHeight: "33.76px",
-                        letterSpacing: "-0.25px"
-                      }}
-                      className="text-white"
-                    >
+                    <Heading as="h3" className="text-white">
                       Our Industry Expertise
-                    </h3>
-                    <div
-                      className="flex items-center gap-2"
-                      style={{
-                        fontFamily: "DM Sans, sans-serif",
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        lineHeight: "19.18px",
-                        letterSpacing: "-0.15px",
-                        color: "#CDFF80"
-                      }}
+                    </Heading>
+                    <Text
+                      variant="p3"
+                      className="flex items-center gap-2 font-medium"
+                      style={{ color: "var(--color-explore-green-accent)" }}
                     >
                       <span>Explore</span>
                       <span>→</span>
-                    </div>
+                    </Text>
                   </div>
 
                   {/* Graphic/Illustration */}
@@ -158,7 +128,7 @@ export function ExploreSection() {
                       transition={{ duration: 0.4 }}
                     >
                       <Image
-                        src="/images/our-industry.png"
+                        src="/images/our-industry.webp"
                         alt="Industry Expertise"
                         fill
                         sizes="(min-width: 1024px) 30vw, 100vw"
@@ -184,32 +154,17 @@ export function ExploreSection() {
                 >
                   {/* Text Content */}
                   <div className="relative z-10 flex flex-col gap-4 max-w-[55%]">
-                    <h3
-                      style={{
-                        fontFamily: "Afacad, sans-serif",
-                        fontWeight: 700,
-                        fontSize: "40px",
-                        lineHeight: "33.76px",
-                        letterSpacing: "-0.25px"
-                      }}
-                      className="text-white"
-                    >
+                    <Heading as="h3" className="text-white">
                       Our Platform Expertise
-                    </h3>
-                    <div
-                      className="flex items-center gap-2"
-                      style={{
-                        fontFamily: "DM Sans, sans-serif",
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        lineHeight: "19.18px",
-                        letterSpacing: "-0.15px",
-                        color: "#CDFF80"
-                      }}
+                    </Heading>
+                    <Text
+                      variant="p3"
+                      className="flex items-center gap-2 font-medium"
+                      style={{ color: "var(--color-explore-green-accent)" }}
                     >
                       <span>Explore</span>
                       <span>→</span>
-                    </div>
+                    </Text>
                   </div>
 
                   {/* Graphic/Illustration */}
@@ -224,7 +179,7 @@ export function ExploreSection() {
                       transition={{ duration: 0.4 }}
                     >
                       <Image
-                        src="/images/our-platform.png"
+                        src="/images/our-platform.webp"
                         alt="Platform Expertise"
                         fill
                         sizes="(min-width: 1024px) 30vw, 100vw"

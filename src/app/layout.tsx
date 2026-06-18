@@ -39,6 +39,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${afacad.variable} ${roboto.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+      </head>
       <body>{children}</body>
     </html>
   );

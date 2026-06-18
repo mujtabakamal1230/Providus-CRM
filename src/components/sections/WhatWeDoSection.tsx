@@ -191,28 +191,56 @@ export function WhatWeDoSection({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Tabs List */}
-          <div className="lg:col-span-5 flex flex-col gap-2">
-            {displayTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={cn(
-                  "w-full text-left px-6 py-5 transition-all duration-300 flex justify-between items-center",
-                  activeTab === tab.id
-                    ? "bg-brand-green-light text-black rounded-[12px] shadow-lg translate-x-2"
-                    : "bg-white text-black rounded-[12px] hover:bg-white/90"
-                )}
-              >
-                <Text variant="p1" className="font-semibold !leading-tight font-heading">
-                  {tab.label}
-                </Text>
-                {activeTab === tab.id && (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
-              </button>
-            ))}
+          <div className="lg:col-span-5">
+            {/* Mobile: horizontal scrollable row with touch snap */}
+            <div className="flex md:hidden gap-2 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
+              {displayTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "snap-start shrink-0 text-left px-6 py-5 transition-all duration-300 flex justify-between items-center",
+                    activeTab === tab.id
+                      ? "bg-brand-green-light text-black rounded-[12px] shadow-lg translate-x-0"
+                      : "bg-white text-black rounded-[12px] hover:bg-white/90"
+                  )}
+                >
+                  <Text variant="p1" className="font-semibold !leading-tight font-heading">
+                    {tab.label}
+                  </Text>
+                  {activeTab === tab.id && (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Desktop: vertical column */}
+            <div className="hidden md:flex flex-col gap-2">
+              {displayTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "w-full text-left px-6 py-5 transition-all duration-300 flex justify-between items-center",
+                    activeTab === tab.id
+                      ? "bg-brand-green-light text-black rounded-[12px] shadow-lg translate-x-2"
+                      : "bg-white text-black rounded-[12px] hover:bg-white/90"
+                  )}
+                >
+                  <Text variant="p1" className="font-semibold !leading-tight font-heading">
+                    {tab.label}
+                  </Text>
+                  {activeTab === tab.id && (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Tab Content */}

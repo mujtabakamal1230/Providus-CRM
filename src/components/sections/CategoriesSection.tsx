@@ -84,19 +84,16 @@ export function CategoriesSection() {
       <Container>
         <div className="flex flex-col gap-8 lg:gap-12">
           {rows.map((row, rowIndex) => (
-            <div 
-              key={rowIndex} 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
-              style={{ 
-                gridTemplateColumns: rowIndex % 2 === 0 ? '1.22fr 1fr' : '1fr 1.22fr' 
-              }}
+            <div
+              key={rowIndex}
+              className={`grid grid-cols-1 ${rowIndex % 2 === 0 ? 'lg:grid-cols-[1.22fr_1fr]' : 'lg:grid-cols-[1fr_1.22fr]'} gap-8 lg:gap-12`}
             >
               {row.map((category, colIndex) => {
                 const index = rowIndex * 2 + colIndex;
                 return (
-                  <Reveal 
-                    key={index} 
-                    direction="up" 
+                  <Reveal
+                    key={index}
+                    direction="up"
                     delay={0.1 * (colIndex + 1)}
                     height="100%"
                     className="h-full"

@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateStaticPageMetadata("case-studies", {
     title: "Case Studies",
     description:
-      "Explore real-world Providus CRM Salesforce implementations, automation projects, and customer operations success stories.",
+      "Explore real-world ProvidusCRM Salesforce implementations, automation projects, and customer operations success stories.",
     canonicalPath: "/case-studies",
     image: "/images/case-study.webp",
   });
@@ -41,8 +41,8 @@ export default async function CaseStudiesPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Case Studies | Providus CRM",
-    "description": "Explore real-world Providus CRM Salesforce implementations, automation projects, and customer operations success stories.",
+    "name": "Case Studies | ProvidusCRM",
+    "description": "Explore real-world ProvidusCRM Salesforce implementations, automation projects, and customer operations success stories.",
     "url": "https://providuscrm.co.uk/case-studies",
     "mainEntity": {
       "@type": "ItemList",

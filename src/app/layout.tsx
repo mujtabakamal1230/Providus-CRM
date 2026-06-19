@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Afacad, Roboto } from "next/font/google";
+import {
+  GoogleTagManagerNoScript,
+  GoogleTagManagerScript,
+} from "@/components/analytics/GoogleTagManager";
 import "@/styles/globals.css";
 
 const afacad = Afacad({
@@ -18,15 +22,15 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: {
-    default: "Providus CRM | Certified Salesforce Partner UK",
-    template: "%s | Providus CRM",
+    default: "ProvidusCRM | Certified Salesforce Partner UK",
+    template: "%s | ProvidusCRM",
   },
   description:
-    "Providus CRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
-  keywords: ["Salesforce consulting", "CRM consulting", "Providus CRM"],
+    "ProvidusCRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
+  keywords: ["Salesforce consulting", "CRM consulting", "ProvidusCRM"],
   openGraph: {
     type: "website",
-    title: "Providus CRM | Certified Salesforce Partner UK",
+    title: "ProvidusCRM | Certified Salesforce Partner UK",
     description:
       "Certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
   },
@@ -41,8 +45,12 @@ export default function RootLayout({
     <html lang="en" className={`${afacad.variable} ${roboto.variable}`}>
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+        <GoogleTagManagerScript />
       </head>
-      <body>{children}</body>
+      <body>
+        <GoogleTagManagerNoScript />
+        {children}
+      </body>
     </html>
   );
 }

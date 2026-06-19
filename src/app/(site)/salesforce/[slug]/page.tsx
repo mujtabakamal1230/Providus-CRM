@@ -103,7 +103,7 @@ export async function generateMetadata({
 
   if (!fetchedPage) {
     return {
-      title: "Service Not Found | Providus CRM",
+      title: "Service Not Found | ProvidusCRM",
     };
   }
 

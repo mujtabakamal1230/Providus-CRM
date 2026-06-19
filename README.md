@@ -1,4 +1,4 @@
-# Providus CRM
+# ProvidusCRM
 
 A production-ready Next.js 15 project with App Router, TypeScript, Tailwind CSS v4, and a strict design system.
 

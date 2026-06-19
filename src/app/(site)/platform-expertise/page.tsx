@@ -23,7 +23,7 @@ export default async function PlatformExpertisePage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Certified Platform Expertise | Providus CRM",
+    "name": "Certified Platform Expertise | ProvidusCRM",
     "description": "Certified Salesforce Platform expertise across Sales Cloud, Service Cloud, Marketing Cloud, Experience Cloud, Data Cloud, Agentforce, and Revenue Cloud.",
     "url": "https://providuscrm.co.uk/platform-expertise",
     "about": [

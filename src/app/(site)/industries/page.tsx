@@ -23,7 +23,7 @@ export default async function IndustriesPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Industries We Serve | Providus CRM",
+    "name": "Industries We Serve | ProvidusCRM",
     "description": "Deep technical knowledge across every core Salesforce platform. We implement Salesforce effectively for Nonprofit, Education, Commerce, Healthcare, Financial Services, and Manufacturing industries.",
     "url": "https://providuscrm.co.uk/industries",
     "about": [

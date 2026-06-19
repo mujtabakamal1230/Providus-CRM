@@ -6,7 +6,7 @@ import { schemaTypes } from "@/sanity/schemaTypes";
 
 export default defineConfig({
   name: "providus-crm",
-  title: "Providus CRM",
+  title: "ProvidusCRM",
   projectId,
   dataset,
   basePath: "/studio",

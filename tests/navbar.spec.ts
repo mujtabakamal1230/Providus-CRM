@@ -5,8 +5,8 @@ test.describe("Navbar", () => {
     await page.goto("/");
   });
 
-  test("renders the Providus CRM logo", async ({ page }) => {
-    const logo = page.getByRole("img", { name: "Providus CRM" });
+  test("renders the ProvidusCRM logo", async ({ page }) => {
+    const logo = page.getByRole("img", { name: "ProvidusCRM" });
     await expect(logo).toBeVisible();
   });
 

@@ -28,12 +28,12 @@ export default async function AboutPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About Us | Providus CRM",
+    "name": "About Us | ProvidusCRM",
     "description": "Professional Salesforce Services Grounded in Certified Expertise. We are a certified Salesforce partner in the UK, specializing in tailored CRM consulting.",
     "url": "https://providuscrm.co.uk/about",
     "mainEntity": {
       "@type": "Organization",
-      "name": "Providus CRM",
+      "name": "ProvidusCRM",
       "url": "https://providuscrm.co.uk",
       "logo": "https://providuscrm.co.uk/images/salesforce-partner.webp",
       "description": "Certified Salesforce partner based in the UK, working with organisations across nonprofit, financial services, healthcare, and more."

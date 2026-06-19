@@ -9,7 +9,7 @@ export const salesforceConsultingServicesFallback: ServicePage = {
   slug: { current: SALESFORCE_CONSULTING_SERVICES_SLUG },
   status: "published",
   seo: {
-    metaTitle: "Salesforce Consulting Services | Providus CRM",
+    metaTitle: "Salesforce Consulting Services | ProvidusCRM",
     metaDescription:
       "Certified Salesforce consulting services for CRM strategy, implementation, optimisation, adoption, and long-term platform growth.",
   },

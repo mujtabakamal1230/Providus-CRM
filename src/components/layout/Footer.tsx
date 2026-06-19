@@ -127,7 +127,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <Image
               src="/images/logo-footer.svg"
-              alt="Providus CRM"
+              alt="ProvidusCRM"
               width={160}
               height={40}
               className="h-10 w-auto"

@@ -43,7 +43,7 @@ export function BentoSection() {
 
           {/* Box 2 - Yellow Stat */}
           <div className="md:col-span-4 bg-[#FFE072] rounded-[20px] p-8 md:p-10 flex flex-col justify-between min-h-[380px]">
-            <Tag>Impact Stat</Tag>
+            <Tag>Impact</Tag>
             <div>
               <span className="text-[60px] md:text-[80px] font-bold text-black leading-none tracking-tight">62%</span>
               <Text variant="p2" className="text-[#735E13] mt-6 ]">

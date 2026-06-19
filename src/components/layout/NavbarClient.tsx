@@ -43,7 +43,7 @@ export function NavbarClient({ salesforceServices }: NavbarClientProps) {
           <Link href="/" className="shrink-0">
             <Image
               src="/images/logo.svg"
-              alt="Providus CRM"
+              alt="ProvidusCRM"
               width={160}
               height={40}
               priority
@@ -200,9 +200,8 @@ function DesktopDropdown({ item }: { item: DropdownNavItem }) {
       </Link>
 
       <div
-        className={`invisible absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 ${
-          isOpen ? "visible opacity-100" : ""
-        }`}
+        className={`invisible absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 ${isOpen ? "visible opacity-100" : ""
+          }`}
       >
         <div className="rounded-[8px] border border-gray-100 bg-white p-2 shadow-xl">
           {item.children?.map((child) => (

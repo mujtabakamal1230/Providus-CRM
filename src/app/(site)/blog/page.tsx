@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateStaticPageMetadata("blog", {
     title: "Blog",
     description:
-      "Read Providus CRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
+      "Read ProvidusCRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
     canonicalPath: "/blog",
     image: "/images/case-study.webp",
   });
@@ -38,8 +38,8 @@ export default async function BlogPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog | Providus CRM",
-    "description": "Read Providus CRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
+    "name": "Blog | ProvidusCRM",
+    "description": "Read ProvidusCRM insights on Salesforce implementation, CRM strategy, automation, and customer operations.",
     "url": "https://providuscrm.co.uk/blog",
     "blogPost": (posts ?? []).map((post) => ({
       "@type": "BlogPosting",
@@ -50,7 +50,7 @@ export default async function BlogPage() {
       "url": `https://providuscrm.co.uk/blog/${post.slug.current}`,
       "publisher": {
         "@type": "Organization",
-        "name": "Providus CRM",
+        "name": "ProvidusCRM",
         "logo": {
           "@type": "ImageObject",
           "url": "https://providuscrm.co.uk/images/salesforce-partner.webp"

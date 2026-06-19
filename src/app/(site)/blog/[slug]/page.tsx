@@ -59,7 +59,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Post Not Found | Providus CRM",
+      title: "Post Not Found | ProvidusCRM",
       description: "This blog post is no longer available.",
     };
   }

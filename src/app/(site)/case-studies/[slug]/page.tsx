@@ -54,7 +54,7 @@ export async function generateMetadata({
 
   if (!caseStudy) {
     return {
-      title: "Case Study Not Found | Providus CRM",
+      title: "Case Study Not Found | ProvidusCRM",
       description: "This case study is no longer available.",
     };
   }

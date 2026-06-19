@@ -21,9 +21,9 @@ export const dynamic = "force-static";
 
 export async function generateMetadata() {
   return generateStaticPageMetadata("home", {
-    title: "Providus CRM | Certified Salesforce Partner UK",
+    title: "ProvidusCRM | Certified Salesforce Partner UK",
     description:
-      "Providus CRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
+      "ProvidusCRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
     canonicalPath: "/",
     image: "/images/salesforce-partner.webp",
   });
@@ -36,13 +36,13 @@ export default async function HomePage() {
       {
         "@type": "Organization",
         "@id": "https://providuscrm.co.uk/#organization",
-        "name": "Providus CRM",
+        "name": "ProvidusCRM",
         "url": "https://providuscrm.co.uk",
         "logo": {
           "@type": "ImageObject",
           "url": "https://providuscrm.co.uk/images/salesforce-partner.webp"
         },
-        "description": "Providus CRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
+        "description": "ProvidusCRM provides certified Salesforce consulting, implementation, development, integration, migration, and managed services in the UK.",
         "email": "info@providuscrm.co.uk",
         "address": {
           "@type": "PostalAddress",
@@ -62,7 +62,7 @@ export default async function HomePage() {
         "@type": "WebSite",
         "@id": "https://providuscrm.co.uk/#website",
         "url": "https://providuscrm.co.uk",
-        "name": "Providus CRM",
+        "name": "ProvidusCRM",
         "publisher": {
           "@id": "https://providuscrm.co.uk/#organization"
         }

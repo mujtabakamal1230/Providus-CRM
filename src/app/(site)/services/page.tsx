@@ -26,7 +26,7 @@ export default async function ServicesPage() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Salesforce Services | Providus CRM",
+    "name": "Salesforce Services | ProvidusCRM",
     "description": "End-to-end Salesforce services and certified talent for building CRM solutions around your organisation's processes, challenges, and goals.",
     "url": "https://providuscrm.co.uk/services"
   };

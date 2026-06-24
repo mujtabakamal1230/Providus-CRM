@@ -14,9 +14,9 @@ const SITEMAP_QUERY = `*[
 
 type SitemapItem = {
   _type: string;
-  slug: { current: string };
+  slug: string;
   publishedAt?: string;
-  updatedAt?: string;
+  _updatedAt?: string;
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -41,24 +41,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...allItems
       .filter((i) => i._type === 'post')
       .map((p) => ({
-        url: `https://providuscrm.co.uk/blog/${p.slug.current}`,
-        lastModified: new Date(p.publishedAt || Date.now()),
+        url: `https://providuscrm.co.uk/blog/${p.slug}`,
+        lastModified: new Date(p.publishedAt || p._updatedAt || Date.now()),
         changeFrequency: 'yearly' as const,
         priority: 0.7,
       })),
     ...allItems
       .filter((i) => i._type === 'caseStudy')
       .map((cs) => ({
-        url: `https://providuscrm.co.uk/case-studies/${cs.slug.current}`,
-        lastModified: new Date(cs.updatedAt || Date.now()),
+        url: `https://providuscrm.co.uk/case-studies/${cs.slug}`,
+        lastModified: new Date(cs._updatedAt || cs.publishedAt || Date.now()),
         changeFrequency: 'yearly' as const,
         priority: 0.7,
       })),
     ...allItems
       .filter((i) => i._type === 'servicePage')
       .map((s) => ({
-        url: `https://providuscrm.co.uk/services/${s.slug.current}`,
-        lastModified: new Date(s.updatedAt || Date.now()),
+        url: `https://providuscrm.co.uk/services/${s.slug}`,
+        lastModified: new Date(s._updatedAt || s.publishedAt || Date.now()),
         changeFrequency: 'yearly' as const,
         priority: 0.7,
       })),

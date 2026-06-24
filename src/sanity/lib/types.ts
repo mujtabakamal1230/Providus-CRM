@@ -155,11 +155,21 @@ export interface ServiceCertifiedContent {
   description?: string;
 }
 
+export interface ServiceTabLink {
+  linkType?: "none" | "internal" | "external";
+  internalLink?: {
+    _type: string;
+    slug: string;
+  };
+  externalUrl?: string;
+}
+
 export interface ServiceTabItem {
   label: string;
   heading: string;
   text?: string;
   bullets?: string[];
+  link?: ServiceTabLink;
 }
 
 export interface ServiceTabsContent {

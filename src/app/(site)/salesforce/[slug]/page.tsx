@@ -304,15 +304,32 @@ function toWhatWeDoTabs(page: ServicePage): WhatWeDoTab[] | undefined {
     return undefined;
   }
 
-  return tabs.map((tab, index) => ({
-    id: slugify(tab.label) || `service-tab-${index}`,
-    label: tab.label,
-    content: {
-      heading: tab.heading,
-      text: tab.text || "",
-      bullets: tab.bullets,
-    },
-  }));
+  return tabs.map((tab, index) => {
+    let linkObj: { href: string; isExternal: boolean } | undefined = undefined;
+
+    if (tab.link?.linkType === "external" && tab.link.externalUrl) {
+      linkObj = { href: tab.link.externalUrl, isExternal: true };
+    } else if (tab.link?.linkType === "internal" && tab.link.internalLink?.slug) {
+      const type = tab.link.internalLink._type;
+      const targetSlug = tab.link.internalLink.slug;
+      let href = `/${targetSlug}`;
+      if (type === "servicePage") href = `/services/${targetSlug}`;
+      else if (type === "caseStudy") href = `/case-studies/${targetSlug}`;
+      else if (type === "post") href = `/blog/${targetSlug}`;
+      linkObj = { href, isExternal: false };
+    }
+
+    return {
+      id: slugify(tab.label) || `service-tab-${index}`,
+      label: tab.label,
+      content: {
+        heading: tab.heading,
+        text: tab.text || "",
+        bullets: tab.bullets,
+      },
+      link: linkObj,
+    };
+  });
 }
 
 function toBenefitCards(items?: ServiceBenefitItem[]) {

@@ -276,6 +276,41 @@ export const servicePage = defineType({
                   validation: (rule) => rule.required(),
                 }),
                 defineField({
+                  name: "link",
+                  title: "Heading Link",
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "linkType",
+                      title: "Link Type",
+                      type: "string",
+                      options: {
+                        list: [
+                          { title: "None", value: "none" },
+                          { title: "Internal Reference", value: "internal" },
+                          { title: "Custom/External URL", value: "external" },
+                        ],
+                        layout: "radio",
+                      },
+                      initialValue: "none",
+                    }),
+                    defineField({
+                      name: "internalLink",
+                      title: "Internal Link",
+                      type: "reference",
+                      to: [{ type: "servicePage" }, { type: "post" }, { type: "caseStudy" }],
+                      hidden: ({ parent }) => parent?.linkType !== "internal",
+                    }),
+                    defineField({
+                      name: "externalUrl",
+                      title: "Custom/External URL",
+                      type: "url",
+                      validation: Rule => Rule.uri({ scheme: ['http', 'https', 'mailto', 'tel'], allowRelative: true }),
+                      hidden: ({ parent }) => parent?.linkType !== "external",
+                    }),
+                  ]
+                }),
+                defineField({
                   name: "text",
                   title: "Body text",
                   type: "text",

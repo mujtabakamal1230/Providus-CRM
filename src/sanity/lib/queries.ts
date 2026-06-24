@@ -269,7 +269,23 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
         ${imageProjection}
       }
     },
-    tabsSection,
+    tabsSection {
+      title,
+      tabs[] {
+        label,
+        heading,
+        text,
+        bullets,
+        link {
+          linkType,
+          internalLink->{
+            _type,
+            "slug": slug.current
+          },
+          externalUrl
+        }
+      }
+    },
     benefitsSection,
     consultantCta {
       title,

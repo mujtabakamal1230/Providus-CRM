@@ -6,6 +6,11 @@ import { Container } from "@/components/layout/Container";
 import { Heading, Text } from "@/components/ui/Typography";
 import { cn } from "@/lib/utils";
 
+export interface WhatWeDoTabLink {
+  href: string;
+  isExternal: boolean;
+}
+
 export interface WhatWeDoTab {
   id?: string;
   label: string;
@@ -14,6 +19,7 @@ export interface WhatWeDoTab {
     text: string;
     bullets?: string[];
   };
+  link?: WhatWeDoTabLink;
 }
 
 interface WhatWeDoSectionProps {
@@ -150,9 +156,9 @@ export function WhatWeDoSection({
   );
   const [activeTab, setActiveTab] = useState(displayTabs[0]?.id || "tab-0");
 
-  const activeContent =
-    displayTabs.find((t) => t.id === activeTab)?.content ||
-    displayTabs[0]?.content;
+  const activeTabObj = displayTabs.find((t) => t.id === activeTab) || displayTabs[0];
+  const activeContent = activeTabObj?.content;
+  const activeLink = activeTabObj?.link;
 
   return (
     <section className="relative py-24 min-h-[800px] flex items-center overflow-hidden">
@@ -256,9 +262,25 @@ export function WhatWeDoSection({
             </div>
 
             <div className="relative z-10">
-              <Heading as="h3" className="text-black mb-8 !text-[28px] !leading-[32px] md:!text-[45px] md:!leading-[25px]">
-                {activeContent?.heading}
-              </Heading>
+              {activeLink ? (
+                activeLink.isExternal ? (
+                  <a href={activeLink.href} target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+                    <Heading as="h3" className="text-black mb-8 !text-[28px] !leading-[32px] md:!text-[45px] md:!leading-[25px]">
+                      {activeContent?.heading}
+                    </Heading>
+                  </a>
+                ) : (
+                  <a href={activeLink.href} className="inline-block hover:opacity-80 transition-opacity">
+                    <Heading as="h3" className="text-black mb-8 !text-[28px] !leading-[32px] md:!text-[45px] md:!leading-[25px]">
+                      {activeContent?.heading}
+                    </Heading>
+                  </a>
+                )
+              ) : (
+                <Heading as="h3" className="text-black mb-8 !text-[28px] !leading-[32px] md:!text-[45px] md:!leading-[25px]">
+                  {activeContent?.heading}
+                </Heading>
+              )}
 
               <div className="space-y-6">
                 {activeContent?.text.split('\n\n').map((p, i) => (

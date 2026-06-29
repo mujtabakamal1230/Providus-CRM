@@ -42,6 +42,10 @@ const tabs: WhatWeDoTab[] = [
         "Agentforce readiness evaluation and AI adoption planning",
       ],
     },
+    link: {
+      href: "/services/salesforce-consulting-services",
+      isExternal: false,
+    },
   },
   {
     id: "development",
@@ -55,6 +59,10 @@ const tabs: WhatWeDoTab[] = [
         "REST and SOAP API development for third-party connectivity",
         "Code review, refactoring, and technical debt remediation",
       ],
+    },
+    link: {
+      href: "/services/salesforce-development-services",
+      isExternal: false,
     },
   },
   {
@@ -70,6 +78,10 @@ const tabs: WhatWeDoTab[] = [
         "Post-go-live hypercare and stabilisation support",
       ],
     },
+    link: {
+      href: "/services/salesforce-implementation-services",
+      isExternal: false,
+    },
   },
   {
     id: "migration",
@@ -83,6 +95,10 @@ const tabs: WhatWeDoTab[] = [
         "Parallel-run testing to validate data integrity before cutover",
         "Workflow and automation rebuild on the target environment",
       ],
+    },
+    link: {
+      href: "/services/salesforce-migration-services",
+      isExternal: false,
     },
   },
   {
@@ -98,6 +114,10 @@ const tabs: WhatWeDoTab[] = [
         "Error handling, logging, and integration monitoring setup",
       ],
     },
+    link: {
+      href: "/services/salesforce-integration-services",
+      isExternal: false,
+    },
   },
   {
     id: "customisation",
@@ -111,6 +131,10 @@ const tabs: WhatWeDoTab[] = [
         "Role hierarchies, permission sets, and sharing rule configuration",
         "Validation rules and data quality enforcement at the field level",
       ],
+    },
+    link: {
+      href: "/services/salesforce-customisation-services",
+      isExternal: false,
     },
   },
   {

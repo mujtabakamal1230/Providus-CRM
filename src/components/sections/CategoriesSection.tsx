@@ -11,6 +11,7 @@ const categories = [
     icon: "/images/salesforce-consulting.svg",
     boxGradient: "linear-gradient(174.14deg, rgba(220, 239, 255, 0) 8.64%, #DCEFFF 105.18%)",
     iconGradient: "linear-gradient(180deg, #8BC9FF 0%, #F8FBFF 136.56%)",
+    href: "/services/salesforce-consulting-services",
   },
   {
     title: "Salesforce Development",
@@ -18,6 +19,7 @@ const categories = [
     icon: "/images/salesforce-development.svg",
     boxGradient: "linear-gradient(185.05deg, rgba(222, 220, 255, 0) 8.14%, #DEDCFF 99.18%)",
     iconGradient: "linear-gradient(180deg, #D4D1FF 0%, #F8FBFF 136.56%)",
+    href: "/services/salesforce-development-services",
   },
   {
     title: "Salesforce Implementation",
@@ -25,6 +27,7 @@ const categories = [
     icon: "/images/salesforce-implementation.svg",
     boxGradient: "linear-gradient(185.05deg, rgba(220, 255, 229, 0) 8.14%, #DCFFE5 99.18%)",
     iconGradient: "linear-gradient(180deg, #9EFFB8 0%, #F8FBFF 136.56%)",
+    href: "/services/salesforce-implementation-services",
   },
   {
     title: "Salesforce Migration",
@@ -32,6 +35,7 @@ const categories = [
     icon: "/images/salesforce-migration.svg",
     boxGradient: "linear-gradient(174.14deg, rgba(255, 237, 220, 0) 8.64%, #FFEDDC 105.18%)",
     iconGradient: "linear-gradient(180deg, #F6CBA5 0%, #F8FBFF 136.56%)",
+    href: "/services/salesforce-migration-services",
   },
   {
     title: "Salesforce Integration",
@@ -39,6 +43,7 @@ const categories = [
     icon: "/images/salesforce-integration.svg",
     boxGradient: "linear-gradient(174.14deg, rgba(220, 239, 255, 0) 8.64%, #DCEFFF 105.18%)",
     iconGradient: "linear-gradient(180deg, #8BC9FF 0%, #F8FBFF 136.56%)",
+    href: "/services/salesforce-integration-services",
   },
   {
     title: "Salesforce Customisation",
@@ -46,6 +51,7 @@ const categories = [
     icon: "/images/salesforce-customisation.svg",
     boxGradient: "linear-gradient(185.05deg, rgba(222, 220, 255, 0) 8.14%, #DEDCFF 99.18%)",
     iconGradient: "linear-gradient(180deg, #D4D1FF 0%, #F8FBFF 136.56%)",
+    href: "/services/salesforce-customisation-services",
   },
   {
     title: "Salesforce Managed Services",
@@ -99,7 +105,7 @@ export function CategoriesSection() {
                     className="h-full"
                   >
                     <div
-                      className="p-10 md:p-12 flex flex-col items-start h-full"
+                      className="group p-10 md:p-12 flex flex-col items-start h-full"
                       style={{
                         background: category.boxGradient,
                         borderRadius: "36px",
@@ -107,7 +113,7 @@ export function CategoriesSection() {
                     >
                       {/* Icon Box */}
                       <div
-                        className="mb-8 flex items-center justify-center"
+                        className="mb-8 flex items-center justify-center transition-shadow duration-300 hover:!shadow-none group-hover:!shadow-none"
                         style={{
                           width: "72px",
                           height: "64px",
@@ -126,9 +132,17 @@ export function CategoriesSection() {
                         </div>
                       </div>
 
-                      <Heading as="h4" className="text-black mb-6">
-                        {category.title}
-                      </Heading>
+                      {category.href ? (
+                        <a href={category.href} className="inline-block hover:opacity-80 transition-opacity">
+                          <Heading as="h4" className="text-black mb-6">
+                            {category.title}
+                          </Heading>
+                        </a>
+                      ) : (
+                        <Heading as="h4" className="text-black mb-6">
+                          {category.title}
+                        </Heading>
+                      )}
 
                       <Text variant="p3" className="text-black leading-relaxed">
                         {category.text}

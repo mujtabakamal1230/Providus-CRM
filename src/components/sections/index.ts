@@ -11,6 +11,7 @@ export { IndustriesSection } from "./IndustriesSection";
 export { IndustryDetailSection } from "./IndustryDetailSection";
 export { PlatformsSection } from "./PlatformsSection";
 export { WhyChooseSection, reasons } from "./WhyChooseSection";
+export { FaqSection } from "./FaqSection";
 export { TeamSection } from "./TeamSection";
 export { CategoriesSection } from "./CategoriesSection";
 export { BelieveSection } from "./BelieveSection";

@@ -343,6 +343,13 @@ export const SERVICE_PAGE_QUERY = defineQuery(`
         ${imageProjection}
       }
     },
+    faqSection {
+      title,
+      faqs[] {
+        question,
+        answer
+      }
+    },
     cta {
       title,
       buttonLabel,

@@ -192,6 +192,31 @@ export const salesforceConsultingServicesFallback: ServicePage = {
       },
     ],
   },
+  faqSection: {
+    title: "Frequently Asked Questions",
+    faqs: [
+      {
+        question: "What does a Salesforce Sales Cloud consultant do?",
+        answer: "A Salesforce Sales Cloud consultant maps how your sales team works today, and then configures Sales Cloud to match that process step by step. They handle setup, training, integrations, and the careful design choices that decide whether your team adopts the system properly or quietly avoids using it.",
+      },
+      {
+        question: "What Salesforce Sales Cloud solutions does ProvidusCRM offer in the UK?",
+        answer: "We offer end-to-end Sales Cloud implementations, org audits, custom development, integrations, and ongoing managed services.",
+      },
+      {
+        question: "What Salesforce Sales Cloud services do you provide in the UK?",
+        answer: "Our services cover process mapping, technical architecture, configuration, data migration, user training, and post-go-live support.",
+      },
+      {
+        question: "What does a Salesforce Sales Cloud Implementation Partner do?",
+        answer: "An implementation partner handles the technical and strategic rollout of Salesforce, ensuring it meets your specific commercial objectives.",
+      },
+      {
+        question: "What is the difference between a Salesforce Sales Cloud consultant and an implementation partner?",
+        answer: "A consultant often advises on strategy and best practices, whereas an implementation partner executes the actual technical build, data migration, and deployment.",
+      },
+    ],
+  },
   consultantCta: {
     title:
       "Connect With Our Salesforce Consultants To Discuss Your CRM Needs And Business Goals.",

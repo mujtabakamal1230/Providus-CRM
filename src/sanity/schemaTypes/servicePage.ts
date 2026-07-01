@@ -40,6 +40,7 @@ const sectionOrderOptions = [
   { title: "Expertise carousel", value: "expertise" },
   { title: "Industries grid", value: "industries" },
   { title: "Why choose", value: "whyChoose" },
+  { title: "FAQs", value: "faqs" },
   { title: "Footer CTA", value: "cta" },
 ];
 
@@ -648,6 +649,45 @@ export const servicePage = defineType({
           ],
         }),
         serviceImageField("image", "Right-side image"),
+      ],
+    }),
+    defineField({
+      name: "faqSection",
+      title: "FAQ section",
+      type: "object",
+      components: prominentSectionComponents,
+      fields: [
+        defineField({
+          name: "title",
+          title: "Title",
+          type: "string",
+          initialValue: "Frequently Asked Questions",
+        }),
+        defineField({
+          name: "faqs",
+          title: "FAQs",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({
+                  name: "question",
+                  title: "Question",
+                  type: "string",
+                  validation: (rule) => rule.required(),
+                }),
+                defineField({
+                  name: "answer",
+                  title: "Answer",
+                  type: "text",
+                  validation: (rule) => rule.required(),
+                  rows: 3,
+                }),
+              ],
+            },
+          ],
+        }),
       ],
     }),
     defineField({

@@ -121,6 +121,7 @@ export type ServicePageSectionKey =
   | "expertise"
   | "industries"
   | "whyChoose"
+  | "faqs"
   | "cta";
 
 export type ServiceBenefitIconKey =
@@ -264,6 +265,16 @@ export interface ServiceCtaContent {
   backgroundImage?: SanityImage;
 }
 
+export interface ServiceFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface ServiceFaqContent {
+  title?: string;
+  faqs?: ServiceFaqItem[];
+}
+
 export interface ServicePage {
   _id: string;
   title: string;
@@ -283,5 +294,6 @@ export interface ServicePage {
   expertiseSection?: ServiceExpertiseContent;
   industriesSection?: ServiceIndustriesContent;
   whyChooseSection?: ServiceWhyChooseContent;
+  faqSection?: ServiceFaqContent;
   cta?: ServiceCtaContent;
 }

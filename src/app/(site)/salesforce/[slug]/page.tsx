@@ -14,6 +14,7 @@ import {
   ServiceCaseStudiesSection,
   WhatWeDoSection,
   WhyChooseSection,
+  FaqSection,
 } from "@/components/sections";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
@@ -74,6 +75,7 @@ const DEFAULT_SERVICE_SECTION_ORDER: ServicePageSectionKey[] = [
   "expertise",
   "industries",
   "whyChoose",
+  "faqs",
   "cta",
 ];
 
@@ -227,6 +229,12 @@ export default async function SalesforceServicePage({
         backgroundOverlayColor="#616161"
       />
     ),
+    faqs: page.faqSection ? (
+      <FaqSection
+        title={page.faqSection.title}
+        faqs={page.faqSection.faqs}
+      />
+    ) : null,
     cta: (
       <CtaSection
         title={legacyCta?.title}
